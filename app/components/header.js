@@ -1,21 +1,13 @@
 import React from 'react';
-
-
-const style = {
-  marginTop: '15px',
-  marginBottom: '20px'
-};
-
+import NavBar from './nav_bar';
 
 const Header = () => {
   return (
     <header>
       <div className="row text-center" >
-          <div className="col-sm-6">
+          <div className="col-sm-12">
             <h1 className="headerFont">Awesome App</h1>
-          </div>
-          <div className="col-sm-6">
-            
+            <NavBar />
           </div>
       </div>
       <div className="row">

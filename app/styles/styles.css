@@ -1,0 +1,98 @@
+body {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-buttons-container {
+    width: 100%;
+    padding: 20px;
+    text-align: center
+}
+
+.card {
+  max-width: 600px;
+  min-height: 250px;
+  background-color: #3F51B5;;
+  border-radius: 2px;
+  color: #FFF;
+  margin: auto;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.card-column-1,
+.card-column-2 {
+  width: 50%;
+  min-width: 175px;
+  padding: 5px;
+  padding-left: 30px;
+}
+
+.card a,
+.card a:visited {
+  color: #FFF;
+  text-decoration: underline;
+}
+
+.card a:hover {
+  color: #ccc;
+}
+
+.card-notes {
+  padding-left: 30px;
+}
+
+.card h5 {
+  margin-top: 0;
+}
+
+.card p {
+  margin-top: -5px;
+}
+
+address {
+  margin-bottom: 10px;
+}
+
+.margin-b-10 {
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: normal;
+}
+
+legend {
+  background-color: #3F51B5;
+  color: #FFF;
+  padding: 3px;
+}
+
+.roster-item {
+  padding: 8px;
+  background-color: #3F51B5;
+  color: #FFF;
+  margin-bottom: 8px;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+
+.roster-item span {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.roster-toolbar {
+  max-width: 300px;
+  margin: auto;
+}

@@ -1,16 +1,10 @@
 import React from 'react';
 
-const style = {
-
-};
-
-
 const Footer = () => {
   return (
     <footer>
       <div className="row">
         <div className="col-sm-12">
-          
         </div>
       </div>
       <div className="row" >
