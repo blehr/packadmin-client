@@ -13,11 +13,11 @@ const baseURL = 'http://express-project-brandonl.c9users.io:8080';
 
 export const addScoutResponseAction = (data) => {
   const postURL = `${baseURL}/scouts/add`;
-  const request = axios.post(postURL, {data});
+  const request = axios.post(postURL, { data });
 
   return {
     type: ADD_SCOUT_RESPONSE,
-    payload: request
+    payload: request,
   };
 };
 
@@ -27,32 +27,30 @@ export const getScoutToUpdate = (id) => {
 
   return {
     type: SCOUT_TO_UPDATE,
-    payload: request
+    payload: request,
   };
 };
 
 export const updateScout = (data, id) => {
   const postURL = `${baseURL}/scouts/update/${id}`;
-  const request = axios.post(postURL, {data});
+  const request = axios.post(postURL, { data });
 
   return {
     type: UPDATE_SCOUT,
-    payload: request
+    payload: request,
   };
 };
 
-export const clearUpdateScout = () => {
-  return {
-    type: CLEAR_UPDATE_SCOUT
-  };
-};
+export const clearUpdateScout = () => (
+  { type: CLEAR_UPDATE_SCOUT }
+ );
 
-export const getScoutDetail = id => {
+export const getScoutDetail = (id) => {
   const getURL = `${baseURL}/scouts/detail/${id}`;
   const request = axios.get(getURL);
   return {
     type: GET_SCOUT_DETAIL,
-    payload: request
+    payload: request,
   };
 };
 
@@ -62,24 +60,23 @@ export const getAllScouts = () => {
 
   return {
     type: GET_ALL_SCOUTS,
-    payload: request
+    payload: request,
   };
 };
 
-export const removeScout = id => {
+export const removeScout = (id) => {
   const getURL = `${baseURL}/scouts/remove/${id}`;
   const request = axios.post(getURL);
-  
   return {
     type: REMOVE_SCOUT,
-    payload: request
+    payload: request,
   };
 };
 
-export const sortBy = (filter) => {
-  return {
+export const sortBy = filter => (
+  {
     type: SORT_BY,
-    payload: filter
-  };
-};
+    payload: filter,
+  }
+);
 

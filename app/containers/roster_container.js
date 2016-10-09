@@ -17,23 +17,20 @@ class RosterContainer extends Component {
   }
   
   render() {
-      console.log(this.props.allScouts.data);
+    console.log(this.props.allScouts.data);
       if (!this.props.allScouts.data) {
-         return <div>No Scout</div>;
+        return <div>No Scout</div>;
        } else {
         return (
-            <div>
-                <RosterToolbar />
-                <div className="row">
-                    <Roster scouts={this.props.allScouts.data} handleClick={this.onHandleClick} filter={this.props.sortedBy} /> 
-                </div> 
-            </div>
+          <div>
+            <RosterToolbar />
+            <div className="row">
+              <Roster scouts={this.props.allScouts.data} handleClick={this.onHandleClick} filter={this.props.sortedBy} /> 
+            </div> 
+          </div>
         );
        }
-      }
- 
-   
-  
+    }
 }
 
 

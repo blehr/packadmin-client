@@ -49,7 +49,9 @@ export const byDen = list => {
         wolf: [],
         bear: [],
         web1: [],
-        web2: []
+        web2: [],
+        paid: [],
+        unpaid: []
     };
     
     list.map(scout => {
@@ -59,6 +61,9 @@ export const byDen = list => {
         if (scout.den === 'Bear') scoutDens.bear.push(scout);
         if (scout.den === 'Webelos 1') scoutDens.web1.push(scout);
         if (scout.den === 'Webelos 2') scoutDens.web2.push(scout);
+        if (scout.dues === true) scoutDens.paid.push(scout);
+        if (scout.dues === false) scoutDens.unpaid.push(scout);
+        
     });
     
     return scoutDens;
@@ -120,6 +125,20 @@ export const filterBy = (scouts, filter) => {
         return {
             scouts: scouts.web2,
             title: 'Webelos 2'
+        };
+    }
+    if (filter === 'paid') {
+        scouts = byDen(scouts);
+        return {
+            scouts: scouts.paid,
+            title: 'Dues Paid'
+        };
+    }
+    if (filter === 'unpaid') {
+        scouts = byDen(scouts);
+        return {
+            scouts: scouts.unpaid,
+            title: 'Dues Unpaid'
         };
     }
     

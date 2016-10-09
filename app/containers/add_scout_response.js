@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ScoutDetail from '../components/scout_detail';
 import { removeScout } from '../actions/index';
+import ConfirmToolbar from '../components/confirm_toolbar';
 
 
 const AddScoutContainer = (props) => {
@@ -13,7 +14,8 @@ const AddScoutContainer = (props) => {
   } else {
     return (
       <div className="row">
-       <ScoutDetail scout={scoutDetail.data} removeScout={removeScout} /> 
+        <ConfirmToolbar scout={scoutDetail.data} removeScout={removeScout} />
+        <ScoutDetail scout={scoutDetail.data} removeScout={removeScout} /> 
       </div> 
     );
   }
