@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import { Tabs, Tab } from 'material-ui/Tabs';
 
 const styles = {
@@ -10,8 +9,8 @@ const styles = {
     fontWeight: 400,
   },
   backgroundColor: {
-    background: '#3F51B5'
-  }
+    background: '#3F51B5',
+  },
 };
 
 class MaterialTab extends Component {
@@ -24,8 +23,10 @@ class MaterialTab extends Component {
   }
   render() {
     return (
-      <Tabs value={this.state.value}
-        onChange={this.handleChange} >
+      <Tabs
+        value={this.state.value}
+        onChange={this.handleChange}
+      >
         <Tab label="Alphabetical" value="a" />
         <Tab label="Lion" value="b" />
         <Tab label="Tiger" value="c" />

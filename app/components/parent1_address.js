@@ -8,7 +8,20 @@ const Parent1Address = ({ scout }) => {
       address = (
         <div>
           <div>{trueOrFalse(scout.parent1AddressSameAsScout)} Same Address as Scout</div>
-          {(() => { if (scout.parent1Email) return <div><i className="fa fa-envelope-o"></i> <a href={`mailto:${scout.parent1Email}`} >{scout.parent1Email}</a></div>; })()}
+          {
+            (() => {
+              if (scout.parent1Email) {
+                return (
+                  <div>
+                    <i className="fa fa-envelope-o" />
+                    <a href={`mailto:${scout.parent1Email}`} > {scout.parent1Email}
+                    </a>
+                  </div>
+                );
+              }
+              return null;
+            })()
+          }
         </div>
       );
     }

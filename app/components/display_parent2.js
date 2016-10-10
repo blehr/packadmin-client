@@ -20,9 +20,36 @@ const DisplayParent2 = ({ scout }) => {
         </div>
         <div className="card-column-2">
           <div className="margin-b-10">{scout.parent2RelationToScout}</div>
-          {(() => { if (scout.parent2PhoneNumberMobile) return <p>M: <i className="fa fa-mobile" /> {scout.parent2PhoneNumberMobile}</p>; })()}
-          {(() => { if (scout.parent2PhoneNumberHome) return <p>H: <i className="fa fa-home" /> {scout.parent2PhoneNumberHome}</p>; })()}
-          {(() => { if (scout.parent2PhoneNumberWork) return <p>W: <i className="fa fa-briefcase" /> {scout.parent2PhoneNumberWork}</p>; })()}
+          {
+            (() => {
+              if (scout.parent2PhoneNumberMobile) {
+                return (
+                  <p>M: <i className="fa fa-mobile" /> {scout.parent2PhoneNumberMobile}</p>
+                );
+              }
+              return null;
+            })()
+          }
+          {
+            (() => {
+              if (scout.parent2PhoneNumberHome) {
+                return (
+                  <p>H: <i className="fa fa-home" /> {scout.parent2PhoneNumberHome}</p>
+                );
+              }
+              return null;
+            })()
+          }
+          {
+            (() => {
+              if (scout.parent2PhoneNumberWork) {
+                return (
+                  <p>W: <i className="fa fa-briefcase" /> {scout.parent2PhoneNumberWork}</p>
+                );
+              }
+              return null;
+            })()
+          }
         </div>
       </div>
       <div className="card-notes">
