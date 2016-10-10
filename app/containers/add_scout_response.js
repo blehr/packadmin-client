@@ -8,33 +8,30 @@ import ConfirmToolbar from '../components/confirm_toolbar';
 
 const AddScoutContainer = (props) => {
   const { scoutDetail, removeScout } = props;
- 
-  if (!scoutDetail.data ) {
+  if (!scoutDetail.data) {
     return <div>No Scout</div>;
-  } else {
-    return (
-      <div className="row">
-        <ConfirmToolbar scout={scoutDetail.data} removeScout={removeScout} />
-        <ScoutDetail scout={scoutDetail.data} removeScout={removeScout} /> 
-      </div> 
-    );
   }
-  
+  return (
+    <div className="row">
+      <ConfirmToolbar scout={scoutDetail.data} removeScout={removeScout} />
+      <ScoutDetail scout={scoutDetail.data} removeScout={removeScout} />
+    </div>
+  );
 };
 
 AddScoutContainer.propTypes = {
-  scoutDetail: PropTypes.object,
-  removeScout: PropTypes.func
+  scoutDetail: PropTypes.obj,
+  removeScout: PropTypes.func,
 };
 
 
-const mapStateToProps = function({ scoutDetail }) {
-  return { scoutDetail };
-};
+const mapStateToProps = ({ scoutDetail }) => (
+  { scoutDetail }
+);
 
-const mapDispatchToProps = function(dispatch) {
-    return bindActionCreators({ removeScout }, dispatch);
-};
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({ removeScout }, dispatch)
+);
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddScoutContainer);

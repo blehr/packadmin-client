@@ -18,4 +18,3 @@ export default (
     <Route path="/scouts/update-confirm" component={ConfirmScoutResponse} />
   </Route>
 );
-

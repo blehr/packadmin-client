@@ -4,18 +4,15 @@ import Footer from './footer';
 import '../styles/styles.css';
 
 
-const App = (props) => {
-  return (
-    <div className="container">
-      <Header />
-        {props.children}
-      <Footer />
-    </div>
-  );
-};
+const App = props =>
+  <div className="container">
+    <Header />
+    {props.children}
+    <Footer />
+  </div>;
 
 App.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default App;
