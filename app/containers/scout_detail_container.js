@@ -26,18 +26,20 @@ class ScoutDetailContainer extends Component {
   }
 }
 
-const mapStateToProps = function ({ scoutDetail }) {
-  return { scoutDetail };
-};
+const mapStateToProps = ({ scoutDetail }) => (
+  { scoutDetail }
+);
 
-const mapDispatchToProps = function (dispatch) {
-  return bindActionCreators({ getScoutDetail, removeScout }, dispatch);
-};
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({ getScoutDetail, removeScout }, dispatch)
+);
 
 ScoutDetailContainer.propTypes = {
   getScoutDetail: PropTypes.func,
   scoutDetail: PropTypes.object,
   removeScout: PropTypes.func,
+  params: PropTypes.object,
+  id: PropTypes.number,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScoutDetailContainer);

@@ -13,7 +13,7 @@ const DisplayParent1 = ({ scout }) => {
             <i
               className="fa fa-user"
               aria-hidden="true"
-            /> {scout.parent1FirstName} {scout.parent1LastName}
+            />{scout.parent1FirstName} {scout.parent1LastName}
           </h5>
           <Parent1Address scout={scout} />
         </div>
@@ -59,7 +59,7 @@ const DisplayParent1 = ({ scout }) => {
 };
 
 DisplayParent1.propTypes = {
-  scout: PropTypes.obj,
+  scout: PropTypes.object,
 };
 
 export default DisplayParent1;

@@ -9,6 +9,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { indigo500 } from 'material-ui/styles/colors';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import routes from './routes';
+import { loadState, saveState } from './localStorage';
 
 import reducers from './reducers/index';
 
@@ -31,9 +32,16 @@ const createStoreWithMiddleware = compose(
 );
 
 
+const persistedState = loadState();
+
 const store = (createStoreWithMiddleware(createStore)(
-    reducers
+    reducers,
+    persistedState
 ));
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
 
 
 ReactDOM.render(

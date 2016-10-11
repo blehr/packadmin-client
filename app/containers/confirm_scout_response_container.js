@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { removeScout } from '../actions/index';
@@ -6,17 +6,12 @@ import ScoutDetail from '../components/scout_detail';
 import ConfirmToolbar from '../components/confirm_toolbar';
 
 
-class ConfirmScoutContainer extends Component {
-  render() {
-    const { editScout } = this.props;
-    return (
-      <div className="row">
-        <ConfirmToolbar scout={editScout} removeScout={this.props.removeScout} />
-        <ScoutDetail scout={editScout} removeScout={this.props.removeScout} />
-      </div>
-    );
-  }
-}
+const ConfirmScoutContainer = ({ editScout, removeScout }) => (
+  <div className="row">
+    <ConfirmToolbar scout={editScout} removeScout={removeScout} />
+    <ScoutDetail scout={editScout} removeScout={removeScout} />
+  </div>
+);
 
 ConfirmScoutContainer.propTypes = {
   editScout: PropTypes.object,

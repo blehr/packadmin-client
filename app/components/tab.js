@@ -1,20 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { Link, IndexLink } from 'react-router';
 
 
-export default class Tab extends Component {
-
-  static propTypes = {
-    index: PropTypes.bool,
-    to: PropTypes.string,
-    onlyActiveOnIndex: PropTypes.bool,
-    children: PropTypes.node
-  }
-
-  static contextTypes = {
-    router: PropTypes.object.isRequired
-  };
-
+class Tab extends Component {
   render() {
     const { router } = this.context;
     const { index, onlyActiveOnIndex, to, children, ...props } = this.props;
@@ -29,3 +17,16 @@ export default class Tab extends Component {
     );
   }
 }
+
+Tab.propTypes = {
+  index: PropTypes.bool,
+  to: PropTypes.string,
+  onlyActiveOnIndex: PropTypes.bool,
+  children: PropTypes.node,
+};
+
+Tab.contextTypes = {
+  router: PropTypes.object.isRequired,
+};
+
+export default Tab;

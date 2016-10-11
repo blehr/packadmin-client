@@ -14,14 +14,52 @@ const ScoutDetail = (props) => {
         <div className="card-row">
           <div className="card-column-1">
             <address>
-              {(() => { if (scout.scoutStreetAddress) return <div >{scout.scoutStreetAddress}</div>; })()}
-              {(() => { if (scout.scoutMailAddress) return <div >{scout.scoutMailAddress}</div>; })()}
-              {(() => { if (scout.scoutCity) return <div >{scout.scoutCity}, {scout.scoutState} {scout.scoutZipCode}</div>; })}
+              {
+                (() => {
+                  if (scout.scoutStreetAddress) {
+                    return (
+                      <div>{scout.scoutStreetAddress}</div>
+                    );
+                  }
+                  return null;
+                })()
+              }
+              {
+                (() => {
+                  if (scout.scoutMailAddress) {
+                    return (
+                      <div>{scout.scoutMailAddress}</div>
+                    );
+                  }
+                  return null;
+                })()
+              }
+              {
+                (() => {
+                  if (scout.scoutCity) {
+                    return (
+                      <div>{scout.scoutCity}, {scout.scoutState} {scout.scoutZipCode}</div>
+                    );
+                  }
+                  return null;
+                })()
+              }
             </address>
-            <p><i className="fa fa-birthday-cake" /> {displayBirthday(scout.birthday)}</p>
+            <p>
+              <i className="fa fa-birthday-cake" /> {displayBirthday(scout.birthday)}
+            </p>
             <p>Age: {getAge(scout.birthday)}</p>
             <p>Grade: {scout.grade}</p>
-            {(() => { if (scout.schoolDistrict) return <p><i className="fa fa-graduation-cap" /> {scout.schoolDistrict}</p>; })}
+            {
+              (() => {
+                if (scout.schoolDistrict) {
+                  return (
+                    <p><i className="fa fa-graduation-cap" /> {scout.schoolDistrict}</p>
+                  );
+                }
+                return null;
+              })()
+            }
           </div>
           <div className="card-column-2">
             <p><i className="fa fa-users" aria-hidden="true" /> {scout.den}</p>

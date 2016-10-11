@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getAllScouts, getScoutDetail } from '../actions/index';
 import Roster from '../components/roster';
-import MaterialTab from '../components/material_tabs';
 import RosterToolbar from '../components/toolbar';
 
 class RosterContainer extends Component {
@@ -37,15 +36,15 @@ RosterContainer.propTypes = {
 };
 
 
-const mapStateToProps = function ({ allScouts, sortedBy }) {
-  return { allScouts, sortedBy };
-};
+const mapStateToProps = ({ allScouts, sortedBy }) => (
+  { allScouts, sortedBy }
+);
 
-const mapDispatchToProps = function (dispatch) {
-  return bindActionCreators({
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
     getAllScouts,
     getScoutDetail,
-  }, dispatch);
-};
+  }, dispatch)
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(RosterContainer);

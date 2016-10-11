@@ -14,7 +14,7 @@ const DisplayParent2 = ({ scout }) => {
             <i
               className="fa fa-user"
               aria-hidden="true"
-            /> {scout.parent2FirstName} {scout.parent2LastName}
+            />{scout.parent2FirstName} {scout.parent2LastName}
           </h5>
           <Parent2Address scout={scout} />
         </div>
@@ -60,7 +60,7 @@ const DisplayParent2 = ({ scout }) => {
 };
 
 DisplayParent2.propTypes = {
-  scout: PropTypes.obj,
+  scout: PropTypes.object,
 };
 
 

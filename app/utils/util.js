@@ -3,25 +3,24 @@ import moment from 'moment';
 
 export const trueOrFalse = (item) => {
   if (item) {
-    return <i className="fa fa-check-square-o"></i>;
-  } else {
-    return <i className="fa fa-square-o"></i>;
+    return <i className="fa fa-check-square-o" />;
   }
+  return <i className="fa fa-square-o" />;
 };
 
-const formatDate = date => {
+const formatDate = (date) => {
   const regex = /T.+/;
   const birth = date.replace(regex, '');
   return moment(birth);
 };
 
-export const getAge = date => {
-  return formatDate(date).fromNow(true);
-};
+export const getAge = date => (
+  formatDate(date).fromNow(true)
+);
 
-export const displayBirthday = date => {
-  return formatDate(date).format('MMM D, YYYY');
-};
+export const displayBirthday = date => (
+  formatDate(date).format('MMM D, YYYY')
+);
 
 export const alphabetize = list => (
   list.sort((a, b) => {
@@ -31,17 +30,14 @@ export const alphabetize = list => (
     if (aValue < bValue) {
       return -1;
     }
-
     if (aValue > bValue) {
       return 1;
     }
-
     return 0;
   })
 );
 
 const byDen = (list) => {
-  console.log(list);
   const sortedList = alphabetize(list);
 
   const scoutDens = {
@@ -56,29 +52,37 @@ const byDen = (list) => {
   };
 
   sortedList.map((scout) => {
-    if (scout.den === 'Lion')
+    if (scout.den === 'Lion') {
       scoutDens.lion.push(scout);
-    if (scout.den === 'Tiger')
+    }
+    if (scout.den === 'Tiger') {
       scoutDens.tiger.push(scout);
-    if (scout.den === 'Wolf')
+    }
+    if (scout.den === 'Wolf') {
       scoutDens.wolf.push(scout);
-    if (scout.den === 'Bear')
+    }
+    if (scout.den === 'Bear') {
       scoutDens.bear.push(scout);
-    if (scout.den === 'Webelos 1')
+    }
+    if (scout.den === 'Webelos 1') {
       scoutDens.web1.push(scout);
-    if (scout.den === 'Webelos 2')
+    }
+    if (scout.den === 'Webelos 2') {
       scoutDens.web2.push(scout);
-    if (scout.dues === true)
+    }
+    if (scout.dues === true) {
       scoutDens.paid.push(scout);
-    if (scout.dues === false)
+    }
+    if (scout.dues === false) {
       scoutDens.unpaid.push(scout);
+    }
+    return null;
   });
 
   return scoutDens;
 };
 
 export const filterBy = (list, filter) => {
-  console.log(list);
   let sortedScouts = '';
 
   if (filter === 'all') {
@@ -119,4 +123,5 @@ export const filterBy = (list, filter) => {
     sortedScouts = byDen(list);
     return { scouts: sortedScouts.unpaid, title: 'Dues Unpaid' };
   }
+  return null;
 };

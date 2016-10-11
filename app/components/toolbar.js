@@ -20,7 +20,12 @@ class RosterToolbar extends Component {
     return (
       <Toolbar className="roster-toolbar" style={{ backgroundColor: '#F48FB1' }} >
         <ToolbarGroup >
-          <DropDownMenu value={this.props.sortedBy} onChange={this.handleChange} labelStyle={{ color: '#FFF' }} className="dropdown" >
+          <DropDownMenu
+            value={this.props.sortedBy}
+            onChange={this.handleChange}
+            labelStyle={{ color: '#FFF' }}
+            className="dropdown"
+          >
             <MenuItem value={'all'} primaryText="All Scouts" />
             <MenuItem value={'byDen'} primaryText="By Den" />
             <MenuItem value={'Lion'} primaryText="Lion" />
@@ -44,12 +49,12 @@ RosterToolbar.propTypes = {
   sortBy: PropTypes.func,
 };
 
-const mapStateToProps = function ({ sortedBy }) {
-  return { sortedBy };
-};
+const mapStateToProps = ({ sortedBy }) => (
+  { sortedBy }
+);
 
-const mapDispatchToProps = function (dispatch) {
-  return bindActionCreators({ sortBy }, dispatch);
-};
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({ sortBy }, dispatch)
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(RosterToolbar);
