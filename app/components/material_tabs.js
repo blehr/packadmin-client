@@ -27,13 +27,10 @@ class MaterialTab extends Component {
         value={this.state.value}
         onChange={this.handleChange}
       >
-        <Tab label="Alphabetical" value="a" />
-        <Tab label="Lion" value="b" />
-        <Tab label="Tiger" value="c" />
-        <Tab label="Wolf" value="d" />
-        <Tab label="Bear" value="e" />
-        <Tab label="Webelos 1" value="f" />
-        <Tab label="Webelos 2" value="g" />
+        <Tab label="Home" value="a" />
+        <Tab label="Roster" value="b" />
+        <Tab label="Add Scouts" value="c" />
+        <Tab label="Profile" value="d" />
       </Tabs>
     );
   }

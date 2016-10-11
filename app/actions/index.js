@@ -9,8 +9,8 @@ export const UPDATE_SCOUT = 'UPDATE_SCOUT';
 export const CLEAR_UPDATE_SCOUT = 'CLEAR_UPDATE_SCOUT';
 export const SCOUT_TO_UPDATE = 'SCOUT_TO_UPDATE';
 
-const baseURL = 'http://express-project-brandonl.c9users.io:8080';
-// const baseURL = 'http://localhost:8080';
+// const baseURL = 'http://express-project-brandonl.c9users.io:8080';
+const baseURL = 'http://localhost:8080';
 
 export const addScoutResponseAction = (data) => {
   const postURL = `${baseURL}/scouts/add`;
