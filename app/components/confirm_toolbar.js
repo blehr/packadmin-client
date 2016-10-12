@@ -1,19 +1,12 @@
 import React, { PropTypes } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import { browserHistory } from 'react-router';
-import { grey100 } from 'material-ui/styles/colors';
-
-const style = {
-  margin: 12,
-};
-
+import EditSVG from 'material-ui/svg-icons/editor/mode-edit';
+import DeleteSVG from 'material-ui/svg-icons/action/delete';
 
 const ConfirmToolbar = (props) => {
   const { scout, removeScout } = props;
 
-  const handleOnClickAdd = () => {
-    browserHistory.push('/scouts/add');
-  };
   const handleOnClickEdit = (id) => {
     browserHistory.push(`/scouts/update/${id}`);
   };
@@ -23,23 +16,19 @@ const ConfirmToolbar = (props) => {
   };
 
   return (
-    <div className="row">
-      <div className="col-sm-12 text-center">
-        <RaisedButton
+    <div className="col-sm-6 col-sm-offset-3">
+      <div className="confirm-toolbar">
+        <FlatButton
           label="Edit"
           onClick={() => handleOnClickEdit(scout._id)}
-          primary style={style}
+          primary
+          icon={<EditSVG />}
         />
-        <RaisedButton
+        <FlatButton
           label="Delete"
           onClick={() => handleOnClickDelete(scout._id)}
-          secondary style={style}
-        />
-        <RaisedButton
-          label="Add a Scout"
-          onClick={() => handleOnClickAdd()}
-          style={style}
-          backgroundColor={grey100}
+          secondary
+          icon={<DeleteSVG />}
         />
       </div>
     </div>

@@ -3,10 +3,16 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.main {
+  min-height: 800px;
+}
+
+footer {
+  margin-top: 50px;
+}
+
 .header {
   height: 125px;
-  background-color: #2196F3;
-  color: #FFF;
 }
 
 .header h1 {
@@ -15,15 +21,15 @@ body {
 }
 
 .form-buttons-container {
-    width: 100%;
-    padding: 20px;
-    text-align: center
+  width: 100%;
+  padding: 20px;
+  text-align: center
 }
 
 .card {
   max-width: 600px;
   min-height: 250px;
-  background-color: #64B5F6;
+  background-color: #42A5F5;
   border-radius: 2px;
   color: #FFF;
   margin: auto;
@@ -81,9 +87,20 @@ label {
 }
 
 legend {
-  background-color: #3F51B5;
-  color: #FFF;
+  background-color: #F5F5F5;
   padding: 3px;
+}
+
+.confirm-toolbar {
+  display: flex;
+  justify-content: space-around;;
+  align-items: center;
+  max-width: 600px;
+  padding: 8px;
+  margin: auto;
+  margin-bottom: 25px;
+  background-color: #F5F5F5;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
 
 .scout-link-name {
@@ -93,8 +110,7 @@ legend {
 .roster-item {
   display: inline-block;
   padding: 8px;
-  /*background-color: #3F51B5;*/
-  background-color: #64B5F6;
+  background-color: #42A5F5;
   color: #FFF;
   margin-bottom: 8px;
   margin-right: 8px;
@@ -138,6 +154,7 @@ legend {
   justify-content: space-between;
   align-items: center;
   background-color: #2196F3;
+  margin-bottom: 25px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
 
@@ -147,4 +164,10 @@ legend {
 
 .nav-menu {
   margin-right: 127px;
+}
+
+@media (max-width: 680px) {
+  .my-menu {
+    display: none;
+  }
 }

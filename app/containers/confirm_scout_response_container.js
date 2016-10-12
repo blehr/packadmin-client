@@ -7,9 +7,13 @@ import ConfirmToolbar from '../components/confirm_toolbar';
 
 
 const ConfirmScoutContainer = ({ editScout, removeScout }) => (
-  <div className="row">
-    <ConfirmToolbar scout={editScout} removeScout={removeScout} />
-    <ScoutDetail scout={editScout} removeScout={removeScout} />
+  <div>
+    <div className="row">
+      <ConfirmToolbar scout={editScout} removeScout={removeScout} />
+    </div>
+    <div className="row">
+      <ScoutDetail scout={editScout} removeScout={removeScout} />
+    </div>
   </div>
 );
 

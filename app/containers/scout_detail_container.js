@@ -18,9 +18,19 @@ class ScoutDetailContainer extends Component {
     }
 
     return (
-      <div className="row">
-        <ConfirmToolbar scout={this.props.scoutDetail.data} removeScout={this.props.removeScout} />
-        <ScoutDetail scout={this.props.scoutDetail.data} removeScout={this.props.removeScout} />
+      <div>
+        <div className="row">
+          <ConfirmToolbar
+            scout={this.props.scoutDetail.data}
+            removeScout={this.props.removeScout}
+          />
+        </div>
+        <div className="row">
+          <ScoutDetail
+            scout={this.props.scoutDetail.data}
+            removeScout={this.props.removeScout}
+          />
+        </div>
       </div>
     );
   }

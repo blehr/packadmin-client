@@ -12,9 +12,13 @@ const AddScoutContainer = (props) => {
     return <div>No Scout</div>;
   }
   return (
-    <div className="row">
-      <ConfirmToolbar scout={scoutDetail.data} removeScout={removeScout} />
-      <ScoutDetail scout={scoutDetail.data} removeScout={removeScout} />
+    <div>
+      <div className="row">
+        <ConfirmToolbar scout={scoutDetail.data} removeScout={removeScout} />
+      </div>
+      <div className="row">
+        <ScoutDetail scout={scoutDetail.data} removeScout={removeScout} />
+      </div>
     </div>
   );
 };

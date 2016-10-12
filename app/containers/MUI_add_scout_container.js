@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
-import { indigo500 } from 'material-ui/styles/colors';
+import { indigo500, pinkA200 } from 'material-ui/styles/colors';
 import MenuItem from 'material-ui/MenuItem';
 import { Checkbox, DatePicker, TextField, SelectField } from 'redux-form-material-ui';
 import { getScoutToUpdate, addScoutResponseAction, updateScout, clearUpdateScout } from '../actions/index';
@@ -16,10 +16,10 @@ const style = {
 
 const styles = {
   underlineFocusStyle: {
-    borderColor: indigo500,
+    borderColor: pinkA200,
   },
   floatingLabelFocusStyle: {
-    color: indigo500,
+    color: pinkA200,
   },
 };
 
@@ -163,31 +163,26 @@ class AddScoutContainer extends Component {
                   name="picturesAllowed"
                   component={Checkbox}
                   label="Allow Pictures"
-                  iconStyle={{ fill: indigo500 }}
                 />
                 <Field
                   name="dues"
                   component={Checkbox}
                   label="Dues Paid"
-                  iconStyle={{ fill: indigo500 }}
                 />
                 <Field
                   name="book"
                   component={Checkbox}
                   label="Book Received"
-                  iconStyle={{ fill: indigo500 }}
                 />
                 <Field
                   name="boat"
                   component={Checkbox}
                   label="Boat Received"
-                  iconStyle={{ fill: indigo500 }}
                 />
                 <Field
                   name="car"
                   component={Checkbox}
                   label="Car Received"
-                  iconStyle={{ fill: indigo500 }}
                 />
                 <Field
                   name="notes"
@@ -284,7 +279,6 @@ class AddScoutContainer extends Component {
                   name="parent1AddressSameAsScout"
                   component={Checkbox}
                   label="Address same as Scout"
-                  iconStyle={{ fill: indigo500 }}
                 />
                 <Field
                   name="parent1StreetAddress"
@@ -411,7 +405,6 @@ class AddScoutContainer extends Component {
                   name="parent2AddressSameAsScout"
                   component={Checkbox}
                   label="Address same as Scout"
-                  iconStyle={{ fill: indigo500 }}
                 />
                 <Field
                   name="parent2StreetAddress"
@@ -465,7 +458,7 @@ class AddScoutContainer extends Component {
             label="Submit"
             style={style}
             labelColor={'#FFF'}
-            backgroundColor={indigo500}
+            primary
           />
           <RaisedButton
             type="button"
