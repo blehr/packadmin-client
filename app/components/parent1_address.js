@@ -63,6 +63,7 @@ const Parent1Address = ({ scout }) => {
       </address>
     );
   }
+  return null;
 };
 
 Parent1Address.propTypes = {

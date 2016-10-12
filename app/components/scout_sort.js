@@ -23,7 +23,6 @@ class ScoutSort extends Component {
         labelStyle={{ color: '#FFF' }}
         style={{ width: '175px' }}
         underlineStyle={{ borderTop: 'none' }}
-        className="dropdown"
       >
         <MenuItem value={'all'} primaryText="All Scouts" />
         <MenuItem value={'byDen'} primaryText="By Den" />

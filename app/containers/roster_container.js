@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getAllScouts, getScoutDetail } from '../actions/index';
 import Roster from '../components/roster';
-import RosterToolbar from '../components/toolbar';
 
 class RosterContainer extends Component {
   componentDidMount() {
@@ -16,7 +15,6 @@ class RosterContainer extends Component {
     }
     return (
       <div>
-        <RosterToolbar />
         <div className="row">
           <Roster
             scouts={this.props.allScouts.data}

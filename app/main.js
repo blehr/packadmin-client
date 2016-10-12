@@ -6,7 +6,7 @@ import { Router, browserHistory } from 'react-router';
 import reduxPromise from 'redux-promise';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { indigo500 } from 'material-ui/styles/colors';
+import { indigo500, blue500 } from 'material-ui/styles/colors';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import routes from './routes';
 import { loadState, saveState } from './localStorage';
@@ -17,7 +17,7 @@ injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: indigo500,
+    primary1Color: blue500,
   },
 });
 
