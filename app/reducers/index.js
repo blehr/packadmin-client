@@ -4,6 +4,7 @@ import DetailScoutReducer from './detail_scout_reducer';
 import AllScoutReducer from './all_scout_reducer';
 import SortReducer from './sort_reducer';
 import EditScoutReducer from './edit_scout_reducer';
+import ErrorReducer from './error_reducer';
 
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   allScouts: AllScoutReducer,
   scoutDetail: DetailScoutReducer,
   editScout: EditScoutReducer,
+  error: ErrorReducer,
   form: formReducer,
 });
 

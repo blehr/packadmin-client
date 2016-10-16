@@ -12,7 +12,6 @@ const ConfirmToolbar = (props) => {
   };
   const handleOnClickDelete = (id) => {
     removeScout(id);
-    browserHistory.push('/scouts');
   };
 
   return (

@@ -13,7 +13,7 @@ class ScoutDetailContainer extends Component {
 
   render() {
     const { scoutDetail } = this.props;
-    if (!scoutDetail.data) {
+    if (!scoutDetail.scoutDetail) {
       return <div>No Scout</div>;
     }
 
@@ -21,13 +21,13 @@ class ScoutDetailContainer extends Component {
       <div>
         <div className="row">
           <ConfirmToolbar
-            scout={this.props.scoutDetail.data}
+            scout={this.props.scoutDetail.scoutDetail}
             removeScout={this.props.removeScout}
           />
         </div>
         <div className="row">
           <ScoutDetail
-            scout={this.props.scoutDetail.data}
+            scout={this.props.scoutDetail.scoutDetail}
             removeScout={this.props.removeScout}
           />
         </div>

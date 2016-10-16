@@ -1,13 +1,20 @@
-import { GET_SCOUT_DETAIL, REMOVE_SCOUT, ADD_SCOUT_RESPONSE } from '../actions/index';
+import {
+  GET_SCOUT_DETAIL,
+  REMOVE_SCOUT,
+  ADD_SCOUT_RESPONSE,
+  CLEAR_SCOUT_DETAIL,
+} from '../actions/index';
 
 export default function (state = {}, action) {
   switch (action.type) {
     case ADD_SCOUT_RESPONSE:
-      return action.payload;
+      return { ...state, scoutDetail: action.payload.data };
     case GET_SCOUT_DETAIL:
-      return action.payload;
+      return { ...state, scoutDetail: action.payload.data };
     case REMOVE_SCOUT:
-      return action.payload;
+      return { ...state, scoutDetail: action.payload.data };
+    case CLEAR_SCOUT_DETAIL:
+      return {};
     default:
       return state;
   }

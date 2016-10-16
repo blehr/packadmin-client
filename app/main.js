@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { compose, createStore, applyMiddleware } from 'redux';
 import { Router, browserHistory } from 'react-router';
 import reduxPromise from 'redux-promise';
+import reduxThunk from 'redux-thunk';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { indigo500, blue500 } from 'material-ui/styles/colors';
@@ -23,7 +24,8 @@ const muiTheme = getMuiTheme({
 
 
 const applyMiddlewares = applyMiddleware(
-  reduxPromise
+  reduxPromise,
+  reduxThunk
 );
 
 const createStoreWithMiddleware = compose(
@@ -32,16 +34,16 @@ const createStoreWithMiddleware = compose(
 );
 
 
-const persistedState = loadState();
+// const persistedState = loadState();
 
 const store = (createStoreWithMiddleware(createStore)(
     reducers,
-    persistedState
+    // persistedState
 ));
 
-store.subscribe(() => {
-  saveState(store.getState());
-});
+// store.subscribe(() => {
+//   saveState(store.getState());
+// });
 
 
 ReactDOM.render(

@@ -8,16 +8,16 @@ import ConfirmToolbar from '../components/confirm_toolbar';
 
 const AddScoutContainer = (props) => {
   const { scoutDetail, removeScout } = props;
-  if (!scoutDetail.data) {
+  if (!scoutDetail.scoutDetail) {
     return <div>No Scout</div>;
   }
   return (
     <div>
       <div className="row">
-        <ConfirmToolbar scout={scoutDetail.data} removeScout={removeScout} />
+        <ConfirmToolbar scout={scoutDetail.scoutDetail} removeScout={removeScout} />
       </div>
       <div className="row">
-        <ScoutDetail scout={scoutDetail.data} removeScout={removeScout} />
+        <ScoutDetail scout={scoutDetail.scoutDetail} removeScout={removeScout} />
       </div>
     </div>
   );

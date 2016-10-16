@@ -2,12 +2,17 @@ import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
-import { indigo500, pinkA200 } from 'material-ui/styles/colors';
+import { pinkA200 } from 'material-ui/styles/colors';
 import MenuItem from 'material-ui/MenuItem';
 import { Checkbox, DatePicker, TextField, SelectField } from 'redux-form-material-ui';
-import { getScoutToUpdate, addScoutResponseAction, updateScout, clearUpdateScout } from '../actions/index';
+import ErrorDisplay from './error_container';
+import {
+  getScoutToUpdate,
+  addScoutResponseAction,
+  updateScout,
+  clearUpdateScout,
+} from '../actions/index';
 import validate from '../utils/add_scout_validation';
 
 const style = {
@@ -29,7 +34,6 @@ class AddScoutContainer extends Component {
 
     this.doSubmit = this.doSubmit.bind(this);
   }
-
   componentWillMount() {
     if (this.props.params.id) {
       this.props.getScoutToUpdate(this.props.params.id);
@@ -41,12 +45,8 @@ class AddScoutContainer extends Component {
   doSubmit(values) {
     if (!this.props.params.id) {
       this.props.addScoutResponseAction(values);
-      this.props.reset();
-      browserHistory.push('/scouts/add-confirm');
     } else {
       this.props.updateScout(values, this.props.params.id);
-      browserHistory.push('/scouts/update-confirm');
-      this.props.reset();
     }
   }
 
@@ -452,6 +452,7 @@ class AddScoutContainer extends Component {
         </div>
 
         <div className="form-buttons-container">
+          <ErrorDisplay />
           <RaisedButton
             type="submit"
             disabled={this.props.pristine || this.props.submitting}
@@ -488,7 +489,9 @@ AddScoutContainer.propTypes = {
   submitting: PropTypes.string,
 };
 
-const mapStateToProps = ({ editScout }) => ({ initialValues: editScout });
+const mapStateToProps = ({ editScout }) => ({
+  initialValues: editScout.scoutToUpdate,
+});
 
 const mapDispatchToProps = dispatch => (bindActionCreators({
   addScoutResponseAction,
