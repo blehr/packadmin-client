@@ -16,6 +16,7 @@ export const CLEAR_API_ERROR = 'CLEAR_API_ERROR';
 export const AUTH_USER = 'AUTH_USER';
 export const UNAUTH_USER = 'UNAUTH_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
+export const CLEAR_ALL_SCOUTS = 'CLEAR_ALL_SCOUTS';
 
 // const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
 const ROOT_URL = 'http://localhost:8080';
@@ -23,6 +24,11 @@ const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
 const SCOUT_DETAIL_URL = `${ROOT_URL}/scouts/detail`;
 
+// sort by filter
+export const sortBy = filter => ({
+  type: SORT_BY,
+  payload: filter,
+});
 
 // set api errors on state
 export const apiError = error => ({
@@ -35,12 +41,47 @@ export const clearApiError = () => ({
   type: CLEAR_API_ERROR,
 });
 
+// set auth error
 export function authError(error) {
   return {
     type: AUTH_ERROR,
     payload: error,
   };
 }
+
+// clear all scouts
+export const clearAllScouts = () => ({
+  type: CLEAR_ALL_SCOUTS,
+});
+
+// clear the update scout state
+export const clearUpdateScout = () => (
+  { type: CLEAR_UPDATE_SCOUT }
+ );
+
+export const clearScoutDetail = () => (
+   { type: CLEAR_SCOUT_DETAIL }
+  );
+
+// map over errors object and pull off each meassage
+const formatErrors = (error, dispatch) => {
+  if (error.response.status === 401) {
+    dispatch(authError('Are you logged in?'));
+    return null;
+  }
+  if (error.response.data.errors !== '') {
+    const keys = Object.keys(error.response.data.errors);
+    let message = '';
+    keys.map((property) => {
+      message += error.response.data.errors[property].message;
+      return message;
+    });
+    dispatch(apiError(message));
+    return null;
+  }
+  dispatch(apiError(error.response.data.errors));
+  return null;
+};
 
 export const signinUser = ({ email, password }) => (
   (dispatch) => {
@@ -52,18 +93,19 @@ export const signinUser = ({ email, password }) => (
       browserHistory.push('/scouts');
     })
     .catch(() => {
-      dispatch(authError('Bad Login Info'));
+      dispatch(authError('Email or Password is incorrect'));
     });
   }
 );
 
-export const signoutUser = () => {
-  localStorage.removeItem('token');
-
-  return {
-    type: UNAUTH_USER,
-  };
-};
+export const signoutUser = () => (
+  (dispatch) => {
+    localStorage.removeItem('token');
+    dispatch(clearAllScouts());
+    dispatch(clearUpdateScout());
+    dispatch(clearScoutDetail());
+  }
+);
 
 export const signupUser = data => (
   (dispatch) => {
@@ -75,7 +117,6 @@ export const signupUser = data => (
        browserHistory.push('/scouts');
      })
     .catch((error) => {
-      console.log(error.response.data.error);
       dispatch(authError(error.response.data.error));
     });
   }
@@ -95,7 +136,7 @@ export const getAllScouts = () => (
         dispatch(clearApiError());
       })
       .catch((error) => {
-        dispatch(apiError(error.response.data.errors));
+        formatErrors(error, dispatch);
       });
   }
 );
@@ -103,8 +144,9 @@ export const getAllScouts = () => (
 // add scout
 export const addScoutResponseAction = data => (
   (dispatch) => {
+    const token = localStorage.getItem('token');
     const URL = `${ADD_SCOUT_URL}`;
-    axios.post(URL, { data })
+    axios.post(URL, { data }, { headers: { authorization: token } })
       .then((response) => {
         dispatch({
           type: ADD_SCOUT_RESPONSE,
@@ -114,7 +156,7 @@ export const addScoutResponseAction = data => (
         browserHistory.push('/scouts/add-confirm');
       })
       .catch((error) => {
-        dispatch(apiError(error.response.data.errors));
+        formatErrors(error, dispatch);
       });
   }
 );
@@ -122,8 +164,9 @@ export const addScoutResponseAction = data => (
 // get individual scout
 export const getScoutDetail = id => (
   (dispatch) => {
+    const token = localStorage.getItem('token');
     const URL = `${SCOUT_DETAIL_URL}/${id}`;
-    axios.get(URL)
+    axios.get(URL, { headers: { authorization: token } })
       .then((response) => {
         dispatch({
           type: GET_SCOUT_DETAIL,
@@ -132,7 +175,7 @@ export const getScoutDetail = id => (
         dispatch(clearApiError());
       })
       .catch((error) => {
-        dispatch(apiError(error.response.data.errors));
+        formatErrors(error, dispatch);
       });
   }
 );
@@ -140,8 +183,9 @@ export const getScoutDetail = id => (
 // get individual scout to update
 export const getScoutToUpdate = id => (
   (dispatch) => {
+    const token = localStorage.getItem('token');
     const URL = `${SCOUT_DETAIL_URL}/${id}`;
-    axios.get(URL)
+    axios.get(URL, { headers: { authorization: token } })
       .then((response) => {
         response.data.birthday = new Date(response.data.birthday);
         dispatch({
@@ -151,7 +195,7 @@ export const getScoutToUpdate = id => (
         dispatch(clearApiError());
       })
       .catch((error) => {
-        dispatch(apiError(error.response.data.errors));
+        formatErrors(error, dispatch);
       });
   }
 );
@@ -159,8 +203,9 @@ export const getScoutToUpdate = id => (
 // update scout
 export const updateScout = (data, id) => (
   (dispatch) => {
+    const token = localStorage.getItem('token');
     const URL = `${SCOUT_DETAIL_URL}/${id}`;
-    axios.put(URL, { data })
+    axios.put(URL, { data }, { headers: { authorization: token } })
       .then((response) => {
         dispatch({
           type: UPDATE_SCOUT,
@@ -170,7 +215,7 @@ export const updateScout = (data, id) => (
         browserHistory.push('/scouts/update-confirm');
       })
       .catch((error) => {
-        dispatch(apiError(error.response.data.errors));
+        formatErrors(error, dispatch);
       });
   }
 );
@@ -178,8 +223,9 @@ export const updateScout = (data, id) => (
 // remove scout
 export const removeScout = id => (
   (dispatch) => {
+    const token = localStorage.getItem('token');
     const URL = `${SCOUT_DETAIL_URL}/${id}`;
-    axios.delete(URL)
+    axios.delete(URL, { headers: { authorization: token } })
       .then((response) => {
         dispatch({
           type: REMOVE_SCOUT,
@@ -189,22 +235,7 @@ export const removeScout = id => (
         browserHistory.push('/scouts');
       })
       .catch((error) => {
-        dispatch(apiError(error.response.data.errors));
+        formatErrors(error, dispatch);
       });
   }
 );
-
-// clear the update scout state
-export const clearUpdateScout = () => (
-  { type: CLEAR_UPDATE_SCOUT }
- );
-
-export const clearScoutDetail = () => (
-   { type: CLEAR_SCOUT_DETAIL }
-  );
-
-// sort by filter
-export const sortBy = filter => ({
-  type: SORT_BY,
-  payload: filter,
-});

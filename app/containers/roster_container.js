@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import ErrorDisplay from '../containers/error_container';
 import {
   getAllScouts,
   getScoutDetail,
   clearUpdateScout,
   clearScoutDetail,
-  clearApiError,
 } from '../actions/index';
 import Roster from '../components/roster';
 
@@ -18,14 +18,17 @@ class RosterContainer extends Component {
   }
 
   render() {
-    if (!this.props.allScouts.data) {
+    if (!this.props.allScouts.scouts || this.props.allScouts.scouts.length === 0) {
+      if (this.props.error) {
+        return <ErrorDisplay />;
+      }
       return <div>No Scout</div>;
     }
     return (
       <div>
         <div className="row">
           <Roster
-            scouts={this.props.allScouts.data}
+            scouts={this.props.allScouts.scouts}
             handleClick={this.onHandleClick}
             filter={this.props.sortedBy}
           />
@@ -41,12 +44,12 @@ RosterContainer.propTypes = {
   getAllScouts: PropTypes.func,
   clearUpdateScout: PropTypes.func,
   clearScoutDetail: PropTypes.func,
-  clearApiError: PropTypes.func,
+  error: PropTypes.string,
 };
 
 
-const mapStateToProps = ({ allScouts, sortedBy }) => (
-  { allScouts, sortedBy }
+const mapStateToProps = ({ allScouts, sortedBy, error }) => (
+  { allScouts, sortedBy, error }
 );
 
 const mapDispatchToProps = dispatch => (
@@ -55,7 +58,6 @@ const mapDispatchToProps = dispatch => (
     getScoutDetail,
     clearUpdateScout,
     clearScoutDetail,
-    clearApiError,
   }, dispatch)
 );
 

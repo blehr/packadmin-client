@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { TextField } from 'redux-form-material-ui';
+import ErrorDisplay from './error_container';
 import SignupValidate from '../utils/signup_validation';
-import { signupUser } from '../actions/index';
+import { signupUser, clearApiError } from '../actions/index';
 
 const style = {
   margin: 12,
@@ -17,20 +18,11 @@ class Signup extends Component {
 
     this.doHandleSubmit = this.doHandleSubmit.bind(this);
   }
+
   doHandleSubmit(values) {
     this.props.signupUser(values);
   }
-  renderAlert() {
-    if (this.props.auth.error) {
-      return (
-        <div className="alert alert-danger" >
-          <strong>Looks like there is a problem </strong><br />
-          {this.props.auth.error}
-        </div>
-      );
-    }
-    return null;
-  }
+
   render() {
     return (
       <form onSubmit={this.props.handleSubmit(this.doHandleSubmit)}>
@@ -72,7 +64,7 @@ class Signup extends Component {
           </div>
         </div>
         <div className="form-buttons-container">
-          {this.renderAlert()}
+          <ErrorDisplay />
           <RaisedButton
             type="submit"
             disabled={this.props.pristine || this.props.submitting}
@@ -92,11 +84,11 @@ Signup.propTypes = {
   pristine: PropTypes.bool,
   submitting: PropTypes.bool,
   signupUser: PropTypes.func,
-  auth: PropTypes.object,
+  clearApiError: PropTypes.func,
 };
 
 const mapDispatchToProps = dispatch => (
-  bindActionCreators({ signupUser }, dispatch)
+  bindActionCreators({ signupUser, clearApiError }, dispatch)
 );
 
 const mapStateToProps = ({ auth }) => (

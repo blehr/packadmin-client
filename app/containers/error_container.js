@@ -3,19 +3,15 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class ErrorDisplay extends Component {
-
+  componentWillUnmount() {
+    this.props.clearApiError();
+  }
   render() {
-    if (this.props.error !== '') {
-      const keys = Object.keys(this.props.error);
-      let message = '';
-      keys.map((property) => {
-        message += this.props.error[property].message;
-        return message;
-      });
+    if (this.props.error) {
       return (
-        <div className="alert alert-danger" >
-          <strong>Looks like there is a problem </strong>
-          {message}
+        <div className="alert alert-danger text-center" >
+          <strong>Looks like there is a problem. </strong><br />
+          {this.props.error}
         </div>
       );
     }
@@ -25,6 +21,7 @@ class ErrorDisplay extends Component {
 
 ErrorDisplay.propTypes = {
   error: PropTypes.object,
+  clearApiError: PropTypes.func,
 };
 
 const mapStateToProps = ({ error }) => (

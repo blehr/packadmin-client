@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import RosterItem from './roster_item';
 import { filterBy } from '../utils/util';
+import ErrorDisplay from '../containers/error_container';
 
 const Roster = (props) => {
   const { scouts, filter } = props;
@@ -83,6 +84,7 @@ const Roster = (props) => {
           ({filteredScouts.scouts.length})
         </span>
       </h3>
+      <ErrorDisplay />
       <div>
         {filteredScouts.scouts.map(scout => (
           <RosterItem scout={scout} key={scout._id} />

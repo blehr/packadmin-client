@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getScoutDetail, removeScout } from '../actions/index';
 import ScoutDetail from '../components/scout_detail';
 import ConfirmToolbar from '../components/confirm_toolbar';
+import ErrorDisplay from './error_container';
 
 
 class ScoutDetailContainer extends Component {
@@ -12,8 +13,11 @@ class ScoutDetailContainer extends Component {
   }
 
   render() {
-    const { scoutDetail } = this.props;
+    const { scoutDetail, error } = this.props;
     if (!scoutDetail.scoutDetail) {
+      if (error) {
+        return <ErrorDisplay />;
+      }
       return <div>No Scout</div>;
     }
 
@@ -36,8 +40,8 @@ class ScoutDetailContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ scoutDetail }) => (
-  { scoutDetail }
+const mapStateToProps = ({ scoutDetail, error }) => (
+  { scoutDetail, error }
 );
 
 const mapDispatchToProps = dispatch => (
@@ -50,6 +54,7 @@ ScoutDetailContainer.propTypes = {
   removeScout: PropTypes.func,
   params: PropTypes.object,
   id: PropTypes.number,
+  error: PropTypes.string,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScoutDetailContainer);

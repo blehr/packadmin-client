@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { TextField } from 'redux-form-material-ui';
 import SigninValidate from '../utils/signin_validation';
+import ErrorDisplay from './error_container';
 import * as actions from '../actions';
 
 const style = {
@@ -15,19 +16,9 @@ class Signin extends Component {
     super(props);
     this.doSubmit = this.doSubmit.bind(this);
   }
+
   doSubmit(values) {
     this.props.signinUser(values);
-  }
-  renderAlert() {
-    if (this.props.auth.error) {
-      return (
-        <div className="alert alert-danger" >
-          <strong>Looks like there is a problem </strong><br />
-          {this.props.auth.error}
-        </div>
-      );
-    }
-    return null;
   }
   render() {
     return (
@@ -52,7 +43,7 @@ class Signin extends Component {
           </div>
         </div>
         <div className="form-buttons-container">
-          {this.renderAlert()}
+          <ErrorDisplay />
           <RaisedButton
             type="submit"
             disabled={this.props.pristine || this.props.submitting}
@@ -71,8 +62,8 @@ Signin.propTypes = {
   handleSubmit: PropTypes.func,
   pristine: PropTypes.string,
   submitting: PropTypes.string,
-  auth: PropTypes.object,
   signinUser: PropTypes.func,
+  clearApiError: PropTypes.func,
 };
 
 
