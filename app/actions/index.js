@@ -13,6 +13,9 @@ export const SCOUT_TO_UPDATE = 'SCOUT_TO_UPDATE';
 export const API_ERROR = 'API_ERROR';
 export const CLEAR_SCOUT_DETAIL = 'CLEAR_SCOUT_DETAIL';
 export const CLEAR_API_ERROR = 'CLEAR_API_ERROR';
+export const AUTH_USER = 'AUTH_USER';
+export const UNAUTH_USER = 'UNAUTH_USER';
+export const AUTH_ERROR = 'AUTH_ERROR';
 
 // const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
 const ROOT_URL = 'http://localhost:8080';
@@ -32,11 +35,58 @@ export const clearApiError = () => ({
   type: CLEAR_API_ERROR,
 });
 
+export function authError(error) {
+  return {
+    type: AUTH_ERROR,
+    payload: error,
+  };
+}
+
+export const signinUser = ({ email, password }) => (
+  (dispatch) => {
+    const URL = `${ROOT_URL}/users/signin`;
+    axios.post(URL, { email, password })
+    .then((response) => {
+      dispatch({ type: AUTH_USER });
+      localStorage.setItem('token', response.data.token);
+      browserHistory.push('/scouts');
+    })
+    .catch(() => {
+      dispatch(authError('Bad Login Info'));
+    });
+  }
+);
+
+export const signoutUser = () => {
+  localStorage.removeItem('token');
+
+  return {
+    type: UNAUTH_USER,
+  };
+};
+
+export const signupUser = data => (
+  (dispatch) => {
+    const URL = `${ROOT_URL}/users/signup`;
+    axios.post(URL, { data })
+     .then((response) => {
+       dispatch({ type: AUTH_USER });
+       localStorage.setItem('token', response.data.token);
+       browserHistory.push('/scouts');
+     })
+    .catch((error) => {
+      console.log(error.response.data.error);
+      dispatch(authError(error.response.data.error));
+    });
+  }
+);
+
 // get all scouts
 export const getAllScouts = () => (
   (dispatch) => {
+    const token = localStorage.getItem('token');
     const URL = `${ALL_SCOUTS_URL}`;
-    axios.get(URL)
+    axios.get(URL, { headers: { authorization: token } })
       .then((response) => {
         dispatch({
           type: GET_ALL_SCOUTS,

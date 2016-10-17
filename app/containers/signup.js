@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { TextField } from 'redux-form-material-ui';
-import ErrorDisplay from './error_container';
 import SignupValidate from '../utils/signup_validation';
+import { signupUser } from '../actions/index';
 
 const style = {
   margin: 12,
@@ -12,17 +14,26 @@ const style = {
 class Signup extends Component {
   constructor(props) {
     super(props);
-    this.doSubmit = this.doSubmit.bind(this);
-  }
-  componentWillMount() {
 
+    this.doHandleSubmit = this.doHandleSubmit.bind(this);
   }
-  doSubmit() {
-
+  doHandleSubmit(values) {
+    this.props.signupUser(values);
+  }
+  renderAlert() {
+    if (this.props.auth.error) {
+      return (
+        <div className="alert alert-danger" >
+          <strong>Looks like there is a problem </strong><br />
+          {this.props.auth.error}
+        </div>
+      );
+    }
+    return null;
   }
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
+      <form onSubmit={this.props.handleSubmit(this.doHandleSubmit)}>
         <div className="row">
           <div className="col-sm-4 col-sm-offset-4">
             <fieldset className="form-group">
@@ -30,7 +41,7 @@ class Signup extends Component {
               <Field
                 name="name"
                 component={TextField}
-                floatingLabelText="Name"
+                floatingLabelText="Name: First and Last"
                 type="text"
               />
               <Field
@@ -52,7 +63,7 @@ class Signup extends Component {
                 type="password"
               />
               <Field
-                name="passwordConfirm"
+                name="confirmPassword"
                 component={TextField}
                 floatingLabelText="Confirm Password"
                 type="password"
@@ -61,7 +72,7 @@ class Signup extends Component {
           </div>
         </div>
         <div className="form-buttons-container">
-          <ErrorDisplay />
+          {this.renderAlert()}
           <RaisedButton
             type="submit"
             disabled={this.props.pristine || this.props.submitting}
@@ -78,8 +89,22 @@ class Signup extends Component {
 
 Signup.propTypes = {
   handleSubmit: PropTypes.func,
-  pristine: PropTypes.string,
-  submitting: PropTypes.string,
+  pristine: PropTypes.bool,
+  submitting: PropTypes.bool,
+  signupUser: PropTypes.func,
+  auth: PropTypes.object,
 };
 
-export default reduxForm({ form: 'signup', validate: SignupValidate })(Signup);
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({ signupUser }, dispatch)
+);
+
+const mapStateToProps = ({ auth }) => (
+  { auth }
+);
+
+const form = reduxForm({ form: 'signup', validate: SignupValidate });
+
+Signup = connect(mapStateToProps, mapDispatchToProps)(form(Signup));
+
+export default Signup;

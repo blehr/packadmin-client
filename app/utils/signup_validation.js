@@ -13,15 +13,15 @@ const signupValidate = (values) => {
     errors.password = 'Required';
   }
 
-  if (!values.confimPassword) {
-    errors.confimPassword = 'Required';
+  if (!values.confirmPassword) {
+    errors.confirmPassword = 'Required';
   }
 
   if (!values.packNumber) {
     errors.packNumber = 'Required';
   }
 
-  if (values.password !== values.passwordConfirm) {
+  if (values.password !== values.confirmPassword) {
     errors.password = 'Password do not match';
   }
 

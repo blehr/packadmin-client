@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { TextField } from 'redux-form-material-ui';
-import ErrorDisplay from './error_container';
 import SigninValidate from '../utils/signin_validation';
+import * as actions from '../actions';
 
 const style = {
   margin: 12,
@@ -14,11 +15,19 @@ class Signin extends Component {
     super(props);
     this.doSubmit = this.doSubmit.bind(this);
   }
-  componentWillMount() {
-
+  doSubmit(values) {
+    this.props.signinUser(values);
   }
-  doSubmit() {
-
+  renderAlert() {
+    if (this.props.auth.error) {
+      return (
+        <div className="alert alert-danger" >
+          <strong>Looks like there is a problem </strong><br />
+          {this.props.auth.error}
+        </div>
+      );
+    }
+    return null;
   }
   render() {
     return (
@@ -43,7 +52,7 @@ class Signin extends Component {
           </div>
         </div>
         <div className="form-buttons-container">
-          <ErrorDisplay />
+          {this.renderAlert()}
           <RaisedButton
             type="submit"
             disabled={this.props.pristine || this.props.submitting}
@@ -62,6 +71,17 @@ Signin.propTypes = {
   handleSubmit: PropTypes.func,
   pristine: PropTypes.string,
   submitting: PropTypes.string,
+  auth: PropTypes.object,
+  signinUser: PropTypes.func,
 };
 
-export default reduxForm({ form: 'signin', validate: SigninValidate })(Signin);
+
+const mapStateToProps = ({ auth }) => ({
+  auth,
+});
+
+const form = reduxForm({ form: 'signin', validate: SigninValidate });
+
+Signin = connect(mapStateToProps, actions)(form(Signin));
+
+export default Signin;

@@ -9,11 +9,13 @@ import ConfirmScoutResponse from './containers/confirm_scout_response_container'
 import RosterContainer from './containers/roster_container';
 import Signup from './containers/signup';
 import Signin from './containers/signin';
+import Signout from './containers/signout';
 
 export default (
   <Route path="/" component={App} >
     <Route path="/signup" component={Signup} />
     <Route path="/signin" component={Signin} />
+    <Route path="/signout" component={Signout} />
     <Route path="/scouts" component={RosterContainer} />
     <Route path="/scouts/add" component={AddScoutContainer} />
     <Route path="/scouts/update/:id" component={AddScoutContainer} />

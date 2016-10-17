@@ -16,8 +16,10 @@ const NavMenu = () => (
       <Link to="/" onlyActiveOnIndex index ><MenuItem primaryText="Home" /></Link>
       <Link to="/scouts"><MenuItem primaryText="Roster" /></Link>
       <Link to="/scouts/add" ><MenuItem primaryText="Add Scouts" /></Link>
+      <Link to="/signin" ><MenuItem primaryText="Sign in" /></Link>
+      <Link to="/signup" ><MenuItem primaryText="Sign up" /></Link>
       <MenuItem primaryText="Profile" />
-      <MenuItem primaryText="Sign out" />
+      <Link to="/signout" ><MenuItem primaryText="Sign out" /></Link>
     </IconMenu>
   </div>
 );
