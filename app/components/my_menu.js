@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
-const MyMenu = () => (
-  <div className="my-menu">
-    <Link to="/" ><FlatButton label="Home" labelStyle={{ color: '#FFF' }} /></Link>
-    <Link to="/scouts" ><FlatButton label="Roster" labelStyle={{ color: '#FFF' }} /></Link>
-    <Link to="/scouts/add" ><FlatButton label="Add Scouts" labelStyle={{ color: '#FFF' }} /></Link>
-  </div>
-);
+const MyMenu = ({ auth }) => {
+  if (auth.authentication) {
+    return (
+      <div className="my-menu">
+        <Link to="/" ><FlatButton label="Home" labelStyle={{ color: '#FFF' }} /></Link>
+        <Link to="/scouts" ><FlatButton label="Roster" labelStyle={{ color: '#FFF' }} /></Link>
+        <Link to="/scouts/add" ><FlatButton label="Add Scouts" labelStyle={{ color: '#FFF' }} /></Link>
+      </div>
+    );
+  }
+  return null;
+};
 
+MyMenu.propTypes = {
+  auth: PropTypes.object,
+};
 
-export default MyMenu;
+const mapStateToProps = ({ auth }) => ({
+  auth,
+});
+
+export default connect(mapStateToProps)(MyMenu);
