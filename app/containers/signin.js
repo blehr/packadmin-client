@@ -24,34 +24,40 @@ class Signin extends Component {
     return (
       <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
         <div className="row">
-          <div className="col-sm-4 col-sm-offset-4">
-            <fieldset className="form-group">
-              <legend>Sign In!</legend>
-              <Field
-                name="email"
-                component={TextField}
-                floatingLabelText="Email"
-                type="email"
-              />
-              <Field
-                name="password"
-                component={TextField}
-                floatingLabelText="Password"
-                type="password"
-              />
-            </fieldset>
+          <div className="col-sm-12">
+            <div className="welcome-card">
+              <div className="form-flex-container">
+                <div className="form form-flex-item">
+                  <fieldset className="form-group">
+                    <legend>Sign In!</legend>
+                    <Field
+                      name="email"
+                      component={TextField}
+                      floatingLabelText="Email"
+                      type="email"
+                    />
+                    <Field
+                      name="password"
+                      component={TextField}
+                      floatingLabelText="Password"
+                      type="password"
+                    />
+                  </fieldset>
+                  <div className="form-buttons-container">
+                    <ErrorDisplay />
+                    <RaisedButton
+                      type="submit"
+                      disabled={this.props.pristine || this.props.submitting}
+                      label="Submit"
+                      style={style}
+                      labelColor={'#FFF'}
+                      primary
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="form-buttons-container">
-          <ErrorDisplay />
-          <RaisedButton
-            type="submit"
-            disabled={this.props.pristine || this.props.submitting}
-            label="Submit"
-            style={style}
-            labelColor={'#FFF'}
-            primary
-          />
         </div>
       </form>
     );

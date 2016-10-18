@@ -7,11 +7,10 @@ import reduxPromise from 'redux-promise';
 import reduxThunk from 'redux-thunk';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { indigo500, blue500 } from 'material-ui/styles/colors';
+import { blue500 } from 'material-ui/styles/colors';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import routes from './routes';
 import { AUTH_USER } from './actions';
-// import { loadState, saveState } from './localStorage';
 
 import reducers from './reducers/index';
 
@@ -34,12 +33,8 @@ const createStoreWithMiddleware = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
-
-// const persistedState = loadState();
-
 const store = (createStoreWithMiddleware(createStore)(
     reducers,
-    // persistedState
 ));
 
 const token = localStorage.getItem('token');
@@ -47,11 +42,6 @@ const token = localStorage.getItem('token');
 if (token) {
   store.dispatch({ type: AUTH_USER });
 }
-
-// store.subscribe(() => {
-//   saveState(store.getState());
-// });
-
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={muiTheme}>

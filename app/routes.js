@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 import App from './components/app';
 
 import AddScoutContainer from './containers/add_scout_container';
@@ -10,18 +10,20 @@ import RosterContainer from './containers/roster_container';
 import Signup from './containers/signup';
 import Signin from './containers/signin';
 import Signout from './containers/signout';
-import RequireAuth from './containers/require_auth';
+import Home from './components/home';
+import requireAuth from './containers/require_auth';
 
 export default (
   <Route path="/" component={App} >
+    <IndexRoute component={Home} />
     <Route path="/signup" component={Signup} />
     <Route path="/signin" component={Signin} />
     <Route path="/signout" component={Signout} />
-    <Route path="/scouts" component={RequireAuth(RosterContainer)} />
-    <Route path="/scouts/add" component={RequireAuth(AddScoutContainer)} />
-    <Route path="/scouts/update/:id" component={RequireAuth(AddScoutContainer)} />
-    <Route path="/scouts/detail/:id" component={RequireAuth(ScoutDetailContainer)} />
-    <Route path="/scouts/add-confirm" component={RequireAuth(AddScoutResponse)} />
-    <Route path="/scouts/update-confirm" component={RequireAuth(ConfirmScoutResponse)} />
+    <Route path="/scouts" component={requireAuth(RosterContainer)} />
+    <Route path="/scouts/add" component={requireAuth(AddScoutContainer)} />
+    <Route path="/scouts/update/:id" component={requireAuth(AddScoutContainer)} />
+    <Route path="/scouts/detail/:id" component={requireAuth(ScoutDetailContainer)} />
+    <Route path="/scouts/add-confirm" component={requireAuth(AddScoutResponse)} />
+    <Route path="/scouts/update-confirm" component={requireAuth(ConfirmScoutResponse)} />
   </Route>
 );

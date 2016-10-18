@@ -1,4 +1,4 @@
-import { GET_ALL_SCOUTS, API_ERROR, CLEAR_ALL_SCOUTS } from '../actions/index';
+import { GET_ALL_SCOUTS, CLEAR_ALL_SCOUTS } from '../actions/index';
 
 export default function (state = {}, action) {
   switch (action.type) {
