@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { TextField } from 'redux-form-material-ui';
 import ErrorDisplay from './error_container';
 import SignupValidate from '../utils/signup_validation';
-import { signupUser, clearApiError } from '../actions/index';
+import * as actions from '../actions';
 
 const style = {
   margin: 12,
@@ -87,9 +86,6 @@ Signup.propTypes = {
   clearApiError: PropTypes.func,
 };
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({ signupUser, clearApiError }, dispatch)
-);
 
 const mapStateToProps = ({ auth }) => (
   { auth }
@@ -97,6 +93,6 @@ const mapStateToProps = ({ auth }) => (
 
 const form = reduxForm({ form: 'signup', validate: SignupValidate });
 
-Signup = connect(mapStateToProps, mapDispatchToProps)(form(Signup));
+Signup = connect(mapStateToProps, actions)(form(Signup));
 
 export default Signup;

@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import ScoutDetail from '../components/scout_detail';
-import { removeScout } from '../actions/index';
+import * as actions from '../actions';
 import ConfirmToolbar from '../components/confirm_toolbar';
 import ErrorDisplay from './error_container';
 
@@ -38,9 +37,4 @@ const mapStateToProps = ({ scoutDetail, error }) => (
   { scoutDetail, error }
 );
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({ removeScout }, dispatch)
-);
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddScoutContainer);
+export default connect(mapStateToProps, actions)(AddScoutContainer);

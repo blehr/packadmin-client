@@ -10,7 +10,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { indigo500, blue500 } from 'material-ui/styles/colors';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import routes from './routes';
-import { loadState, saveState } from './localStorage';
+import { AUTH_USER } from './actions';
+// import { loadState, saveState } from './localStorage';
 
 import reducers from './reducers/index';
 
@@ -40,6 +41,12 @@ const store = (createStoreWithMiddleware(createStore)(
     reducers,
     // persistedState
 ));
+
+const token = localStorage.getItem('token');
+
+if (token) {
+  store.dispatch({ type: AUTH_USER });
+}
 
 // store.subscribe(() => {
 //   saveState(store.getState());

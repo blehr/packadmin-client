@@ -6,8 +6,6 @@ export default function (state = {}, action) {
       return { ...state, scouts: action.payload.data };
     case CLEAR_ALL_SCOUTS:
       return { ...state, scouts: [] };
-    case API_ERROR:
-      return { ...state, error: action.payload };
     default:
       return state;
   }

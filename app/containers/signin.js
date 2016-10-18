@@ -60,8 +60,8 @@ class Signin extends Component {
 
 Signin.propTypes = {
   handleSubmit: PropTypes.func,
-  pristine: PropTypes.string,
-  submitting: PropTypes.string,
+  pristine: PropTypes.bool,
+  submitting: PropTypes.bool,
   signinUser: PropTypes.func,
   clearApiError: PropTypes.func,
 };

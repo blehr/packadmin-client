@@ -1,13 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import ErrorDisplay from '../containers/error_container';
-import {
-  getAllScouts,
-  getScoutDetail,
-  clearUpdateScout,
-  clearScoutDetail,
-} from '../actions/index';
+import * as actions from '../actions';
 import Roster from '../components/roster';
 
 class RosterContainer extends Component {
@@ -52,13 +46,5 @@ const mapStateToProps = ({ allScouts, sortedBy, error }) => (
   { allScouts, sortedBy, error }
 );
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({
-    getAllScouts,
-    getScoutDetail,
-    clearUpdateScout,
-    clearScoutDetail,
-  }, dispatch)
-);
 
-export default connect(mapStateToProps, mapDispatchToProps)(RosterContainer);
+export default connect(mapStateToProps, actions)(RosterContainer);

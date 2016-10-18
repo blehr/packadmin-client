@@ -1,18 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { pinkA200 } from 'material-ui/styles/colors';
 import MenuItem from 'material-ui/MenuItem';
 import { Checkbox, DatePicker, TextField, SelectField } from 'redux-form-material-ui';
 import ErrorDisplay from './error_container';
-import {
-  getScoutToUpdate,
-  addScoutResponseAction,
-  updateScout,
-  clearUpdateScout,
-} from '../actions/index';
+import * as actions from '../actions';
 import validate from '../utils/add_scout_validation';
 
 const style = {
@@ -485,23 +479,17 @@ AddScoutContainer.propTypes = {
   params: PropTypes.object,
   id: PropTypes.number,
   handleSubmit: PropTypes.func,
-  pristine: PropTypes.string,
-  submitting: PropTypes.string,
+  pristine: PropTypes.bool,
+  submitting: PropTypes.bool,
 };
 
 const mapStateToProps = ({ editScout }) => ({
   initialValues: editScout.scoutToUpdate,
 });
 
-const mapDispatchToProps = dispatch => (bindActionCreators({
-  addScoutResponseAction,
-  updateScout,
-  getScoutToUpdate,
-  clearUpdateScout,
-}, dispatch));
 
 const form = reduxForm({ form: 'addScout', enableReinitialize: true, validate });
 
-AddScoutContainer = connect(mapStateToProps, mapDispatchToProps)(form(AddScoutContainer));
+AddScoutContainer = connect(mapStateToProps, actions)(form(AddScoutContainer));
 
 export default AddScoutContainer;

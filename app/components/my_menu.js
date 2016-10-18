@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 const MyMenu = ({ auth }) => {
-  if (auth.authentication) {
+  if (auth.authenticated) {
     return (
       <div className="my-menu">
         <Link to="/" ><FlatButton label="Home" labelStyle={{ color: '#FFF' }} /></Link>
@@ -13,7 +13,13 @@ const MyMenu = ({ auth }) => {
       </div>
     );
   }
-  return null;
+  return (
+    <div className="my-menu">
+      <Link to="/" ><FlatButton label="Home" labelStyle={{ color: '#FFF' }} /></Link>
+      <Link to="/signin" ><FlatButton label="Sign In" labelStyle={{ color: '#FFF' }} /></Link>
+      <Link to="/signup" ><FlatButton label="SIgn Up" labelStyle={{ color: '#FFF' }} /></Link>
+    </div>
+  );
 };
 
 MyMenu.propTypes = {

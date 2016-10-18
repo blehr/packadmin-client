@@ -10,17 +10,18 @@ import RosterContainer from './containers/roster_container';
 import Signup from './containers/signup';
 import Signin from './containers/signin';
 import Signout from './containers/signout';
+import RequireAuth from './containers/require_auth';
 
 export default (
   <Route path="/" component={App} >
     <Route path="/signup" component={Signup} />
     <Route path="/signin" component={Signin} />
     <Route path="/signout" component={Signout} />
-    <Route path="/scouts" component={RosterContainer} />
-    <Route path="/scouts/add" component={AddScoutContainer} />
-    <Route path="/scouts/update/:id" component={AddScoutContainer} />
-    <Route path="/scouts/detail/:id" component={ScoutDetailContainer} />
-    <Route path="/scouts/add-confirm" component={AddScoutResponse} />
-    <Route path="/scouts/update-confirm" component={ConfirmScoutResponse} />
+    <Route path="/scouts" component={RequireAuth(RosterContainer)} />
+    <Route path="/scouts/add" component={RequireAuth(AddScoutContainer)} />
+    <Route path="/scouts/update/:id" component={RequireAuth(AddScoutContainer)} />
+    <Route path="/scouts/detail/:id" component={RequireAuth(ScoutDetailContainer)} />
+    <Route path="/scouts/add-confirm" component={RequireAuth(AddScoutResponse)} />
+    <Route path="/scouts/update-confirm" component={RequireAuth(ConfirmScoutResponse)} />
   </Route>
 );

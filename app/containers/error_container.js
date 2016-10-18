@@ -20,7 +20,7 @@ class ErrorDisplay extends Component {
 }
 
 ErrorDisplay.propTypes = {
-  error: PropTypes.object,
+  error: PropTypes.string,
   clearApiError: PropTypes.func,
 };
 
