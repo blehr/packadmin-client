@@ -11,6 +11,7 @@ import Signup from './containers/signup';
 import Signin from './containers/signin';
 import Signout from './containers/signout';
 import Home from './components/home';
+import Profile from './containers/profile';
 import requireAuth from './containers/require_auth';
 
 export default (
@@ -19,6 +20,7 @@ export default (
     <Route path="/signup" component={Signup} />
     <Route path="/signin" component={Signin} />
     <Route path="/signout" component={Signout} />
+    <Route path="/profile" component={requireAuth(Profile)} />
     <Route path="/scouts" component={requireAuth(RosterContainer)} />
     <Route path="/scouts/add" component={requireAuth(AddScoutContainer)} />
     <Route path="/scouts/update/:id" component={requireAuth(AddScoutContainer)} />

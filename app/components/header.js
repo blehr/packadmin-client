@@ -6,7 +6,7 @@ const Header = () => (
     <div className="row text-center" >
       <div className="col-sm-12">
         <div className="header">
-          <h1 className="headerFont">Cub Master Control</h1>
+          <h1 className="headerFont">Pack Admin</h1>
         </div>
         <MyAppBar />
       </div>

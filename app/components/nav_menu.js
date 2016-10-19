@@ -18,7 +18,7 @@ const NavMenu = () => (
       <Link to="/scouts/add" ><MenuItem primaryText="Add Scouts" /></Link>
       <Link to="/signin" ><MenuItem primaryText="Sign in" /></Link>
       <Link to="/signup" ><MenuItem primaryText="Sign up" /></Link>
-      <MenuItem primaryText="Profile" />
+      <Link to="/profile" ><MenuItem primaryText="Profile" /></Link>
       <Link to="/signout" ><MenuItem primaryText="Sign out" /></Link>
     </IconMenu>
   </div>

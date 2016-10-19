@@ -6,9 +6,11 @@ import SortReducer from './sort_reducer';
 import EditScoutReducer from './edit_scout_reducer';
 import ErrorReducer from './error_reducer';
 import AuthReducer from './auth_reducer';
+import UserReducer from './user_reducer';
 
 
 const rootReducer = combineReducers({
+  user: UserReducer,
   sortedBy: SortReducer,
   allScouts: AllScoutReducer,
   scoutDetail: DetailScoutReducer,

@@ -196,6 +196,10 @@ legend {
   max-width: 256px;
 }
 
+ul.list-unstyled li {
+  padding-left: 15px;
+}
+
 @media (max-width: 680px) {
   .my-menu {
     display: none;
