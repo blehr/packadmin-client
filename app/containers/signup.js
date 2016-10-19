@@ -66,7 +66,6 @@ class Signup extends Component {
                 </div>
               </div>
               <div className="form-buttons-container">
-                <ErrorDisplay />
                 <RaisedButton
                   type="submit"
                   disabled={this.props.pristine || this.props.submitting}
@@ -76,6 +75,7 @@ class Signup extends Component {
                   primary
                 />
               </div>
+              <ErrorDisplay />
             </div>
           </div>
         </div>
@@ -89,7 +89,6 @@ Signup.propTypes = {
   pristine: PropTypes.bool,
   submitting: PropTypes.bool,
   signupUser: PropTypes.func,
-  clearApiError: PropTypes.func,
 };
 
 

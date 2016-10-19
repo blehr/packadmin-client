@@ -19,10 +19,9 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const CLEAR_ALL_SCOUTS = 'CLEAR_ALL_SCOUTS';
 export const GET_USER = 'GET_USER';
 export const UPDATE_USER = 'UPDATE_USER';
-export const CLEAR_USER = 'CLEAR_USER';
 
-const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-// const ROOT_URL = 'http://localhost:8080';
+// const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
+const ROOT_URL = 'http://localhost:8080';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
 const SCOUT_DETAIL_URL = `${ROOT_URL}/scouts/detail`;
@@ -46,12 +45,10 @@ export const clearApiError = () => ({
 });
 
 // set auth error
-export function authError(error) {
-  return {
-    type: AUTH_ERROR,
-    payload: error,
-  };
-}
+export const authError = error => ({
+  type: AUTH_ERROR,
+  payload: error,
+});
 
 // clear all scouts
 export const clearAllScouts = () => ({

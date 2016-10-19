@@ -1,5 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const style = {
+  margin: 12,
+};
 
 const Home = () => (
   <div className="row">
@@ -25,6 +30,26 @@ const Home = () => (
               <li><a href="https://twitter.com/brandonlehr"><i className="fa fa-twitter"></i> @brandonlehr</a></li>
             </ul>
           </div>
+        </div>
+        <div className="form-buttons-container">
+          <Link to="/signin" >
+            <RaisedButton
+              type="button"
+              label="Sign In"
+              style={style}
+              labelColor={'#FFF'}
+              secondary
+            />
+          </Link>
+          <Link to="/signup">
+            <RaisedButton
+              type="button"
+              label="Sign Up"
+              style={style}
+              labelColor={'#FFF'}
+              primary
+            />
+          </Link>
         </div>
       </div>
     </div>

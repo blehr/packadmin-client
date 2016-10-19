@@ -44,7 +44,6 @@ class Signin extends Component {
                     />
                   </fieldset>
                   <div className="form-buttons-container">
-                    <ErrorDisplay />
                     <RaisedButton
                       type="submit"
                       disabled={this.props.pristine || this.props.submitting}
@@ -56,6 +55,7 @@ class Signin extends Component {
                   </div>
                 </div>
               </div>
+              <ErrorDisplay />
             </div>
           </div>
         </div>
