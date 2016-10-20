@@ -8,7 +8,7 @@ import {
 export default function (state = {}, action) {
   switch (action.type) {
     case ADD_SCOUT_RESPONSE:
-      return { ...state, scoutDetail: action.payload.data };
+      return { ...state, scoutDetail: action.payload };
     case GET_SCOUT_DETAIL:
       return { ...state, scoutDetail: action.payload.data };
     case REMOVE_SCOUT:

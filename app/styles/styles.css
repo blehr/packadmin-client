@@ -59,7 +59,6 @@ footer {
 .card a,
 .card a:visited {
   color: #FFF;
-  text-decoration: underline;
 }
 
 .card a:hover {

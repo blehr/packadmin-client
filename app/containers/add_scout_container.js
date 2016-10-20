@@ -56,45 +56,33 @@ class AddScoutContainer extends Component {
                   name="scoutFirstName"
                   component={TextField}
                   floatingLabelText="First Name"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="scoutLastName"
                   component={TextField}
                   floatingLabelText="Last Name"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   component={DatePicker}
                   name="birthday"
                   floatingLabelText="Birthday"
                   defaultValue={null}
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="grade"
                   component={TextField}
                   floatingLabelText="Grade"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="schoolDistrict"
                   component={TextField}
                   floatingLabelText="School District"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="den"
                   hintText="Den"
                   component={SelectField}
                   floatingLabelText="Den"
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                  underlineFocusStyle={styles.underlineFocusStyle}
                 >
                   <MenuItem value="Lion" primaryText="Lion" />
                   <MenuItem value="Tiger" primaryText="Tiger" />
@@ -113,40 +101,30 @@ class AddScoutContainer extends Component {
                   component={TextField}
                   type="text"
                   floatingLabelText="Street Address"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="scoutMailAddress"
                   component={TextField}
                   type="text"
                   floatingLabelText="Mailing Address"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="scoutCity"
                   component={TextField}
                   type="text"
                   floatingLabelText="City"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="scoutState"
                   component={TextField}
                   type="text"
                   floatingLabelText="State"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="scoutZipCode"
                   component={TextField}
                   type="text"
                   floatingLabelText="Zip Code"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
               </div>
             </fieldset>
@@ -184,8 +162,7 @@ class AddScoutContainer extends Component {
                   floatingLabelText="Notes"
                   multiLine
                   rows={3}
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+
                 />
               </div>
             </fieldset>
@@ -199,24 +176,18 @@ class AddScoutContainer extends Component {
                   component={TextField}
                   type="text"
                   floatingLabelText="First Name"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent1LastName"
                   component={TextField}
                   type="text"
                   floatingLabelText="Last Name"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent1RelationToScout"
                   component={TextField}
                   type="text"
                   floatingLabelText="Relation to Scout"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
               </div>
             </fieldset>
@@ -228,32 +199,24 @@ class AddScoutContainer extends Component {
                   component={TextField}
                   type="email"
                   floatingLabelText="Email"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent1PhoneNumberMobile"
                   component={TextField}
                   type="tel"
                   floatingLabelText="Mobile Phone"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent1PhoneNumberHome"
                   component={TextField}
                   type="tel"
                   floatingLabelText="Home Phone"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent1PhoneNumberWork"
                   component={TextField}
                   type="tel"
                   floatingLabelText="Work Phone"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent1Notes"
@@ -261,8 +224,6 @@ class AddScoutContainer extends Component {
                   floatingLabelText="Notes"
                   multiLine
                   rows={3}
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
               </div>
             </fieldset>
@@ -279,40 +240,30 @@ class AddScoutContainer extends Component {
                   component={TextField}
                   type="text"
                   floatingLabelText="Street Address"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent1MailAddress"
                   component={TextField}
                   type="text"
                   floatingLabelText="Mailing Address"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent1City"
                   component={TextField}
                   type="text"
                   floatingLabelText="City"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent1State"
                   component={TextField}
                   type="text"
                   floatingLabelText="State"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent1ZipCode"
                   component={TextField}
                   type="text"
                   floatingLabelText="Zip Code"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
               </div>
             </fieldset>
@@ -326,24 +277,18 @@ class AddScoutContainer extends Component {
                   component={TextField}
                   type="text"
                   floatingLabelText="First Name"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent2LastName"
                   component={TextField}
                   type="text"
                   floatingLabelText="Last Name"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent2RelationToScout"
                   component={TextField}
                   type="text"
                   floatingLabelText="Relation to Scout"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
               </div>
             </fieldset>
@@ -355,31 +300,23 @@ class AddScoutContainer extends Component {
                   component={TextField}
                   type="email"
                   floatingLabelText="Email"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent2PhoneNumberMobile"
                   component={TextField}
                   type="tel"
                   floatingLabelText="Mobile Phone"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent2PhoneNumberHome"
                   component={TextField}
                   type="tel"
                   floatingLabelText="Home Phone"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent2PhoneNumberWork"
                   component={TextField}
                   type="tel" floatingLabelText="Work Phone"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent2Notes"
@@ -387,8 +324,6 @@ class AddScoutContainer extends Component {
                   floatingLabelText="Notes"
                   multiLine
                   rows={3}
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
               </div>
             </fieldset>
@@ -405,40 +340,30 @@ class AddScoutContainer extends Component {
                   component={TextField}
                   type="text"
                   floatingLabelText="Street Address"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent2MailAddress"
                   component={TextField}
                   type="text"
                   floatingLabelText="Mailing Address"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent2City"
                   component={TextField}
                   type="text"
                   floatingLabelText="City"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent2State"
                   component={TextField}
                   type="text"
                   floatingLabelText="State"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <Field
                   name="parent2ZipCode"
                   component={TextField}
                   type="text"
                   floatingLabelText="Zip Code"
-                  underlineFocusStyle={styles.underlineFocusStyle}
-                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
               </div>
             </fieldset>

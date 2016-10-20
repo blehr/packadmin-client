@@ -20,8 +20,8 @@ export const CLEAR_ALL_SCOUTS = 'CLEAR_ALL_SCOUTS';
 export const GET_USER = 'GET_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 
-// const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-const ROOT_URL = 'http://localhost:8080';
+const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
+// const ROOT_URL = 'http://localhost:8080';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
 const SCOUT_DETAIL_URL = `${ROOT_URL}/scouts/detail`;
@@ -66,7 +66,7 @@ export const clearScoutDetail = () => (
 
 // map over errors object and pull off each meassage
 const formatErrors = (error, dispatch) => {
-  if (error.response.status === 401) {
+  if (error.response.status && error.response.status === 401) {
     dispatch(authError('Are you logged in?'));
     return null;
   }
@@ -133,11 +133,13 @@ export const getAllScouts = () => (
       .then((response) => {
         dispatch({
           type: GET_ALL_SCOUTS,
-          payload: response,
+          payload: response.data.scouts,
         });
+        dispatch({ type: GET_USER, payload: response.data.user });
         dispatch(clearApiError());
       })
       .catch((error) => {
+        console.log(error);
         formatErrors(error, dispatch);
       });
   }
@@ -152,8 +154,9 @@ export const addScoutResponseAction = data => (
       .then((response) => {
         dispatch({
           type: ADD_SCOUT_RESPONSE,
-          payload: response,
+          payload: response.data.scout,
         });
+        dispatch({ type: GET_USER, payload: response.data.user });
         dispatch(clearApiError());
         browserHistory.push('/scouts/add-confirm');
       })

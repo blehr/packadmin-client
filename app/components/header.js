@@ -1,5 +1,6 @@
 import React from 'react';
 import MyAppBar from './my_app_bar';
+import UserDisplay from '../containers/user_display';
 
 const Header = () => (
   <header className="container">
@@ -9,6 +10,7 @@ const Header = () => (
           <h1 className="headerFont">Pack Admin</h1>
         </div>
         <MyAppBar />
+        <UserDisplay />
       </div>
     </div>
   </header>
