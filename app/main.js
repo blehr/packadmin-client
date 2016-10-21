@@ -1,18 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { compose, createStore, applyMiddleware } from 'redux';
 import { Router, browserHistory } from 'react-router';
-import reduxPromise from 'redux-promise';
-import reduxThunk from 'redux-thunk';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { blue500 } from 'material-ui/styles/colors';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import routes from './routes';
-import { AUTH_USER } from './actions';
 
-import reducers from './reducers/index';
+import storeConfig from './store';
 
 injectTapEventPlugin();
 
@@ -22,26 +18,7 @@ const muiTheme = getMuiTheme({
   },
 });
 
-
-const applyMiddlewares = applyMiddleware(
-  reduxPromise,
-  reduxThunk
-);
-
-const createStoreWithMiddleware = compose(
-  applyMiddlewares,
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-);
-
-const store = (createStoreWithMiddleware(createStore)(
-    reducers,
-));
-
-const token = localStorage.getItem('token');
-
-if (token) {
-  store.dispatch({ type: AUTH_USER });
-}
+const store = storeConfig();
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={muiTheme}>

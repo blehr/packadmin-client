@@ -7,8 +7,7 @@ import Roster from '../components/roster';
 class RosterContainer extends Component {
   componentDidMount() {
     this.props.getAllScouts();
-    this.props.clearUpdateScout();
-    this.props.clearScoutDetail();
+    // this.props.clearScoutDetail();
   }
 
   render() {
@@ -36,7 +35,6 @@ RosterContainer.propTypes = {
   allScouts: PropTypes.object,
   sortedBy: PropTypes.string,
   getAllScouts: PropTypes.func,
-  clearUpdateScout: PropTypes.func,
   clearScoutDetail: PropTypes.func,
   error: PropTypes.string,
 };

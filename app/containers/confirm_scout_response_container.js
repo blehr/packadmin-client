@@ -6,9 +6,9 @@ import ConfirmToolbar from '../components/confirm_toolbar';
 import ErrorDisplay from './error_container';
 
 
-const ConfirmScoutContainer = ({ editScout, error, removeScout }) => {
+const ConfirmScoutContainer = ({ scoutDetail, error, removeScout }) => {
 
-  if (!editScout.scoutToUpdate) {
+  if (!scoutDetail.scout) {
     if (error) {
       return <ErrorDisplay />;
     }
@@ -17,10 +17,10 @@ const ConfirmScoutContainer = ({ editScout, error, removeScout }) => {
   return (
     <div>
       <div className="row">
-        <ConfirmToolbar scout={editScout.scoutToUpdate} removeScout={removeScout} />
+        <ConfirmToolbar scout={scoutDetail.scout} removeScout={removeScout} />
       </div>
       <div className="row">
-        <ScoutDetail scout={editScout.scoutToUpdate} removeScout={removeScout} />
+        <ScoutDetail scout={scoutDetail.scout} removeScout={removeScout} />
       </div>
     </div>
   );
@@ -28,14 +28,14 @@ const ConfirmScoutContainer = ({ editScout, error, removeScout }) => {
 
 
 ConfirmScoutContainer.propTypes = {
-  editScout: PropTypes.object,
+  scoutDetail: PropTypes.object,
   removeScout: PropTypes.func,
   error: PropTypes.string,
 };
 
 
-const mapStateToProps = ({ editScout, error }) => (
-  { editScout, error }
+const mapStateToProps = ({ scoutDetail, error }) => (
+  { scoutDetail, error }
 );
 
 export default connect(mapStateToProps, actions)(ConfirmScoutContainer);

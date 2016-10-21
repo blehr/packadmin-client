@@ -32,7 +32,7 @@ class AddScoutContainer extends Component {
     if (this.props.params.id) {
       this.props.getScoutToUpdate(this.props.params.id);
     } else {
-      this.props.clearUpdateScout();
+      this.props.clearScoutDetail();
     }
   }
 
@@ -399,7 +399,7 @@ AddScoutContainer.propTypes = {
   getScoutToUpdate: PropTypes.func,
   addScoutResponseAction: PropTypes.func,
   updateScout: PropTypes.func,
-  clearUpdateScout: PropTypes.func,
+  clearScoutDetail: PropTypes.func,
   reset: PropTypes.func,
   params: PropTypes.object,
   id: PropTypes.number,
@@ -408,8 +408,8 @@ AddScoutContainer.propTypes = {
   submitting: PropTypes.bool,
 };
 
-const mapStateToProps = ({ editScout }) => ({
-  initialValues: editScout.scoutToUpdate,
+const mapStateToProps = ({ scoutDetail }) => ({
+  initialValues: scoutDetail.scout,
 });
 
 

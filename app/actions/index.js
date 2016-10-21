@@ -19,6 +19,9 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const CLEAR_ALL_SCOUTS = 'CLEAR_ALL_SCOUTS';
 export const GET_USER = 'GET_USER';
 export const UPDATE_USER = 'UPDATE_USER';
+export const IS_FETCHING = 'IS_FETCHING';
+export const END_FETCHING = 'END_FETCHING';
+export const SCOUT_DETAIL = 'SCOUT_DETAIL';
 
 const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
 // const ROOT_URL = 'http://localhost:8080';
@@ -55,14 +58,18 @@ export const clearAllScouts = () => ({
   type: CLEAR_ALL_SCOUTS,
 });
 
-// clear the update scout state
-export const clearUpdateScout = () => (
-  { type: CLEAR_UPDATE_SCOUT }
- );
+export const clearScoutDetail = () => ({
+  type: CLEAR_SCOUT_DETAIL
+  
+});
+  
+export const isFetching = () => ({
+  type: IS_FETCHING,
+});
 
-export const clearScoutDetail = () => (
-   { type: CLEAR_SCOUT_DETAIL }
-  );
+export const endFetching = () => ({
+  type: END_FETCHING,
+});
 
 // map over errors object and pull off each meassage
 const formatErrors = (error, dispatch) => {
@@ -103,7 +110,7 @@ export const signoutUser = () => (
   (dispatch) => {
     localStorage.removeItem('token');
     dispatch(clearAllScouts());
-    dispatch(clearUpdateScout());
+    // dispatch(clearUpdateScout());
     dispatch(clearScoutDetail());
     dispatch({ type: UNAUTH_USER });
   }
@@ -135,7 +142,6 @@ export const getAllScouts = () => (
           type: GET_ALL_SCOUTS,
           payload: response.data.scouts,
         });
-        dispatch({ type: GET_USER, payload: response.data.user });
         dispatch(clearApiError());
       })
       .catch((error) => {
@@ -153,10 +159,9 @@ export const addScoutResponseAction = data => (
     axios.post(URL, { data }, { headers: { authorization: token } })
       .then((response) => {
         dispatch({
-          type: ADD_SCOUT_RESPONSE,
+          type: SCOUT_DETAIL,
           payload: response.data.scout,
         });
-        dispatch({ type: GET_USER, payload: response.data.user });
         dispatch(clearApiError());
         browserHistory.push('/scouts/add-confirm');
       })
@@ -174,8 +179,8 @@ export const getScoutDetail = id => (
     axios.get(URL, { headers: { authorization: token } })
       .then((response) => {
         dispatch({
-          type: GET_SCOUT_DETAIL,
-          payload: response,
+          type: SCOUT_DETAIL,
+          payload: response.data,
         });
         dispatch(clearApiError());
       })
@@ -194,8 +199,8 @@ export const getScoutToUpdate = id => (
       .then((response) => {
         response.data.birthday = new Date(response.data.birthday);
         dispatch({
-          type: SCOUT_TO_UPDATE,
-          payload: response,
+          type: SCOUT_DETAIL,
+          payload: response.data,
         });
         dispatch(clearApiError());
       })
@@ -213,8 +218,8 @@ export const updateScout = (data, id) => (
     axios.put(URL, { data }, { headers: { authorization: token } })
       .then((response) => {
         dispatch({
-          type: UPDATE_SCOUT,
-          payload: response,
+          type: SCOUT_DETAIL,
+          payload: response.data,
         });
         dispatch(clearApiError());
         browserHistory.push('/scouts/update-confirm');
@@ -233,8 +238,8 @@ export const removeScout = id => (
     axios.delete(URL, { headers: { authorization: token } })
       .then((response) => {
         dispatch({
-          type: REMOVE_SCOUT,
-          payload: response,
+          type: SCOUT_DETAIL,
+          payload: response.data,
         });
         dispatch(clearApiError());
         browserHistory.push('/scouts');

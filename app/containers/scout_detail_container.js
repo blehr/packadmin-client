@@ -13,7 +13,7 @@ class ScoutDetailContainer extends Component {
 
   render() {
     const { scoutDetail, error } = this.props;
-    if (!scoutDetail.scoutDetail) {
+    if (!scoutDetail.scout) {
       if (error) {
         return <ErrorDisplay />;
       }
@@ -24,13 +24,13 @@ class ScoutDetailContainer extends Component {
       <div>
         <div className="row">
           <ConfirmToolbar
-            scout={this.props.scoutDetail.scoutDetail}
+            scout={this.props.scoutDetail.scout}
             removeScout={this.props.removeScout}
           />
         </div>
         <div className="row">
           <ScoutDetail
-            scout={this.props.scoutDetail.scoutDetail}
+            scout={this.props.scoutDetail.scout}
             removeScout={this.props.removeScout}
           />
         </div>

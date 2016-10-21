@@ -8,7 +8,7 @@ import ErrorDisplay from './error_container';
 
 const AddScoutContainer = (props) => {
   const { scoutDetail, removeScout, error } = props;
-  if (!scoutDetail.scoutDetail) {
+  if (!scoutDetail.scout) {
     if (error) {
       return <ErrorDisplay />;
     }
@@ -17,10 +17,10 @@ const AddScoutContainer = (props) => {
   return (
     <div>
       <div className="row">
-        <ConfirmToolbar scout={scoutDetail.scoutDetail} removeScout={removeScout} />
+        <ConfirmToolbar scout={scoutDetail.scout} removeScout={removeScout} />
       </div>
       <div className="row">
-        <ScoutDetail scout={scoutDetail.scoutDetail} removeScout={removeScout} />
+        <ScoutDetail scout={scoutDetail.scout} removeScout={removeScout} />
       </div>
     </div>
   );
