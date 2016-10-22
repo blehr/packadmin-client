@@ -1,7 +1,7 @@
 import { compose, createStore, applyMiddleware } from 'redux';
 import reduxPromise from 'redux-promise';
 import reduxThunk from 'redux-thunk';
-import { AUTH_USER, getUser } from './actions';
+import { AUTH_USER, getUser, getAllScouts } from './actions';
 
 
 const addLoggingToDispatch = (store) => {
@@ -48,6 +48,7 @@ const storeConfig = () => {
   if (token) {
     store.dispatch({ type: AUTH_USER });
     store.dispatch(getUser());
+    store.dispatch(getAllScouts());
   }
   
   return store;

@@ -4,7 +4,7 @@ import * as actions from '../actions';
 
 class ErrorDisplay extends Component {
   componentWillUnmount() {
-    this.props.clearApiError();
+    this.props.clearError();
   }
   render() {
     if (this.props.error) {
@@ -21,7 +21,7 @@ class ErrorDisplay extends Component {
 
 ErrorDisplay.propTypes = {
   error: PropTypes.string,
-  clearApiError: PropTypes.func,
+  clearError: PropTypes.func,
 };
 
 const mapStateToProps = ({ error }) => (

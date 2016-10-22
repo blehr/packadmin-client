@@ -30,7 +30,7 @@ class AddScoutContainer extends Component {
   }
   componentWillMount() {
     if (this.props.params.id) {
-      this.props.getScoutToUpdate(this.props.params.id);
+      this.props.getScoutDetail(this.props.params.id);
     } else {
       this.props.clearScoutDetail();
     }
@@ -38,7 +38,7 @@ class AddScoutContainer extends Component {
 
   doSubmit(values) {
     if (!this.props.params.id) {
-      this.props.addScoutResponseAction(values);
+      this.props.addScout(values);
     } else {
       this.props.updateScout(values, this.props.params.id);
     }
@@ -396,8 +396,8 @@ class AddScoutContainer extends Component {
 }
 
 AddScoutContainer.propTypes = {
-  getScoutToUpdate: PropTypes.func,
-  addScoutResponseAction: PropTypes.func,
+  getScoutDetail: PropTypes.func,
+  addScout: PropTypes.func,
   updateScout: PropTypes.func,
   clearScoutDetail: PropTypes.func,
   reset: PropTypes.func,
@@ -408,8 +408,8 @@ AddScoutContainer.propTypes = {
   submitting: PropTypes.bool,
 };
 
-const mapStateToProps = ({ scoutDetail }) => ({
-  initialValues: scoutDetail.scout,
+const mapStateToProps = ({ scouts }) => ({
+  initialValues: scouts.singleScout,
 });
 
 

@@ -5,13 +5,13 @@ import * as actions from '../actions';
 import Roster from '../components/roster';
 
 class RosterContainer extends Component {
-  componentDidMount() {
-    this.props.getAllScouts();
+  // componentDidMount() {
+  //   this.props.getAllScouts();
     // this.props.clearScoutDetail();
-  }
+  // }
 
   render() {
-    if (!this.props.allScouts.scouts || this.props.allScouts.scouts.length === 0) {
+    if (!this.props.scouts.allScouts || this.props.scouts.allScouts.length === 0) {
       if (this.props.error) {
         return <ErrorDisplay />;
       }
@@ -21,7 +21,7 @@ class RosterContainer extends Component {
       <div>
         <div className="row">
           <Roster
-            scouts={this.props.allScouts.scouts}
+            scouts={this.props.scouts.allScouts}
             handleClick={this.onHandleClick}
             filter={this.props.sortedBy}
           />
@@ -32,7 +32,7 @@ class RosterContainer extends Component {
 }
 
 RosterContainer.propTypes = {
-  allScouts: PropTypes.object,
+  scouts: PropTypes.object,
   sortedBy: PropTypes.string,
   getAllScouts: PropTypes.func,
   clearScoutDetail: PropTypes.func,
@@ -40,8 +40,8 @@ RosterContainer.propTypes = {
 };
 
 
-const mapStateToProps = ({ allScouts, sortedBy, error }) => (
-  { allScouts, sortedBy, error }
+const mapStateToProps = ({ scouts, sortedBy, error }) => (
+  { scouts, sortedBy, error }
 );
 
 

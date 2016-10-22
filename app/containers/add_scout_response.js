@@ -7,8 +7,8 @@ import ErrorDisplay from './error_container';
 
 
 const AddScoutContainer = (props) => {
-  const { scoutDetail, removeScout, error } = props;
-  if (!scoutDetail.scout) {
+  const { scouts, removeScout, error } = props;
+  if (!scouts.singleScout) {
     if (error) {
       return <ErrorDisplay />;
     }
@@ -17,24 +17,24 @@ const AddScoutContainer = (props) => {
   return (
     <div>
       <div className="row">
-        <ConfirmToolbar scout={scoutDetail.scout} removeScout={removeScout} />
+        <ConfirmToolbar scout={scouts.singleScout} removeScout={removeScout} />
       </div>
       <div className="row">
-        <ScoutDetail scout={scoutDetail.scout} removeScout={removeScout} />
+        <ScoutDetail scout={scouts.singleScout} removeScout={removeScout} />
       </div>
     </div>
   );
 };
 
 AddScoutContainer.propTypes = {
-  scoutDetail: PropTypes.obj,
+  scouts: PropTypes.obj,
   removeScout: PropTypes.func,
   error: PropTypes.string,
 };
 
 
-const mapStateToProps = ({ scoutDetail, error }) => (
-  { scoutDetail, error }
+const mapStateToProps = ({ scouts, error }) => (
+  { scouts, error }
 );
 
 export default connect(mapStateToProps, actions)(AddScoutContainer);

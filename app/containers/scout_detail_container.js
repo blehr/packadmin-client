@@ -7,13 +7,21 @@ import ErrorDisplay from './error_container';
 
 
 class ScoutDetailContainer extends Component {
-  componentWillMount() {
-    this.props.getScoutDetail(this.props.params.id);
+  componentDidMount() {
+    if (!this.props.scouts.allScouts) {
+      console.log('no all scouts');
+      setTimeout(() => {
+        this.props.getScoutDetail(this.props.params.id);
+      }, 1000);
+    } else {
+       this.props.getScoutDetail(this.props.params.id);
+    }
+   
   }
 
   render() {
-    const { scoutDetail, error } = this.props;
-    if (!scoutDetail.scout) {
+    const { scouts, error } = this.props;
+    if (!scouts.singleScout) {
       if (error) {
         return <ErrorDisplay />;
       }
@@ -24,13 +32,13 @@ class ScoutDetailContainer extends Component {
       <div>
         <div className="row">
           <ConfirmToolbar
-            scout={this.props.scoutDetail.scout}
+            scout={this.props.scouts.singleScout}
             removeScout={this.props.removeScout}
           />
         </div>
         <div className="row">
           <ScoutDetail
-            scout={this.props.scoutDetail.scout}
+            scout={this.props.scouts.singleScout}
             removeScout={this.props.removeScout}
           />
         </div>
@@ -39,13 +47,13 @@ class ScoutDetailContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ scoutDetail, error }) => (
-  { scoutDetail, error }
+const mapStateToProps = ({ scouts, error }) => (
+  { scouts, error }
 );
 
 ScoutDetailContainer.propTypes = {
   getScoutDetail: PropTypes.func,
-  scoutDetail: PropTypes.object,
+  scouts: PropTypes.object,
   removeScout: PropTypes.func,
   params: PropTypes.object,
   id: PropTypes.number,
