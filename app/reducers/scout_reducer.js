@@ -15,9 +15,9 @@ export default function (state = {}, action) {
     case SCOUT_DETAIL:
       return { ...state, singleScout: action.payload };
     case GET_SCOUT_FROM_ALL:
-      const newScout = state.allScouts.filter(scout => {
-        return scout._id === action.payload;
-      });
+      const newScout = state.allScouts.filter(scout => (
+        scout._id === action.payload
+      ));
       return { ...state, singleScout: newScout[0] };
     case CLEAR_SCOUT_DETAIL:
       return { ...state, singleScout: {} };

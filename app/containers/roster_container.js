@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ErrorDisplay from '../containers/error_container';
 import * as actions from '../actions';
 import Roster from '../components/roster';
+import LoadingComponent from './loading_container';
 
 class RosterContainer extends Component {
   // componentDidMount() {
@@ -20,6 +21,7 @@ class RosterContainer extends Component {
     return (
       <div>
         <div className="row">
+          <LoadingComponent />
           <Roster
             scouts={this.props.scouts.allScouts}
             handleClick={this.onHandleClick}

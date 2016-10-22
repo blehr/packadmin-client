@@ -4,19 +4,18 @@ import * as actions from '../actions';
 import ScoutDetail from '../components/scout_detail';
 import ConfirmToolbar from '../components/confirm_toolbar';
 import ErrorDisplay from './error_container';
+import LoadingComponent from './loading_container';
 
 
 class ScoutDetailContainer extends Component {
   componentDidMount() {
     if (!this.props.scouts.allScouts) {
-      console.log('no all scouts');
       setTimeout(() => {
         this.props.getScoutDetail(this.props.params.id);
       }, 1000);
     } else {
-       this.props.getScoutDetail(this.props.params.id);
+      this.props.getScoutDetail(this.props.params.id);
     }
-   
   }
 
   render() {
@@ -31,6 +30,7 @@ class ScoutDetailContainer extends Component {
     return (
       <div>
         <div className="row">
+          <LoadingComponent />
           <ConfirmToolbar
             scout={this.props.scouts.singleScout}
             removeScout={this.props.removeScout}

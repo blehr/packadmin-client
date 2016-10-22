@@ -1,13 +1,14 @@
 import { compose, createStore, applyMiddleware } from 'redux';
 import reduxPromise from 'redux-promise';
 import reduxThunk from 'redux-thunk';
+import reducers from './reducers/index';
 import { AUTH_USER, getUser, getAllScouts } from './actions';
 
 
 const addLoggingToDispatch = (store) => {
   const rawDispatch = store.dispatch;
   if (!console.group) {
-    return rawDispatch
+    return rawDispatch;
   }
   return (action) => {
     console.group(action.type);
@@ -17,42 +18,36 @@ const addLoggingToDispatch = (store) => {
     console.log('%c next state', 'color: green', store.getState());
     console.groupEnd(action.type);
     return returnValue;
-  }
-}
+  };
+};
 
-
-
-
-
-import reducers from './reducers/index';
 
 const storeConfig = () => {
   const applyMiddlewares = applyMiddleware(
   reduxPromise,
     reduxThunk
   );
-  
+
   const createStoreWithMiddleware = compose(
     applyMiddlewares,
     window.devToolsExtension ? window.devToolsExtension() : f => f
   );
-  
+
   const store = createStoreWithMiddleware(createStore)(
       reducers,
   );
-  
+
   store.dispatch = addLoggingToDispatch(store);
-  
+
   const token = localStorage.getItem('token');
-  
+
   if (token) {
     store.dispatch({ type: AUTH_USER });
     store.dispatch(getUser());
     store.dispatch(getAllScouts());
   }
-  
+
   return store;
-}
+};
 
 export default storeConfig;
-
