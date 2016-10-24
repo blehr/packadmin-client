@@ -6,22 +6,21 @@ import Roster from '../components/roster';
 import LoadingComponent from './loading_container';
 
 class RosterContainer extends Component {
-  // componentDidMount() {
-  //   this.props.getAllScouts();
-    // this.props.clearScoutDetail();
-  // }
-
   render() {
     if (!this.props.scouts.allScouts || this.props.scouts.allScouts.length === 0) {
       if (this.props.error) {
         return <ErrorDisplay />;
       }
-      return <div>No Scout</div>;
+      return (
+        <div style={{ position: 'relative' }}>
+          <LoadingComponent />
+          <div>No Scout</div>
+        </div>
+      );
     }
     return (
       <div>
         <div className="row">
-          <LoadingComponent />
           <Roster
             scouts={this.props.scouts.allScouts}
             handleClick={this.onHandleClick}
@@ -36,8 +35,6 @@ class RosterContainer extends Component {
 RosterContainer.propTypes = {
   scouts: PropTypes.object,
   sortedBy: PropTypes.string,
-  getAllScouts: PropTypes.func,
-  clearScoutDetail: PropTypes.func,
   error: PropTypes.string,
 };
 

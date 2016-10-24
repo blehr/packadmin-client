@@ -12,7 +12,7 @@ class ScoutDetailContainer extends Component {
     if (!this.props.scouts.allScouts) {
       setTimeout(() => {
         this.props.getScoutDetail(this.props.params.id);
-      }, 1000);
+      }, 2000);
     } else {
       this.props.getScoutDetail(this.props.params.id);
     }
@@ -20,23 +20,27 @@ class ScoutDetailContainer extends Component {
 
   render() {
     const { scouts, error } = this.props;
-    if (!scouts.singleScout) {
+    if (!scouts.singleScout || !scouts.singleScout.scoutFirstName) {
       if (error) {
         return <ErrorDisplay />;
       }
-      return <div>No Scout</div>;
+      return (
+        <div style={{ position: 'relative' }}>
+          <LoadingComponent />
+        </div>
+      );
     }
 
     return (
       <div>
         <div className="row">
-          <LoadingComponent />
           <ConfirmToolbar
             scout={this.props.scouts.singleScout}
             removeScout={this.props.removeScout}
           />
         </div>
         <div className="row">
+          <LoadingComponent />
           <ScoutDetail
             scout={this.props.scouts.singleScout}
             removeScout={this.props.removeScout}

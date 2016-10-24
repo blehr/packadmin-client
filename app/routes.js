@@ -14,6 +14,8 @@ import Home from './components/home';
 import Profile from './containers/profile';
 import requireAuth from './containers/require_auth';
 
+import Advancement from './containers/advancement_container';
+
 export default (
   <Route path="/" component={App} >
     <IndexRoute component={Home} />
@@ -21,6 +23,7 @@ export default (
     <Route path="/signin" component={Signin} />
     <Route path="/signout" component={Signout} />
     <Route path="/profile" component={requireAuth(Profile)} />
+    <Route path="/tiger" component={Advancement} />
     <Route path="/scouts" component={requireAuth(RosterContainer)} />
     <Route path="/scouts/add" component={requireAuth(AddScoutContainer)} />
     <Route path="/scouts/update/:id" component={requireAuth(AddScoutContainer)} />

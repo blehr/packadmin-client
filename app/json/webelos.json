@@ -1,0 +1,41 @@
+{
+  "Den": "Webelos",
+  "Requirements": [
+    "Bobcat",
+    "Cast Iron Chef",
+    "Duty to God and You",
+    "First Responder",
+    "Stronger, Faster, Higher",
+    "Webelos Walkabout"
+  ],
+  "Arrow of Light": [
+    "Building a Better World",
+    "Camper",
+    "Duty to God in Action",
+    "Scouting Adventure"
+  ],
+  "Electives": [
+    "Adventures in Science",
+    "Aquanaut",
+    "Art Explosion",
+    "Aware and Care",
+    "Build It",
+    "Build My Own Hero",
+    "Castaway",
+    "Earth Rocks!",
+    "Engineer",
+    "Fix It",
+    "Game Design",
+    "Into the Wild",
+    "Into the Woods",
+    "Looking Back, Looking Forward",
+    "Maestro!",
+    "Movie Making",
+    "Project Family",
+    "Sportsman"
+  ],
+  "Others": [
+    "Cyber Chip",
+    "Child Protection"
+  ]
+}

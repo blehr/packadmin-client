@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 const LoadingComponent = ({ loading }) => {
   if (loading) {
     return (
-      <div>
-        <h3>Loading...</h3>
+      <div className="loader">
+        <div><i className="fa fa-spinner fa-pulse fa-5x fa-fw" aria-hidden="true" /></div>
       </div>
     );
   }

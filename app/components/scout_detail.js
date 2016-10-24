@@ -5,6 +5,7 @@ import DisplayParent2 from './display_parent2';
 import ScoutLink from './scout_link';
 
 const ScoutDetail = (props) => {
+  (() => { window.scrollTo(0, 0); })();
   const { scout, removeScout } = props;
   return (
     <div className="col-sm-6 col-sm-offset-3">

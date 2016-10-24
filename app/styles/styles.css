@@ -131,7 +131,6 @@ legend {
   font-size: .8em;
 }
 
-
 .roster-item span {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -197,6 +196,32 @@ legend {
 
 ul.list-unstyled li {
   padding-left: 15px;
+}
+
+.loader {
+  width: 100%;
+  height: 500px;
+  position: absolute;
+  padding-top: 50px;
+  z-index: 10;
+  display: flex;
+  justify-content: space-around;
+  background-color: #FFF;
+}
+
+.adv-div {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.adv-div:nth-child(2n+1) {
+  background-color: rgba(0, 0, 0, 0.1);;
+}
+
+.adv-label {
+  align-self: center;
 }
 
 @media (max-width: 680px) {

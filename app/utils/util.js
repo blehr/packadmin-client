@@ -9,9 +9,12 @@ export const trueOrFalse = (item) => {
 };
 
 const formatDate = (date) => {
-  const regex = /T.+/;
-  const birth = date.replace(regex, '');
-  return moment(birth);
+  if (date) {
+    const regex = /T.+/;
+    const birth = date.replace(regex, '');
+    return moment(birth);
+  }
+  return null;
 };
 
 export const getAge = date => (

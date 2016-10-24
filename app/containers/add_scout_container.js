@@ -2,24 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
-import { pinkA200 } from 'material-ui/styles/colors';
 import MenuItem from 'material-ui/MenuItem';
 import { Checkbox, DatePicker, TextField, SelectField } from 'redux-form-material-ui';
 import ErrorDisplay from './error_container';
+import LoadingComponent from './loading_container';
 import * as actions from '../actions';
 import validate from '../utils/add_scout_validation';
 
 const style = {
   margin: 12,
-};
-
-const styles = {
-  underlineFocusStyle: {
-    borderColor: pinkA200,
-  },
-  floatingLabelFocusStyle: {
-    color: pinkA200,
-  },
 };
 
 class AddScoutContainer extends Component {
