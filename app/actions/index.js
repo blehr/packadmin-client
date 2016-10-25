@@ -16,6 +16,9 @@ export const IS_FETCHING = 'IS_FETCHING';
 export const END_FETCHING = 'END_FETCHING';
 export const SCOUT_DETAIL = 'SCOUT_DETAIL';
 export const GET_SCOUT_FROM_ALL = 'GET_SCOUT_FROM_ALL';
+export const SET_ADVANCEMENT = 'SET_ADVANCEMENT';
+export const SAVE_ADVANCEMENT = 'SAVE_ADVANCEMENT';
+export const GET_ADVANCEMENT_JSON = 'GET_ADVANCEMENT_JSON';
 
 // const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
 const ROOT_URL = 'http://localhost:8080';
@@ -87,6 +90,24 @@ const formatErrors = (error, dispatch) => {
   dispatch(setError(error.response.data.errors));
   return null;
 };
+
+// set advancement den
+export const setAdvancement = den => ({
+  type: SET_ADVANCEMENT,
+  payload: den,
+});
+
+export const postTiger = data => (
+  (dispatch) => {
+    axios.post(`${ROOT_URL}/tiger`, { data })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+);
 
 // get all scouts
 export const getAllScouts = () => (

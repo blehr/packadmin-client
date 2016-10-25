@@ -1,31 +1,97 @@
 {
   "Den": "Bear",
   "Requirements": [
-    "Bobcat",
-    "Bear Claws",
-    "Bear Necessities",
-    "Fellowship and Duty to God",
-    "Fur,, Feathers and Ferns",
-    "Grin and Bear It",
-    "Paws For Action"
+    {
+      "name": "Bobcat",
+      "formName": "bobcat"
+    },
+    {
+      "name": "Bear Claws",
+      "formName": "bearClaws"
+    },
+    {
+      "name": "Bear Necessities",
+      "formName": "bearNecessities"
+    },
+    {
+      "name": "Fellowship and Duty to God",
+      "formName": "fellowshipAndDutyToGod"
+    },
+    {
+      "name": "Fur, Feathers and Ferns",
+      "formName": "furFeathersAndFerns"
+    },
+    {
+      "name": "Grin and Bear It",
+      "formName": "grinAndBearIt"
+    },
+    {
+      "name": "Paws For Action",
+      "formName": "pawsForAction"
+    }
   ],
   "Electives": [
-    "Baloo the Builder",
-    "A Bear goes Fishing",
-    "Bear Picnic Basket",
-    "Beat of the Drum",
-    "Critter Care",
-    "Forensics",
-    "Make it Move",
-    "Marble Madness",
-    "Roaring Laughter",
-    "Robotics",
-    "Salmon Run",
-    "Super Science",
-    "A World of Sound"
+    {
+      "name": "Baloo the Builder",
+      "formName": "balooTheBuilder"
+    },
+    {
+      "name": "A Bear Goes Fishing",
+      "formName": "aBearGoesFishing"
+    },
+    {
+      "name": "Bear Picnic Basket",
+      "formName": "bearPicnicBasket"
+    },
+    {
+      "name": "Beat of the Drum",
+      "formName": "beatOfTheDrum"
+    },
+    {
+      "name": "Critter Care",
+      "formName": "critterCare"
+    },
+    {
+      "name": "Forensics",
+      "formName": "forensics"
+    },
+    {
+      "name": "Make it Move",
+      "formName": "makeItMove"
+    },
+    {
+      "name": "Marble Madness",
+      "formName": "marbleMadness"
+    },
+    {
+      "name": "Roaring Laughter",
+      "formName": "roaringLaughter"
+    },
+    {
+      "name": "Robotics",
+      "formName": "robotics"
+    },
+    {
+      "name": "Salmon Run",
+      "formName": "salmonRun"
+    },
+    {
+      "name": "Super Science",
+      "formName": "superScience"
+    },
+    {
+      "name": "A World of Sound",
+      "formName": "aWorldOfSound"
+    }
   ],
   "Others": [
-    "Cyber Chip",
-    "Child Protection"
+    {
+      "name": "Cyber Chip",
+      "formName": "cyberChip"
+    },
+    {
+      "name": "Child Protection",
+      "formName": "childProtection"
+    }
   ]
 }

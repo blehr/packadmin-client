@@ -1,31 +1,97 @@
 {
   "Den": "Tiger",
   "Requirements": [
-    "Bobcat",
-    "Backyard jungle",
-    "Games Tigers Play",
-    "My Family's Duty to God",
-    "Team Tiger",
-    "Tiger Bites",
-    "Tigers in the Wild"
+    {
+      "name": "Bobcat",
+      "formName": "bobcat"
+    },
+    {
+      "name": "Backyard Jungle",
+      "formName": "backyardJungle"
+    },
+    {
+      "name": "Games Tigers Play",
+      "formName": "gamesTigersPlay"
+    },
+    {
+      "name": "My Family's Duty to God",
+      "formName": "myFamilysDutyToGod"
+    },
+    {
+      "name": "Team Tiger",
+      "formName": "teamTiger"
+    },
+    {
+      "name": "Tiger Bites",
+      "formName": "tigerBites"
+    },
+    {
+      "name": "Tigers In The Wild",
+      "formName": "tigersInTheWild"
+    }
   ],
   "Electives": [
-    "Curiousity, Intrigue, Magical Mysteries",
-    "Earning Your Stripes",
-    "Family Stories",
-    "Floats and Boats",
-    "Good Knights",
-    "Rolling Tigers",
-    "Sky is the Limit",
-    "Stories in Shapes",
-    "Tiger-iffic",
-    "Tiger: Safe & Smart",
-    "Tiger Tag",
-    "Tiger Tales",
-    "Tiger Theater"
+    {
+      "name": "Curiousity, Intrigue, Magical Mysteries",
+      "formName": "curiousityIntriqueMagicalMysteries"
+    },
+    {
+      "name": "Earning Your Stripes",
+      "formName": "earningYourStripes"
+    },
+    {
+      "name": "Family Stories",
+      "formName": "familyStories"
+    },
+    {
+      "name": "Floats and Boats",
+      "formName": "floatsAndBoats"
+    },
+    {
+      "name": "Good Knights",
+      "formName": "goodKnights"
+    },
+    {
+      "name": "Rolling Tigers",
+      "formName": "rollingTigers"
+    },
+    {
+      "name": "Sky Is The Limit",
+      "formName": "skyIsTheLimit"
+    },
+    {
+      "name": "Stories In Shapes",
+      "formName": "storiesInShapes"
+    },
+    {
+      "name": "Tiger-iffic",
+      "formName": "tigeriffic"
+    },
+    {
+      "name": "Tiger: Safe And Smart",
+      "formName": "tigerSafeAndSmart"
+    },
+    {
+      "name": "Tiger Tag",
+      "formName": "tigerTag"
+    },
+    {
+      "name": "Tiger Tales",
+      "formName": "tigerTales"
+    },
+    {
+      "name": "Tiger Theater",
+      "formName": "tigerTheater"
+    }
   ],
   "Others": [
-    "Cyber Chip",
-    "Child Protection"
+    {
+      "name": "Cyber Chip",
+      "formName": "cyberChip"
+    },
+    {
+      "name": "Child Protection",
+      "formName": "childProtection"
+    }
   ]
 }

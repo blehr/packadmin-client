@@ -1,11 +1,33 @@
 {
+  "Den": "Bobcat",
   "Requirements": [
-    "Scout Oath",
-    "ScoutLaw",
-    "Cub Scout Sign",
-    "Cub Scout Handshake",
-    "Cub Scout Motto",
-    "Cub Scout Salute",
-    "Child Protection"
+    {
+      "name": "Scout Oath",
+      "formName": "scoutOath"
+    },
+    {
+      "name": "Scout Law",
+      "formName": "scoutLaw"
+    },
+    {
+      "name": "Cub Scout Sign",
+      "formName": "cubScoutSign"
+    },
+    {
+      "name": "Cub Scout Handshake",
+      "formName": "cubScoutHandshake"
+    },
+    {
+      "name": "Cub Scout Motto",
+      "formName": "cubScoutMotto"
+    },
+    {
+      "name": "Cub Scout Salute",
+      "formName": "cubScoutSalute"
+    },
+    {
+      "name": "Child Protection",
+      "formName": "childProtection"
+    }
   ]
 }

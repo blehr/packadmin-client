@@ -1,31 +1,97 @@
 {
   "Den": "wolf",
   "Requirements": [
-    "Bobcat",
-    "Call of the Wild",
-    "Council Fire",
-    "Duty to God Footstep",
-    "Howling at the Moon",
-    "Paws on the Path",
-    "Running with the Pack"
+    {
+      "name": "Bobcat",
+      "formName": "bobcat"
+    },
+    {
+      "name": "Call of the Wild",
+      "formName": "callOfTheWild"
+    },
+    {
+      "name": "Council Fire",
+      "formName": "councilFire"
+    },
+    {
+      "name": "Duty to God Footstep",
+      "formName": "dutyToGodFootstep"
+    },
+    {
+      "name": "Howling at the Moon",
+      "formName": "howlingAtTheMoon"
+    },
+    {
+      "name": "Paws on the Path",
+      "formName": "pawsOnThePath"
+    },
+    {
+      "name": "Running with the Pack",
+      "formName": "runningWithThePack"
+    }
   ],
   "Electives": [
-    "Adventures in Coins",
-    "Air of the Wolf",
-    "Code of the Wolf",
-    "Collections and Hobbies",
-    "Cubs Who Care",
-    "Digging in the Past",
-    "Finding Your Way",
-    "Germs Alive!",
-    "Grow Something",
-    "Home Town Heroes",
-    "Motor Away",
-    "Paws of Skill",
-    "Spirit of the Water"
+    {
+      "name": "Adventures in Coins",
+      "formName": "adventuresInCoins"
+    },
+    {
+      "name": "Air of the Wolf",
+      "formName": "airOfTheWolf"
+    },
+    {
+      "name": "Code of the Wolf",
+      "formName": "codeOfTheWolf"
+    },
+    {
+      "name": "Collections and Hobbies",
+      "formName": "collectionsAndHobbies"
+    },
+    {
+      "name": "Cubs Who Care",
+      "formName": "cubsWhoCare"
+    },
+    {
+      "name": "Digging in the Past",
+      "formName": "diggingInThePast"
+    },
+    {
+      "name": "Finding Your Way",
+      "formName": "findingYourWay"
+    },
+    {
+      "name": "Germs Alive!",
+      "formName": "germsAlive"
+    },
+    {
+      "name": "Grow Something",
+      "formName": "growSomething"
+    },
+    {
+      "name": "Home Town Heroes",
+      "formName": "homeTownHeroes"
+    },
+    {
+      "name": "Motor Away",
+      "formName": "motorAway"
+    },
+    {
+      "name": "Paws of Skill",
+      "formName": "pawsOfSkill"
+    },
+    {
+      "name": "Spirit of the Water",
+      "formName": "spiritOfTheWater"
+    }
   ],
   "Others": [
-    "Cyber Chip",
-    "Child Protection"
+    {
+      "name": "Cyber Chip",
+      "formName": "cyberChip"
+    },
+    {
+      "name": "Child Protection",
+      "formName": "childProtection"
+    }
   ]
 }

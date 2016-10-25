@@ -1,41 +1,131 @@
 {
   "Den": "Webelos",
   "Requirements": [
-    "Bobcat",
-    "Cast Iron Chef",
-    "Duty to God and You",
-    "First Responder",
-    "Stronger, Faster, Higher",
-    "Webelos Walkabout"
+    {
+      "name": "Bobcat",
+      "formName": "bobcat"
+    },
+    {
+      "name": "Cast Iron Chef",
+      "formName": "castIronChef"
+    },
+    {
+      "name": "Duty to God and You",
+      "formName": "dutyToGodAndYou"
+    },
+    {
+      "name": "First Responder",
+      "formName": "firstResponder"
+    },
+    {
+      "name": "Stronger, Faster, Higher",
+      "formName": "strongerFasterHigher"
+    },
+    {
+      "name": "Webelos Wallkabout",
+      "formName": "webelosWalkabout"
+    }
   ],
   "Arrow of Light": [
-    "Building a Better World",
-    "Camper",
-    "Duty to God in Action",
-    "Scouting Adventure"
+    {
+      "name": "Building a Better World",
+      "formName": "buildingABetterWorld"
+    },
+    {
+      "name": "Camper",
+      "formName": "camper"
+    },
+    {
+      "name": "Duty to God in Action",
+      "formName": "dutyToGodInAction"
+    },
+    {
+      "name": "Scouting Adventure",
+      "formName": "scoutingAdventure"
+    }
   ],
   "Electives": [
-    "Adventures in Science",
-    "Aquanaut",
-    "Art Explosion",
-    "Aware and Care",
-    "Build It",
-    "Build My Own Hero",
-    "Castaway",
-    "Earth Rocks!",
-    "Engineer",
-    "Fix It",
-    "Game Design",
-    "Into the Wild",
-    "Into the Woods",
-    "Looking Back, Looking Forward",
-    "Maestro!",
-    "Movie Making",
-    "Project Family",
-    "Sportsman"
+    {
+      "name": "Adventures in Science",
+      "formName": "adventuresInScience"
+    },
+    {
+      "name": "Aquanaut",
+      "formName": "aquanaut"
+    },
+    {
+      "name": "Art Explosion",
+      "formName": "artExplosion"
+    },
+    {
+      "name": "Aware and Care",
+      "formName": "awareAndCare"
+    },
+    {
+      "name": "Build It",
+      "formName": "buildIt"
+    },
+    {
+      "name": "Build My Own Hero",
+      "formName": "buildMyOwnHero"
+    },
+    {
+      "name": "Castaway",
+      "formName": "castaway"
+    },
+    {
+      "name": "Earth Rocks!",
+      "formName": "earthRocks"
+    },
+    {
+      "name": "Engineer",
+      "formName": "engineer"
+    },
+    {
+      "name": "Fix It",
+      "formName": "fixIt"
+    },
+    {
+      "name": "Game Design",
+      "formName": "gameDesign"
+    },
+    {
+      "name": "Into the Wild",
+      "formName": "intoTheWild"
+    },
+    {
+      "name": "Into the Woods",
+      "formName": "intoTheWoods"
+    },
+    {
+      "name": "Looking Back, Looking Forward",
+      "formName": "lookingBackLookingForward"
+    },
+    {
+      "name": "Maestro!",
+      "formName": "maestro"
+    },
+    {
+      "name": "Movie Making",
+      "formName": "movieMaking"
+    },
+    {
+      "name": "Project Family",
+      "formName": "projectFamily"
+    },
+    {
+      "name": "Sportsman",
+      "formName": "sportsman"
+    }
   ],
   "Others": [
-    "Cyber Chip",
-    "Child Protection"
+    {
+      "name": "Cyber Chip",
+      "formName": "cyberChip"
+    },
+    {
+      "name": "Child Protection",
+      "formName": "childProtection"
+    }
   ]
 }

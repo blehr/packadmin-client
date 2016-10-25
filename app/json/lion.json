@@ -1,19 +1,55 @@
 {
   "Den": "Lion",
   "Requirements": [
-    "Lion's Honor",
-    "Fun on the Run",
-    "Animal Kingdom",
-    "Mountain Lion",
-    "King of the Jungle"
+    {
+      "name": "Lion's Honor",
+      "formName": "lionsHonor"
+    },
+    {
+      "name": "Fun on the Run",
+      "formName": "funOnTheRun"
+    },
+    {
+      "name" : "Animal Kingdom",
+      "formName": "animalKingdom"
+    },
+    {
+      "name": "Mountain Lion",
+      "formName": "moutainLion"
+    },
+    {
+      "name": "King of the Jungle",
+      "formName": "kingOfTheJungle"
+    }
   ],
   "Electives": [
-    "I'll Do it Myself",
-    "Pick my Path",
-    "Gizmos and Gadgets",
-    "On Your Mark",
-    "Build it Up, Knock it Down",
-    "Rumble in the Jungle",
-    "Ready, Set, Grow"
+    {
+      "name": "I'll Do it Myself",
+      "formName": "illDoItMyself"
+    },
+    {
+      "name": "Pick my Path",
+      "formName": "pickMyPath"
+    },
+    {
+      "name": "Gizmos and Gadgets",
+      "formName": "gizmosAndGadgets"
+    },
+    {
+      "name": "On Your Mark",
+      "formName": "onYourtMark"
+    },
+    {
+      "name": "Build it Up, Knock it Down",
+      "formName": "buildItUpKnockItDown"
+    },
+    {
+      "name": "Rumble in the Jungle",
+      "formName": "rumbleInTheJungle"
+    },
+    {
+      "name": "Ready, Set, Grow",
+      "formName": "readySetGrow"
+    }
   ]
 }
