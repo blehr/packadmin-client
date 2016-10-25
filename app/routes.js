@@ -28,6 +28,7 @@ export default (
     <Route path="/scouts/add" component={requireAuth(AddScoutContainer)} />
     <Route path="/scouts/update/:id" component={requireAuth(AddScoutContainer)} />
     <Route path="/scouts/detail/:id" component={requireAuth(ScoutDetailContainer)} />
+    <Route path="/scouts/detail/:id/advancement" component={requireAuth(Advancement)} />
     <Route path="/scouts/add-confirm" component={requireAuth(AddScoutResponse)} />
     <Route path="/scouts/update-confirm" component={requireAuth(ConfirmScoutResponse)} />
   </Route>

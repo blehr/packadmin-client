@@ -20,19 +20,36 @@ class Advancement extends Component {
     super(props);
     this.doSubmit = this.doSubmit.bind(this);
   }
+  componentDidMount() {
+     if (!this.props.scouts.allScouts) {
+      setTimeout(() => {
+        this.props.getScoutDetail(this.props.params.id);
+      }, 2000);
+    } else {
+      this.props.getScoutDetail(this.props.params.id);
+    }
+     if (!this.props.scouts.singleScout) {
+      setTimeout(() => {
+        this.props.setAdvancement(this.props.scouts.singleScout.den);
+      }, 4000);
+    } else {
+      this.props.setAdvancement(this.props.scouts.singleScout.den);
+    }
+  }
   getDen(x) {
     switch (x) {
-      case 'bobcat':
+      case 'Bobcat':
         return bobcat;
-      case 'lion':
+      case 'Lion':
         return lion;
-      case 'tiger':
+      case 'Tiger':
         return tiger;
-      case 'wolf':
+      case 'Wolf':
         return wolf;
-      case 'bear':
+      case 'Bear':
         return bear;
-      case 'webelos':
+      case 'Webelos 1':
+      case 'Webelos 2':
         return webelos;
       default:
         return null;
@@ -45,6 +62,7 @@ class Advancement extends Component {
     const { adv } = this.props;
 
     const den = this.getDen(adv.advDen);
+    console.log(den);
     let elemReq = '';
     let elemArrow = '';
     let elemElective = '';
@@ -52,7 +70,7 @@ class Advancement extends Component {
     if (den.Requirements) {
       elemReq = den.Requirements.map(item => (
         <div key={item.formName} className="adv-div">
-          <span className="adv-label">{item.name}</span>
+          <div className="label-adv">{item.name}</div>
           <Field
             name={item.formName}
             component={DatePicker}
@@ -64,7 +82,7 @@ class Advancement extends Component {
     if (den['Arrow of Light']) {
       elemArrow = den['Arrow of Light'].map(item => (
         <div key={item.formName} className="adv-div" >
-          <span className="adv-label">{item.name}</span>
+          <div className="label-adv">{item.name}</div>
           <Field
             name={item.formName}
             component={DatePicker}
@@ -76,7 +94,7 @@ class Advancement extends Component {
     if (den.Electives) {
       elemElective = den.Electives.map(item => (
         <div key={item.formName} className="adv-div" >
-          <span className="adv-label">{item.name}</span>
+          <span className="label-adv">{item.name}</span>
           <Field
             name={item.formName}
             component={DatePicker}
@@ -88,7 +106,7 @@ class Advancement extends Component {
     if (den.Others) {
       elemOthers = den.Others.map(item => (
         <div key={item.formName} className="adv-div" >
-          <span className="adv-label">{item.name}</span>
+          <span className="label-adv">{item.name}</span>
           <Field
             name={item.formName}
             component={DatePicker}
@@ -101,7 +119,7 @@ class Advancement extends Component {
     return (
       <div className="row">
         <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
-          <div className="col-sm-8 col-sm-offset-2">
+          <div className="col-sm-6 col-sm-offset-3 advancement-col">
             <fieldset>
               <legend>{den.Den} Requirements</legend>
               <div className="form-group adv-form-group">
@@ -182,12 +200,15 @@ Advancement.propTypes = {
   setAdvancement: PropTypes.func,
 };
 
-const mapStateToProps = ({ adv }) => ({
+const mapStateToProps = ({ adv, scouts }) => ({
   adv,
+  scouts,
+  initialValues: scouts.singleScout,
 });
 
 const form = reduxForm({
-  form: 'tiger',
+  form: 'advancement',
+  enableReinitialize: true,
 });
 
 Advancement = connect(mapStateToProps, actions)(form(Advancement));

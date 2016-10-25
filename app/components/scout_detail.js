@@ -1,8 +1,14 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import { trueOrFalse, getAge, displayBirthday } from '../utils/util';
+import RaisedButton from 'material-ui/RaisedButton';
 import DisplayParent1 from './display_parent1';
 import DisplayParent2 from './display_parent2';
 import ScoutLink from './scout_link';
+
+const style = {
+  margin: 12,
+};
 
 const ScoutDetail = (props) => {
   (() => { window.scrollTo(0, 0); })();
@@ -78,6 +84,17 @@ const ScoutDetail = (props) => {
         <DisplayParent1 scout={scout} />
 
         <DisplayParent2 scout={scout} />
+      </div>
+      <div className="form-buttons-container">
+        <Link to={`/scouts/detail/${scout._id}/advancement`} >
+          <RaisedButton
+            type="button"
+            label="Add Advancements"
+            style={style}
+            labelColor={'#FFF'}
+            primary
+          />
+        </Link>
       </div>
     </div>
   );

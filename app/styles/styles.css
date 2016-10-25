@@ -209,19 +209,24 @@ ul.list-unstyled li {
   background-color: #FFF;
 }
 
+
 .adv-div {
   display: flex;
   justify-content: space-between;
   padding: 5px;
   border-radius: 5px;
+  max-width: 600px;
+  margin: auto;
 }
 
 .adv-div:nth-child(2n+1) {
-  background-color: rgba(0, 0, 0, 0.1);;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
-.adv-label {
+.label-adv {
+  min-width: 120px;
   align-self: center;
+  -webkit-align-self: center;
 }
 
 @media (max-width: 680px) {
@@ -230,5 +235,11 @@ ul.list-unstyled li {
   }
   .welcome-flex-col {
     width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .adv-div {
+    display: block;
   }
 }
