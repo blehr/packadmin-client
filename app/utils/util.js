@@ -8,7 +8,7 @@ export const trueOrFalse = (item) => {
   return <i className="fa fa-square-o" />;
 };
 
-const formatDate = (date) => {
+export const formatDate = (date) => {
   if (date) {
     const regex = /T.+/;
     const birth = date.replace(regex, '');
@@ -18,11 +18,12 @@ const formatDate = (date) => {
 };
 
 export const getAge = date => (
-  formatDate(date).fromNow(true)
+  // formatDate(date).fromNow(true)
+  date.fromNow(true)
 );
 
 export const displayBirthday = date => (
-  formatDate(date).format('MMM D, YYYY')
+  date.format('MMM D, YYYY')
 );
 
 export const alphabetize = list => (

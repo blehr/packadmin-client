@@ -19,6 +19,7 @@ export const GET_SCOUT_FROM_ALL = 'GET_SCOUT_FROM_ALL';
 export const SET_ADVANCEMENT = 'SET_ADVANCEMENT';
 export const SAVE_ADVANCEMENT = 'SAVE_ADVANCEMENT';
 export const GET_ADVANCEMENT_JSON = 'GET_ADVANCEMENT_JSON';
+export const DEN_ADV_DATA = 'DEN_ADV_DATA';
 
 // const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
 const ROOT_URL = 'http://localhost:8080';
@@ -97,17 +98,10 @@ export const setAdvancement = den => ({
   payload: den,
 });
 
-export const postTiger = data => (
-  (dispatch) => {
-    axios.post(`${ROOT_URL}/tiger`, { data })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-);
+export const denAdvData = data => ({
+  type: DEN_ADV_DATA,
+  payload: data,
+});
 
 // get all scouts
 export const getAllScouts = () => (

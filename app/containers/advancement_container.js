@@ -32,9 +32,11 @@ class Advancement extends Component {
     if (!this.props.scouts.singleScout) {
       setTimeout(() => {
         this.props.setAdvancement(this.props.scouts.singleScout.den);
+        this.setDenAdvData();
       }, 4000);
     } else {
       this.props.setAdvancement(this.props.scouts.singleScout.den);
+      this.setDenAdvData();
     }
   }
   getDen(x) {
@@ -44,7 +46,8 @@ class Advancement extends Component {
       case 'Lion':
         return lion;
       case 'Tiger':
-        return tiger;
+        return { denObj: tiger,
+          denString: 'tiger' };
       case 'Wolf':
         return wolf;
       case 'Bear':
@@ -56,43 +59,37 @@ class Advancement extends Component {
         return null;
     }
   }
+  setDenAdvData() {
+    const den = this.getDen(this.props.adv.advDen);
+    const title = den.denString;
+    this.props.denAdvData(this.props.scouts.singleScout[title]);
+  }
   doSubmit(values) {
     const obj = {};
     const den = this.getDen(this.props.adv.advDen);
-    const denKeys = Object.keys(den);
+    const title = den.denString;
+    obj[title] = {};
+    const denKeys = Object.keys(den.denObj);
     denKeys.shift();
     denKeys.map((key) => {
-      den[key].map((item) => {
-        let itemName = item.formName;
+      den.denObj[key].map((item) => {
+        const itemName = item.formName;
         if (values[itemName]) {
-          obj[itemName] = values[itemName];
-          console.log(obj);
+          obj[title][itemName] = values[itemName];
         }
       });
     });
-
-
-
-
-    // console.log(obj);
-
-
-    // obj[den] = values;
-    // const denObj = Object.keys(obj);
-    // const thisDen = denObj[0];
-    // this.props.updateScout(thisDen, this.props.params.id);
+    this.props.updateScout(obj, this.props.params.id);
   }
   render() {
     const { adv, scouts } = this.props;
-
     const den = this.getDen(adv.advDen);
-    console.log(den);
     let elemReq = '';
     let elemArrow = '';
     let elemElective = '';
     let elemOthers = '';
-    if (den.Requirements) {
-      elemReq = den.Requirements.map(item => (
+    if (den.denObj.Requirements) {
+      elemReq = den.denObj.Requirements.map(item => (
         <div key={item.formName} className="adv-div">
           <div className="label-adv">{item.name}</div>
           <Field
@@ -103,8 +100,8 @@ class Advancement extends Component {
         </div>
       ));
     }
-    if (den['Arrow of Light']) {
-      elemArrow = den['Arrow of Light'].map(item => (
+    if (den.denObj['Arrow of Light']) {
+      elemArrow = den.denObj['Arrow of Light'].map(item => (
         <div key={item.formName} className="adv-div" >
           <div className="label-adv">{item.name}</div>
           <Field
@@ -115,8 +112,8 @@ class Advancement extends Component {
         </div>
       ));
     }
-    if (den.Electives) {
-      elemElective = den.Electives.map(item => (
+    if (den.denObj.Electives) {
+      elemElective = den.denObj.Electives.map(item => (
         <div key={item.formName} className="adv-div" >
           <span className="label-adv">{item.name}</span>
           <Field
@@ -127,8 +124,8 @@ class Advancement extends Component {
         </div>
       ));
     }
-    if (den.Others) {
-      elemOthers = den.Others.map(item => (
+    if (den.denObj.Others) {
+      elemOthers = den.denObj.Others.map(item => (
         <div key={item.formName} className="adv-div" >
           <span className="label-adv">{item.name}</span>
           <Field
@@ -164,7 +161,7 @@ class Advancement extends Component {
           <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
             <div className="col-sm-6 col-sm-offset-3 advancement-col">
               <fieldset>
-                <legend>{den.Den} Requirements</legend>
+                <legend>{den.denObj.Den} Requirements</legend>
                 <div className="form-group adv-form-group">
                   {elemReq}
                 </div>
@@ -174,7 +171,7 @@ class Advancement extends Component {
                   if (elemArrow !== '') {
                     return (
                       <fieldset>
-                        <legend>{den.Den} Arrow of Light</legend>
+                        <legend>{den.denObj.Den} Arrow of Light</legend>
                         <div className="form-group adv-form-group">
                           {elemArrow}
                         </div>
@@ -190,7 +187,7 @@ class Advancement extends Component {
                   if (elemElective !== '') {
                     return (
                       <fieldset>
-                        <legend>{den.Den} Electives</legend>
+                        <legend>{den.denObj.Den} Electives</legend>
                         <div className="form-group adv-form-group">
                           {elemElective}
                         </div>
@@ -206,7 +203,7 @@ class Advancement extends Component {
                   if (elemOthers !== '') {
                     return (
                       <fieldset>
-                        <legend>{den.Den} Others</legend>
+                        <legend>{den.denObj.Den} Others</legend>
                         <div className="form-group adv-form-group">
                           {elemOthers}
                         </div>
@@ -244,13 +241,15 @@ Advancement.propTypes = {
   getScoutDetail: PropTypes.func,
   handleSubmit: PropTypes.func,
   updateScout: PropTypes.func,
+  denAdvData: PropTypes.func,
   setAdvancement: PropTypes.func,
 };
+
 
 const mapStateToProps = ({ adv, scouts }) => ({
   adv,
   scouts,
-  initialValues: scouts.singleScout,
+  initialValues: scouts.advData,
 });
 
 const form = reduxForm({
