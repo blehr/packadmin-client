@@ -1,4 +1,4 @@
-import React, { Component, Proptypes } from 'react'
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 const UserDisplay = ({ user }) => {
@@ -11,7 +11,11 @@ const UserDisplay = ({ user }) => {
   }
   return null;
 };
-  
+
+UserDisplay.propTypes = {
+  user: PropTypes.Object,
+};
+
 const mapStateToProps = ({ user }) => ({
   user,
 });

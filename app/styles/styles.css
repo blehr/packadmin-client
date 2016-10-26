@@ -229,6 +229,15 @@ ul.list-unstyled li {
   -webkit-align-self: center;
 }
 
+.adv-scout-name {
+  max-width: 600px;
+}
+.select-den-advancement-div {
+  max-width: 150px;
+  margin: auto;
+  margin-bottom: 25px;
+}
+
 @media (max-width: 680px) {
   .my-menu {
     display: none;
