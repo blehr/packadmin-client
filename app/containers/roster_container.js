@@ -39,6 +39,7 @@ RosterContainer.propTypes = {
   scouts: PropTypes.object,
   sortedBy: PropTypes.string,
   error: PropTypes.string,
+  getAllScouts: PropTypes.func,
 };
 
 

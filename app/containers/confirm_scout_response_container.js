@@ -1,26 +1,30 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions'
+import * as actions from '../actions';
 import ScoutDetail from '../components/scout_detail';
 import ConfirmToolbar from '../components/confirm_toolbar';
 import ErrorDisplay from './error_container';
+import LoadingComponent from './loading_container';
 
 
 const ConfirmScoutContainer = ({ scouts, error, removeScout }) => {
-
-  if (!scouts.singleScout) {
+  if (!scouts.allScouts || scouts.allScouts.length !== 1) {
     if (error) {
       return <ErrorDisplay />;
     }
-    return <div>No Scout</div>;
+    return (
+      <div style={{ position: 'relative' }}>
+        <LoadingComponent />
+      </div>
+    );
   }
   return (
     <div>
       <div className="row">
-        <ConfirmToolbar scout={scouts.singleScout} removeScout={removeScout} />
+        <ConfirmToolbar scout={scouts.allScouts[0]} removeScout={removeScout} />
       </div>
       <div className="row">
-        <ScoutDetail scout={scouts.singleScout} removeScout={removeScout} />
+        <ScoutDetail scout={scouts.allScouts[0]} removeScout={removeScout} />
       </div>
     </div>
   );

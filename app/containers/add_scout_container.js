@@ -22,10 +22,7 @@ class AddScoutContainer extends Component {
   componentDidMount() {
     if (this.props.params.id) {
       this.props.getScoutDetail(this.props.params.id);
-    } else {
-      this.props.clearScoutDetail();
     }
-    console.log(this.props.initialValues);
   }
 
   doSubmit(values) {
@@ -37,6 +34,20 @@ class AddScoutContainer extends Component {
   }
 
   render() {
+    const { scouts, error } = this.props;
+    if (this.props.params.id) {
+      if (!scouts.allScouts || scouts.allScouts.length !== 1) {
+        if (error) {
+          return <ErrorDisplay />;
+        }
+        return (
+          <div style={{ position: 'relative' }}>
+            <LoadingComponent />
+          </div>
+        );
+      }
+    }
+
     return (
       <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
         <div className="row">
@@ -388,10 +399,11 @@ class AddScoutContainer extends Component {
 }
 
 AddScoutContainer.propTypes = {
+  error: PropTypes.string,
+  scouts: PropTypes.Objcet,
   getScoutDetail: PropTypes.func,
   addScout: PropTypes.func,
   updateScout: PropTypes.func,
-  clearScoutDetail: PropTypes.func,
   reset: PropTypes.func,
   params: PropTypes.object,
   id: PropTypes.number,
@@ -400,9 +412,10 @@ AddScoutContainer.propTypes = {
   submitting: PropTypes.bool,
 };
 
-const mapStateToProps = ({ scouts }) => ({
+const mapStateToProps = ({ scouts, error }) => ({
+  error,
   scouts,
-  initialValues: scouts.allScouts,
+  initialValues: scouts.allScouts[0],
 });
 
 

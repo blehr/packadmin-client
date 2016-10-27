@@ -23,8 +23,8 @@ export const SAVE_ADVANCEMENT = 'SAVE_ADVANCEMENT';
 export const GET_ADVANCEMENT_JSON = 'GET_ADVANCEMENT_JSON';
 export const DEN_ADV_DATA = 'DEN_ADV_DATA';
 
-const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-// const ROOT_URL = 'http://localhost:8080';
+// const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
+const ROOT_URL = 'http://localhost:8080';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
 const SCOUT_DETAIL_URL = `${ROOT_URL}/scouts/detail`;
@@ -112,10 +112,6 @@ export const getAllScouts = () => (
     dispatch(isFetching());
     axios.get(URL, { headers: { authorization: getToken() } })
       .then((response) => {
-        // response.data.scouts.map(scout => {
-        //   scout.birthday = moment(scout.birthday);
-        //   // formatDenAdvDates(scout);
-        // });
         dispatch({
           type: GET_ALL_SCOUTS,
           payload: response.data.scouts,
@@ -143,9 +139,8 @@ export const addScout = data => (
           payload: response.data.scout,
         });
         dispatch(clearError());
-        // dispatch(endFetching());
+        dispatch(endFetching());
         browserHistory.push('/scouts/add-confirm');
-        dispatch(getAllScouts());
       })
       .catch((error) => {
         dispatch(endFetching());
@@ -174,7 +169,7 @@ export const updateScout = (data, id) => (
         });
         dispatch(clearError());
         browserHistory.push('/scouts/update-confirm');
-        dispatch(getAllScouts());
+        dispatch(endFetching());
       })
       .catch((error) => {
         console.log('updateScout', error);
@@ -196,9 +191,8 @@ export const removeScout = id => (
           payload: response.data,
         });
         dispatch(clearError());
-        // dispatch(endFetching());
+        dispatch(endFetching());
         browserHistory.push('/scouts');
-        dispatch(getAllScouts());
       })
       .catch((error) => {
         dispatch(endFetching());
@@ -267,7 +261,6 @@ export const signoutUser = () => (
   (dispatch) => {
     localStorage.removeItem('token');
     dispatch(clearAllScouts());
-    dispatch(clearScoutDetail());
     dispatch({ type: UNAUTH_USER });
   }
 );

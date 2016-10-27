@@ -1,6 +1,23 @@
 import React from 'react';
 import moment from 'moment';
 
+import bobcat from '../json/bobcat.json';
+import lion from '../json/lion.json';
+import tiger from '../json/tiger.json';
+import wolf from '../json/wolf.json';
+import bear from '../json/bear.json';
+import webelos from '../json/webelos.json';
+
+export const denArray = [
+  'bobcat',
+  'lion',
+  'tiger',
+  'wolf',
+  'bear',
+  'webelos',
+];
+
+
 export const trueOrFalse = (item) => {
   if (item) {
     return <i className="fa fa-check-square-o" />;
@@ -18,7 +35,6 @@ export const formatDate = (date) => {
 };
 
 export const getAge = date => (
-  // formatDate(date).fromNow(true)
   moment(date).fromNow(true)
 );
 
@@ -130,6 +146,44 @@ export const filterBy = (list, filter) => {
   return null;
 };
 
+export const getDen = (x) => {
+  switch (x) {
+    case 'Bobcat':
+      return {
+        denObj: bobcat,
+        denString: 'bobcat',
+      };
+    case 'Lion':
+      return {
+        denObj: lion,
+        denString: 'lion',
+      };
+    case 'Tiger':
+      return {
+        denObj: tiger,
+        denString: 'tiger',
+      };
+    case 'Wolf':
+      return {
+        denObj: wolf,
+        denString: 'wolf',
+      };
+    case 'Bear':
+      return {
+        denObj: bear,
+        denString: 'bear',
+      };
+    case 'Webelos 1':
+    case 'Webelos 2':
+      return {
+        denObj: webelos,
+        denString: 'webelos',
+      };
+    default:
+      return null;
+  }
+};
+
 
 export const formatDenAdvDates = (scout) => {
   if (scout.tiger) {
@@ -137,7 +191,7 @@ export const formatDenAdvDates = (scout) => {
     advArray.shift();
     advArray.map(item => {
       if (scout.tiger[item] && scout.tiger[item] !== '_id') {
-        scout.tiger[item] = moment(scout.tiger[item]);
+        scout.tiger[item] = new Date(scout.tiger[item]);
       }
     });
   }
@@ -146,7 +200,7 @@ export const formatDenAdvDates = (scout) => {
     advArray.shift();
     advArray.map(item => {
       if (scout.lion[item] && item !== '_id') {
-        scout.lion[item] = moment(scout.lion[item]);
+        scout.lion[item] = new Date(scout.lion[item]);
       }
     });
   }
@@ -155,7 +209,7 @@ export const formatDenAdvDates = (scout) => {
     advArray.shift();
     advArray.map(item => {
       if (scout.bobcat[item] && item !== '_id') {
-        scout.bobcat[item] = moment(scout.bobcat[item]);
+        scout.bobcat[item] = new Date(scout.bobcat[item]);
       }
     });
   }
@@ -164,7 +218,7 @@ export const formatDenAdvDates = (scout) => {
     advArray.shift();
     advArray.map(item => {
       if (scout.wolf[item] && item !== '_id') {
-        scout.wolf[item] = moment(scout.wolf[item]);
+        scout.wolf[item] = new Date(scout.wolf[item]);
       }
     });
   }
@@ -173,7 +227,7 @@ export const formatDenAdvDates = (scout) => {
     advArray.shift();
     advArray.map(item => {
       if (scout.bear[item] && item !== '_id') {
-        scout.bear[item] = moment(scout.bear[item]);
+        scout.bear[item] = new Date(scout.bear[item]);
       }
     });
   }
@@ -182,10 +236,9 @@ export const formatDenAdvDates = (scout) => {
     advArray.shift();
     advArray.map(item => {
       if (scout.webelos[item] && item !== '_id') {
-        scout.webelos[item] = moment(scout.webelos[item]);
+        scout.webelos[item] = new Date(scout.webelos[item]);
       }
     });
   }
   return scout;
 };
-

@@ -5,17 +5,15 @@ import ScoutDetail from '../components/scout_detail';
 import ConfirmToolbar from '../components/confirm_toolbar';
 import ErrorDisplay from './error_container';
 import LoadingComponent from './loading_container';
+import AdvDisplay from '../components/scout_adv_display';
 
 
 class ScoutDetailContainer extends Component {
   componentDidMount() {
-    
-    
-    
-    if (!this.props.scouts.allScouts) {
+    if (this.props.scouts.allScouts.length !== 1) {
       setTimeout(() => {
         this.props.getScoutDetail(this.props.params.id);
-      }, 2000);
+      }, 1000);
     } else {
       this.props.getScoutDetail(this.props.params.id);
     }
@@ -23,34 +21,34 @@ class ScoutDetailContainer extends Component {
 
   render() {
     const { scouts, error } = this.props;
-    // if (!scouts.singleScout || !scouts.singleScout.scoutFirstName) {
-    //   if (error) {
-    //     return <ErrorDisplay />;
-    //   }
-    //   return (
-    //     <div style={{ position: 'relative' }}>
-    //       <LoadingComponent />
-    //     </div>
-    //   );
-    // }
-    // const scout = this.props.scouts.allScouts.filter(scout => (
-    //     scout._id === this.props.params.id
-    //   ));
+    if (!scouts.allScouts || scouts.allScouts.length !== 1) {
+      if (error) {
+        return <ErrorDisplay />;
+      }
+      return (
+        <div style={{ position: 'relative' }}>
+          <LoadingComponent />
+        </div>
+      );
+    }
 
     return (
       <div>
         <div className="row">
           <ConfirmToolbar
-            scout={scouts.allScouts}
+            scout={scouts.allScouts[0]}
             removeScout={this.props.removeScout}
           />
         </div>
         <div className="row">
           <LoadingComponent />
           <ScoutDetail
-            scout={scouts.allScouts}
+            scout={scouts.allScouts[0]}
             removeScout={this.props.removeScout}
           />
+        </div>
+        <div className="row">
+          <AdvDisplay scout={scouts.allScouts[0]} />
         </div>
       </div>
     );
@@ -62,7 +60,7 @@ const mapStateToProps = ({ scouts, error }) => (
 );
 
 ScoutDetailContainer.propTypes = {
-  // getScoutDetail: PropTypes.func,
+  getScoutDetail: PropTypes.func,
   scouts: PropTypes.object,
   removeScout: PropTypes.func,
   params: PropTypes.object,

@@ -5,12 +5,7 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as actions from '../actions';
 import SelectDevAdv from '../components/select_den_advancement';
-import bobcat from '../json/bobcat.json';
-import lion from '../json/lion.json';
-import tiger from '../json/tiger.json';
-import wolf from '../json/wolf.json';
-import bear from '../json/bear.json';
-import webelos from '../json/webelos.json';
+import { getDen } from '../utils/util';
 
 const style = {
   margin: 12,
@@ -22,70 +17,24 @@ class Advancement extends Component {
     this.doSubmit = this.doSubmit.bind(this);
   }
   componentDidMount() {
-    if (!this.props.scouts.allScouts) {
+    if (this.props.scouts.allScouts.length !== 1) {
       setTimeout(() => {
-        this.props.getScoutDetail(this.props.params.id);
-      }, 2000);
-    } else {
-      this.props.getScoutDetail(this.props.params.id);
-    }
-    if (!this.props.scouts.singleScout) {
-      setTimeout(() => {
-        this.props.setAdvancement(this.props.scouts.singleScout.den);
+        this.props.setAdvancement(this.props.scouts.allScouts[0].den);
         this.setDenAdvData();
       }, 4000);
     } else {
-      this.props.setAdvancement(this.props.scouts.singleScout.den);
+      this.props.setAdvancement(this.props.scouts.allScouts[0].den);
       this.setDenAdvData();
-    }
-    
-    console.log(this.props.scouts.allScouts);
-  }
-  getDen(x) {
-    switch (x) {
-      case 'Bobcat':
-        return {
-          denObj: bobcat,
-          denString: 'bobcat',
-        };
-      case 'Lion':
-        return {
-          denObj: lion,
-          denString: 'lion',
-        };
-      case 'Tiger':
-        return {
-          denObj: tiger,
-          denString: 'tiger',
-        };
-      case 'Wolf':
-        return {
-          denObj: wolf,
-          denString: 'wolf',
-        };
-      case 'Bear':
-        return {
-          denObj: bear,
-          denString: 'bear',
-        };
-      case 'Webelos 1':
-      case 'Webelos 2':
-        return {
-          denObj: webelos,
-          denString: 'webelos',
-        };
-      default:
-        return null;
     }
   }
   setDenAdvData() {
-    const den = this.getDen(this.props.adv.advDen);
+    const den = getDen(this.props.adv.advDen);
     const title = den.denString;
-    this.props.denAdvData(this.props.scouts.singleScout[title]);
+    this.props.denAdvData(this.props.scouts.allScouts[0][title]);
   }
   doSubmit(values) {
     const obj = {};
-    const den = this.getDen(this.props.adv.advDen);
+    const den = getDen(this.props.adv.advDen);
     const title = den.denString;
     obj[title] = {};
     const denKeys = Object.keys(den.denObj);
@@ -101,9 +50,8 @@ class Advancement extends Component {
     this.props.updateScout(obj, this.props.params.id);
   }
   render() {
-    this.setDenAdvData();
     const { adv, scouts } = this.props;
-    const den = this.getDen(adv.advDen);
+    const den = getDen(adv.advDen);
     let elemReq = '';
     let elemArrow = '';
     let elemElective = '';
@@ -164,8 +112,8 @@ class Advancement extends Component {
             <div className="">
               <h4 className="text-center adv-scout-name">
                 <i className="fa fa-user" />
-                {scouts.singleScout.scoutFirstName} {scouts.singleScout.scoutLastName}
-                <span style={{ marginLeft: '20px' }}>{scouts.singleScout.den} Den</span>
+                {scouts.allScouts[0].scoutFirstName} {scouts.allScouts[0].scoutLastName}
+                <span style={{ marginLeft: '20px' }}>{scouts.allScouts[0].den} Den</span>
               </h4>
             </div>
           </div>
@@ -269,7 +217,7 @@ Advancement.propTypes = {
 const mapStateToProps = ({ adv, scouts }) => ({
   adv,
   scouts,
-  initialValues: adv.advData,
+  initialValues: scouts.advData,
 });
 
 const form = reduxForm({
