@@ -38,23 +38,42 @@ class Advancement extends Component {
       this.props.setAdvancement(this.props.scouts.singleScout.den);
       this.setDenAdvData();
     }
+    
+    console.log(this.props.scouts.allScouts);
   }
   getDen(x) {
     switch (x) {
       case 'Bobcat':
-        return bobcat;
+        return {
+          denObj: bobcat,
+          denString: 'bobcat',
+        };
       case 'Lion':
-        return lion;
+        return {
+          denObj: lion,
+          denString: 'lion',
+        };
       case 'Tiger':
-        return { denObj: tiger,
-          denString: 'tiger' };
+        return {
+          denObj: tiger,
+          denString: 'tiger',
+        };
       case 'Wolf':
-        return wolf;
+        return {
+          denObj: wolf,
+          denString: 'wolf',
+        };
       case 'Bear':
-        return bear;
+        return {
+          denObj: bear,
+          denString: 'bear',
+        };
       case 'Webelos 1':
       case 'Webelos 2':
-        return webelos;
+        return {
+          denObj: webelos,
+          denString: 'webelos',
+        };
       default:
         return null;
     }
@@ -82,6 +101,7 @@ class Advancement extends Component {
     this.props.updateScout(obj, this.props.params.id);
   }
   render() {
+    this.setDenAdvData();
     const { adv, scouts } = this.props;
     const den = this.getDen(adv.advDen);
     let elemReq = '';
@@ -249,7 +269,7 @@ Advancement.propTypes = {
 const mapStateToProps = ({ adv, scouts }) => ({
   adv,
   scouts,
-  initialValues: scouts.advData,
+  initialValues: adv.advData,
 });
 
 const form = reduxForm({

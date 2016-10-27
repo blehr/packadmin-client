@@ -19,12 +19,13 @@ class AddScoutContainer extends Component {
 
     this.doSubmit = this.doSubmit.bind(this);
   }
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.params.id) {
       this.props.getScoutDetail(this.props.params.id);
     } else {
       this.props.clearScoutDetail();
     }
+    console.log(this.props.initialValues);
   }
 
   doSubmit(values) {
@@ -400,7 +401,8 @@ AddScoutContainer.propTypes = {
 };
 
 const mapStateToProps = ({ scouts }) => ({
-  initialValues: scouts.singleScout,
+  scouts,
+  initialValues: scouts.allScouts,
 });
 
 

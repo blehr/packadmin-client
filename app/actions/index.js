@@ -1,5 +1,7 @@
 import axios from 'axios';
+import moment from 'moment';
 import { browserHistory } from 'react-router';
+import { formatDenAdvDates } from '../utils/util';
 
 // types
 export const GET_ALL_SCOUTS = 'GET_ALL_SCOUTS';
@@ -21,8 +23,8 @@ export const SAVE_ADVANCEMENT = 'SAVE_ADVANCEMENT';
 export const GET_ADVANCEMENT_JSON = 'GET_ADVANCEMENT_JSON';
 export const DEN_ADV_DATA = 'DEN_ADV_DATA';
 
-// const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-const ROOT_URL = 'http://localhost:8080';
+const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
+// const ROOT_URL = 'http://localhost:8080';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
 const SCOUT_DETAIL_URL = `${ROOT_URL}/scouts/detail`;
@@ -110,6 +112,10 @@ export const getAllScouts = () => (
     dispatch(isFetching());
     axios.get(URL, { headers: { authorization: getToken() } })
       .then((response) => {
+        // response.data.scouts.map(scout => {
+        //   scout.birthday = moment(scout.birthday);
+        //   // formatDenAdvDates(scout);
+        // });
         dispatch({
           type: GET_ALL_SCOUTS,
           payload: response.data.scouts,
@@ -118,6 +124,7 @@ export const getAllScouts = () => (
         dispatch(clearError());
       })
       .catch((error) => {
+        console.log('getAllScouts', error);
         dispatch(endFetching());
         formatErrors(error, dispatch);
       });
@@ -166,11 +173,11 @@ export const updateScout = (data, id) => (
           payload: response.data,
         });
         dispatch(clearError());
-        // dispatch(endFetching());
         browserHistory.push('/scouts/update-confirm');
         dispatch(getAllScouts());
       })
       .catch((error) => {
+        console.log('updateScout', error);
         dispatch(endFetching());
         formatErrors(error, dispatch);
       });

@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { formatDate } from '../utils/util';
 import {
   CLEAR_SCOUT_DETAIL,
@@ -15,16 +16,20 @@ export default function (state = {}, action) {
     case CLEAR_ALL_SCOUTS:
       return { ...state, allScouts: [] };
     case SCOUT_DETAIL:
-      return { ...state, singleScout: action.payload };
+      return { ...state, allScouts: action.payload };
     case GET_SCOUT_FROM_ALL:
       const newScout = state.allScouts.filter(scout => (
         scout._id === action.payload
       ));
-      const birth = newScout[0].birthday;
-      newScout[0].birthday = formatDate(birth);
-      console.log(newScout[0].birthday);
-      return { ...state, singleScout: newScout[0] };
+      newScout[0].birthday = new Date(newScout[0].birthday);
+      return { ...state, allScouts: newScout[0] };
     case DEN_ADV_DATA:
+      const keys = Object.keys(action.payload);
+      keys.map(key => {
+        if (key != '_id') {
+          action.payload[key] = moment(action.payload[key]);
+        }
+      });
       return { ...state, advData: action.payload };
     case CLEAR_SCOUT_DETAIL:
       return { ...state, singleScout: {} };

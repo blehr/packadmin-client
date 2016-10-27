@@ -5,7 +5,6 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import * as actions from '../actions/index';
 
 const style = {
-  // backgroundColor: '#2196F3',
   width: '150px',
 };
 
@@ -30,7 +29,7 @@ class SelectDevAdv extends Component {
         <MenuItem value={'Tiger'} primaryText="Tiger" />
         <MenuItem value={'Wolf'} primaryText="Wolf" />
         <MenuItem value={'Bear'} primaryText="Bear" />
-        <MenuItem value={'Webelos'} primaryText="Webelos" />
+        <MenuItem value={'Webelos 1'} primaryText="Webelos" />
       </DropDownMenu>
 
     );

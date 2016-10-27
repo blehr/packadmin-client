@@ -19,11 +19,11 @@ export const formatDate = (date) => {
 
 export const getAge = date => (
   // formatDate(date).fromNow(true)
-  date.fromNow(true)
+  moment(date).fromNow(true)
 );
 
 export const displayBirthday = date => (
-  date.format('MMM D, YYYY')
+  moment(date).format('MMM D, YYYY')
 );
 
 export const alphabetize = list => (
@@ -129,3 +129,63 @@ export const filterBy = (list, filter) => {
   }
   return null;
 };
+
+
+export const formatDenAdvDates = (scout) => {
+  if (scout.tiger) {
+    const advArray = Object.keys(scout.tiger);
+    advArray.shift();
+    advArray.map(item => {
+      if (scout.tiger[item] && scout.tiger[item] !== '_id') {
+        scout.tiger[item] = moment(scout.tiger[item]);
+      }
+    });
+  }
+  if (scout.lion) {
+    const advArray = Object.keys(scout.lion);
+    advArray.shift();
+    advArray.map(item => {
+      if (scout.lion[item] && item !== '_id') {
+        scout.lion[item] = moment(scout.lion[item]);
+      }
+    });
+  }
+  if (scout.bobcat) {
+    const advArray = Object.keys(scout.bobcat);
+    advArray.shift();
+    advArray.map(item => {
+      if (scout.bobcat[item] && item !== '_id') {
+        scout.bobcat[item] = moment(scout.bobcat[item]);
+      }
+    });
+  }
+  if (scout.wolf) {
+    const advArray = Object.keys(scout.wolf);
+    advArray.shift();
+    advArray.map(item => {
+      if (scout.wolf[item] && item !== '_id') {
+        scout.wolf[item] = moment(scout.wolf[item]);
+      }
+    });
+  }
+  if (scout.bear) {
+    const advArray = Object.keys(scout.bear);
+    advArray.shift();
+    advArray.map(item => {
+      if (scout.bear[item] && item !== '_id') {
+        scout.bear[item] = moment(scout.bear[item]);
+      }
+    });
+  }
+  if (scout.webelos) {
+    const advArray = Object.keys(scout.webelos);
+    advArray.shift();
+    advArray.map(item => {
+      if (scout.webelos[item] && item !== '_id') {
+        scout.webelos[item] = moment(scout.webelos[item]);
+      }
+    });
+  }
+  return scout;
+};
+

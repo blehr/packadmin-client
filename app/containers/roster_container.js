@@ -6,6 +6,9 @@ import Roster from '../components/roster';
 import LoadingComponent from './loading_container';
 
 class RosterContainer extends Component {
+  componentWillMount() {
+    this.props.getAllScouts();
+  }
   render() {
     if (!this.props.scouts.allScouts || this.props.scouts.allScouts.length === 0) {
       if (this.props.error) {
