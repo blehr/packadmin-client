@@ -1,53 +1,50 @@
 import React, { Component, PropTypes } from 'react';
 import { denArray, displayBirthday, getDen } from '../utils/util';
-import bobcat from '../json/bobcat.json';
-import lion from '../json/lion.json';
-import tiger from '../json/tiger.json';
-import wolf from '../json/wolf.json';
-import bear from '../json/bear.json';
-import webelos from '../json/webelos.json';
 
 class Test extends Component {
-  
-  createDenAchievementLists(obj) {
-    let keyValues = 0;
-    const groupKeys = Object.keys(obj);
-    groupKeys.shift();
+  createDenAchievementLists(denArray, scout) {
     const elem = [];
-    groupKeys.map(key => {
-      obj[key].map(item => {
-        elem.push(
-          <div key={keyValues++}>
-            <span>{item.name}</span>
-          </div>
-        );
+    let keyValues = 0;
+    denArray.forEach((den) => {
+      elem.push(<h2 key={keyValues++}>{den.Den}</h2>);
+      const denHeadings = Object.keys(den);
+      denHeadings.shift();
+      denHeadings.forEach((heading) => {
+        elem.push(<h3 key={keyValues++}>{heading}</h3>);
+        den[heading].forEach((item) => {
+          const denString = getDen(den.Den);
+          const scoutDen = denString.denString;
+
+          elem.push(
+            <div key={keyValues++}>
+              <span>{item.name} {
+                scout[scoutDen] &&
+                scout[scoutDen][item.formName] &&
+                  <strong className="text-danger">
+                    {displayBirthday(scout[scoutDen][item.formName])}
+                  </strong>
+                }
+              </span>
+            </div>
+          );
+        });
       });
     });
+
     return elem;
   }
-  
-  
+
   render() {
-    let keyValues = 0;
-    const groupKeys = Object.keys(tiger);
-    groupKeys.shift();
-    const elem = [];
-    groupKeys.map(key => {
-      return tiger[key].map(item => {
-        elem.push(
-          <div key={keyValues}>
-            <span>{item.name}</span>
-          </div>
-        );
-        keyValues++;
-      });
-    });
-    console.log('elem', elem);
     return (
       <div>
-      {elem}
+        {this.createDenAchievementLists(denArray, this.props.scout)}
       </div>
     );
   }
 }
+
+Test.propTypes = {
+  scout: PropTypes.object,
+};
+
 export default Test;

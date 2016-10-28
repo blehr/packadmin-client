@@ -49,8 +49,8 @@ class ScoutDetailContainer extends Component {
           />
         </div>
         <div className="row">
-        <Test />
-          <AdvDisplay scout={scouts.allScouts[0]} />
+          <Test scout={scouts.allScouts[0]} />
+          {/* <AdvDisplay scout={scouts.allScouts[0]} /> */}
         </div>
       </div>
     );

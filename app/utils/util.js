@@ -9,12 +9,12 @@ import bear from '../json/bear.json';
 import webelos from '../json/webelos.json';
 
 export const denArray = [
-  'bobcat',
-  'lion',
-  'tiger',
-  'wolf',
-  'bear',
-  'webelos',
+  bobcat,
+  lion,
+  tiger,
+  wolf,
+  bear,
+  webelos,
 ];
 
 
@@ -173,6 +173,7 @@ export const getDen = (x) => {
         denObj: bear,
         denString: 'bear',
       };
+    case 'Webelos':
     case 'Webelos 1':
     case 'Webelos 2':
       return {
