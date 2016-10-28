@@ -1,6 +1,3 @@
-import React, { Component, PropTypes } from 'react';
-import { denArray, displayBirthday, getDen } from '../utils/util';
-
 class Test extends Component {
   createDenAchievementLists(denArray, scout) {
     const elem = [];
@@ -10,40 +7,42 @@ class Test extends Component {
       const denHeadings = Object.keys(den);
       denHeadings.shift();
       denHeadings.forEach((heading) => {
-        elem.push(<h3 key={keyValues++}>{heading}</h3>);
+        const part1 = (<table key={keyValues++}>);
+        const part2 = (
+          <tr>
+            <td>{heading}</td>
+            <td>Completed</td>
+          </tr>);
         den[heading].forEach((item) => {
           const denString = getDen(den.Den);
           const scoutDen = denString.denString;
 
           elem.push(
-            <div key={keyValues++} style={{ width: '100%' }} >
-              <p >
-                {item.name}
-              </p> {
+            <table key={keyValues++}>
+            <tr>
+              <td>{item.name}</td>
+              <td>{
                 scout[scoutDen] &&
                 scout[scoutDen][item.formName] &&
-                  <p className="text-danger pull-right" >
+                  <strong className="text-danger">
                     {displayBirthday(scout[scoutDen][item.formName])}
-                  </p>
-                }
-              {/* </span> */}
-            </div>
+                  </strong>
+                }</td>
+            </tr>
+
+            </table>
           );
         });
       });
     });
-
+    console.log(elem);
     return elem;
   }
 
   render() {
     return (
-      <div className="col-sm-6 col-sm-offset-3">
-        <div className="card">
-          <div className="adv-column">
-            {this.createDenAchievementLists(denArray, this.props.scout)}
-          </div>
-        </div>
+      <div>
+        {this.createDenAchievementLists(denArray, this.props.scout)}
       </div>
     );
   }

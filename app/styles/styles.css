@@ -52,6 +52,13 @@ footer {
 .card-column-2 {
   width: 50%;
   min-width: 175px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+.adv-column {
+  width: 100%;
+  /*min-width: 175px;*/
   padding: 5px;
   padding-left: 30px;
 }
