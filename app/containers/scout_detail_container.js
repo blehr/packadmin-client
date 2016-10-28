@@ -6,6 +6,7 @@ import ConfirmToolbar from '../components/confirm_toolbar';
 import ErrorDisplay from './error_container';
 import LoadingComponent from './loading_container';
 import AdvDisplay from '../components/scout_adv_display';
+import Test from '../components/test';
 
 
 class ScoutDetailContainer extends Component {
@@ -48,6 +49,7 @@ class ScoutDetailContainer extends Component {
           />
         </div>
         <div className="row">
+        <Test />
           <AdvDisplay scout={scouts.allScouts[0]} />
         </div>
       </div>

@@ -21,7 +21,7 @@ class SelectDevAdv extends Component {
   render() {
     return (
       <DropDownMenu
-        value={this.props.adv.advDen}
+        value={this.props.scouts.advDen}
         onChange={this.handleChange}
         style={style}
       >
@@ -37,13 +37,13 @@ class SelectDevAdv extends Component {
 }
 
 SelectDevAdv.propTypes = {
-  adv: PropTypes.object,
+  scouts: PropTypes.object,
   advDen: PropTypes.string,
   setAdvancement: PropTypes.func,
 };
 
-const mapStateToProps = ({ adv }) => ({
-  adv,
+const mapStateToProps = ({ scouts }) => ({
+  scouts,
 });
 
 export default connect(mapStateToProps, actions)(SelectDevAdv);

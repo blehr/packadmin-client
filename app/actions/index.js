@@ -23,8 +23,8 @@ export const SAVE_ADVANCEMENT = 'SAVE_ADVANCEMENT';
 export const GET_ADVANCEMENT_JSON = 'GET_ADVANCEMENT_JSON';
 export const DEN_ADV_DATA = 'DEN_ADV_DATA';
 
-// const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-const ROOT_URL = 'http://localhost:8080';
+const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
+// const ROOT_URL = 'http://localhost:8080';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
 const SCOUT_DETAIL_URL = `${ROOT_URL}/scouts/detail`;
@@ -95,15 +95,38 @@ const formatErrors = (error, dispatch) => {
 };
 
 // set advancement den
-export const setAdvancement = den => ({
-  type: SET_ADVANCEMENT,
-  payload: den,
-});
+export const setAdvancement = den => (
+  (dispatch) => {
+    dispatch({
+      type: SET_ADVANCEMENT,
+      payload: den,
+    });
+    dispatch({
+      type: DEN_ADV_DATA,
+      payload: den,
+    });
+  }
+  
+);
 
-export const denAdvData = data => ({
-  type: DEN_ADV_DATA,
-  payload: data,
-});
+
+export const denAdvData = data => {
+    if (data === null || data === undefined) {
+      data = {};
+    } else {
+      const keys = Object.keys(data);
+      keys.map(key => {
+        if (key !== '_id') {
+          data[key] = new Date(data[key]);
+        }
+      });
+    }
+    
+  return {
+    type: DEN_ADV_DATA,
+    payload: data,
+  };
+};
 
 // get all scouts
 export const getAllScouts = () => (

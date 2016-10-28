@@ -19,22 +19,13 @@ class Advancement extends Component {
   componentDidMount() {
     if (this.props.scouts.allScouts.length !== 1) {
       setTimeout(() => {
-        this.props.setAdvancement(this.props.scouts.allScouts[0].den);
-        this.setDenAdvData();
-      }, 4000);
-    } else {
-      this.props.setAdvancement(this.props.scouts.allScouts[0].den);
-      this.setDenAdvData();
+        this.props.getScoutDetail(this.props.params.id);
+      }, 1000);
     }
-  }
-  setDenAdvData() {
-    const den = getDen(this.props.adv.advDen);
-    const title = den.denString;
-    this.props.denAdvData(this.props.scouts.allScouts[0][title]);
   }
   doSubmit(values) {
     const obj = {};
-    const den = getDen(this.props.adv.advDen);
+    const den = getDen(this.props.scouts.advDen);
     const title = den.denString;
     obj[title] = {};
     const denKeys = Object.keys(den.denObj);
@@ -50,12 +41,15 @@ class Advancement extends Component {
     this.props.updateScout(obj, this.props.params.id);
   }
   render() {
-    const { adv, scouts } = this.props;
-    const den = getDen(adv.advDen);
+    const { scouts } = this.props;
+    const den = getDen(scouts.advDen);
     let elemReq = '';
     let elemArrow = '';
     let elemElective = '';
     let elemOthers = '';
+    if (scouts.allScouts.length !== 1) {
+      return <h2>Loading...</h2>;
+    }
     if (den.denObj.Requirements) {
       elemReq = den.denObj.Requirements.map(item => (
         <div key={item.formName} className="adv-div">
@@ -214,8 +208,7 @@ Advancement.propTypes = {
 };
 
 
-const mapStateToProps = ({ adv, scouts }) => ({
-  adv,
+const mapStateToProps = ({ scouts }) => ({
   scouts,
   initialValues: scouts.advData,
 });
