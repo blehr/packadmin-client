@@ -1,7 +1,7 @@
 import axios from 'axios';
-import moment from 'moment';
+// import moment from 'moment';
 import { browserHistory } from 'react-router';
-import { formatDenAdvDates } from '../utils/util';
+// import { formatDenAdvDates } from '../utils/util';
 
 // types
 export const GET_ALL_SCOUTS = 'GET_ALL_SCOUTS';
@@ -111,16 +111,16 @@ export const setAdvancement = den => (
 
 
 export const denAdvData = data => {
-    if (data === null || data === undefined) {
-      data = {};
-    } else {
-      const keys = Object.keys(data);
-      keys.map(key => {
-        if (key !== '_id') {
-          data[key] = new Date(data[key]);
-        }
-      });
-    }
+  if (data === null || data === undefined) {
+    data = {};
+  } else {
+    const keys = Object.keys(data);
+    keys.map(key => {
+      if (key !== '_id') {
+        data[key] = new Date(data[key]);
+      }
+    });
+  }
 
   return {
     type: DEN_ADV_DATA,
