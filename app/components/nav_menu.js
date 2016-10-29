@@ -5,8 +5,9 @@ import IconButton from 'material-ui/IconButton/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-const NavMenu = ({ auth }) => (
+const NavMenu = ({ auth, signoutUser }) => (
   <div className="nav-menu">
     <IconMenu
       iconButtonElement={<IconButton><MoreVertIcon color="#FFF" /></IconButton>}
@@ -20,17 +21,19 @@ const NavMenu = ({ auth }) => (
       { !auth.authenticated && <Link to="/signin" ><MenuItem primaryText="Sign in" /></Link> }
       { !auth.authenticated && <Link to="/signup" ><MenuItem primaryText="Sign up" /></Link> }
       { auth.authenticated && <Link to="/profile" ><MenuItem primaryText="Profile" /></Link> }
-      { auth.authenticated && <Link to="/signout" ><MenuItem primaryText="Sign out" /></Link> }
+      { auth.authenticated &&
+        <MenuItem primaryText="Sign out" onTouchTap={() => signoutUser()} /> }
     </IconMenu>
   </div>
 );
 
 NavMenu.propTypes = {
   auth: PropTypes.object,
+  signoutUser: PropTypes.func,
 };
 
 const mapStateToProps = ({ auth }) => ({
   auth,
 });
 
-export default connect(mapStateToProps)(NavMenu);
+export default connect(mapStateToProps, actions)(NavMenu);

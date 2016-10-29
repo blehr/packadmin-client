@@ -285,6 +285,7 @@ export const signoutUser = () => (
     localStorage.removeItem('token');
     dispatch(clearAllScouts());
     dispatch({ type: UNAUTH_USER });
+    browserHistory.push('/');
   }
 );
 
