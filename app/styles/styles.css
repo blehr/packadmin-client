@@ -245,6 +245,10 @@ ul.list-unstyled li {
   margin-bottom: 25px;
 }
 
+.cell-2 {
+  width: 135px;
+}
+
 @media (max-width: 680px) {
   .my-menu {
     display: none;

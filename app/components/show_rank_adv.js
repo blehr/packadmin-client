@@ -9,12 +9,13 @@ const style = {
 };
 
 
-class SelectDevAdv extends Component {
+class ShowRank extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event, index, value) {
+    event.preventDefault();
     this.props.setAdvancement(value);
   }
 
@@ -25,8 +26,8 @@ class SelectDevAdv extends Component {
         onChange={this.handleChange}
         style={style}
       >
-        <MenuItem value={'Bobcat'} primaryText="Bobcat" />
         <MenuItem value={'Lion'} primaryText="Lion" />
+        <MenuItem value={'Bobcat'} primaryText="Bobcat" />
         <MenuItem value={'Tiger'} primaryText="Tiger" />
         <MenuItem value={'Wolf'} primaryText="Wolf" />
         <MenuItem value={'Bear'} primaryText="Bear" />
@@ -37,7 +38,7 @@ class SelectDevAdv extends Component {
   }
 }
 
-SelectDevAdv.propTypes = {
+ShowRank.propTypes = {
   scouts: PropTypes.object,
   advDen: PropTypes.string,
   setAdvancement: PropTypes.func,
@@ -47,4 +48,4 @@ const mapStateToProps = ({ scouts }) => ({
   scouts,
 });
 
-export default connect(mapStateToProps, actions)(SelectDevAdv);
+export default connect(mapStateToProps, actions)(ShowRank);

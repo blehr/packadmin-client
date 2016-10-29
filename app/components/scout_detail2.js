@@ -21,7 +21,7 @@ const ScoutDetail = (props) => {
         <div className="card-row">
           <div className="card-column-1">
             <address>
-              { scout.scoutStreetAddress && <div>{scout.scoutStreetAddress}</div> }
+             { scout.scoutStreetAddress && <div>{scout.scoutStreetAddress}</div> }
 
               { scout.scoutMailAddress && <div>{scout.scoutMailAddress}</div> }
 
@@ -32,16 +32,8 @@ const ScoutDetail = (props) => {
             </p>
             <p>Age: {getAge(scout.birthday)}</p>
             <p>Grade: {scout.grade}</p>
-            {
-              (() => {
-                if (scout.schoolDistrict) {
-                  return (
-                    <p><i className="fa fa-graduation-cap" /> {scout.schoolDistrict}</p>
-                  );
-                }
-                return null;
-              })()
-            }
+            { scout.schoolDistrict && <p><i className="fa fa-graduation-cap" /> {scout.schoolDistrict}</p> }
+
           </div>
           <div className="card-column-2">
             <p><i className="fa fa-users" aria-hidden="true" /> {scout.den}</p>

@@ -14,7 +14,8 @@ export default function (state = { allScouts: [], advData: {}, advDen: 'Tiger' }
     case GET_ALL_SCOUTS:
       return { ...state, allScouts: action.payload };
     case CLEAR_ALL_SCOUTS:
-      return { ...state, allScouts: [] };
+    case CLEAR_SCOUT_DETAIL:
+      return { ...state, allScouts: [], advDen: 'Tiger', advData: {} };
     case SCOUT_DETAIL:
       action.payload.birthday = new Date(action.payload.birthday);
      
@@ -70,8 +71,6 @@ export default function (state = { allScouts: [], advData: {}, advDen: 'Tiger' }
       return { ...state, advData: state.allScouts[0][denTitle]};
     case SET_ADVANCEMENT:
       return { ...state, advDen: action.payload };
-    case CLEAR_SCOUT_DETAIL:
-      return { ...state, allScouts: [] };
     default:
       return state;
   }

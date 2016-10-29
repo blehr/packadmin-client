@@ -27,7 +27,6 @@ class AdvDisplay extends Component {
     const elem = [];
     scoutAdv.forEach((adv) => {
       const advKeys = Object.keys(adv);
-      console.log('advKeys', advKeys, 'adv', adv, 'scoutAdv', scoutAdv);
       advKeys.forEach((key) => {
         if (key !== '_id') {
           elem.push(<div key={orderKey} >{key} {displayBirthday(adv[key])} </div>);

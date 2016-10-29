@@ -7,59 +7,27 @@ const Parent1Address = ({ scout }) => {
       return (
         <div>
           <div>{trueOrFalse(scout.parent1AddressSameAsScout)} Same Address as Scout</div>
-          {
-            (() => {
-              if (scout.parent1Email) {
-                return (
-                  <div>
-                    <i className="fa fa-envelope-o" />
-                    <a href={`mailto:${scout.parent1Email}`} > {scout.parent1Email}
-                    </a>
-                  </div>
-                );
-              }
-              return null;
-            })()
-          }
+          { scout.parent1Email && <div>
+            <i className="fa fa-envelope-o" />
+            <a href={`mailto:${scout.parent1Email}`} > {scout.parent1Email}
+            </a>
+          </div> }
+            
         </div>
       );
     }
     return (
       <address>
         <div>{scout.parent1StreetAddress}</div>
-        {
-          (() => {
-            if (scout.parent1MailAddress) {
-              return (
-                <div >{scout.parent1MailAddress}</div>
-              );
-            }
-            return null;
-          })()
-        }
-        {
-          (() => {
-            if (scout.parent1City) {
-              return (
-                <div >{scout.parent1City}, {scout.parent1State} {scout.parent1ZipCode}</div>
-              );
-            }
-            return null;
-          })()
-        }
-        {
-          (() => {
-            if (scout.parent1Email) {
-              return (
-                <div>
-                  <i className="fa fa-envelope-o" />
-                  <a href={`mailto:${scout.parent1Email}`} > {scout.parent1Email}</a>
-                </div>
-              );
-            }
-            return null;
-          })()
-        }
+        { scout.parent1MailAddress && <div>{scout.parent1MailAddress}</div> }
+          
+        { scout.parent1City && <div>{scout.parent1City}, {scout.parent1State} {scout.parent1ZipCode}</div> }
+         
+        { scout.parent1Email && <div>
+          <i className="fa fa-envelope-o" />
+          <a href={`mailto:${scout.parent1Email}`} > {scout.parent1Email}</a>
+        </div> }
+          
       </address>
     );
   }

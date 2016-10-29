@@ -5,18 +5,19 @@ import ScoutDetail from '../components/scout_detail';
 import ConfirmToolbar from '../components/confirm_toolbar';
 import ErrorDisplay from './error_container';
 import LoadingComponent from './loading_container';
-import AdvDisplay from '../components/scout_adv_display';
-import Test from '../components/test';
+import DisplayRankProgress from '../components/display_rank_progress';
 
 
 class ScoutDetailContainer extends Component {
   componentDidMount() {
-    if (this.props.scouts.allScouts.length !== 1) {
-      setTimeout(() => {
+    if (this.props.params.id) {
+      if (this.props.scouts.allScouts.length !== 1) {
+        setTimeout(() => {
+          this.props.getScoutDetail(this.props.params.id);
+        }, 1000);
+      } else {
         this.props.getScoutDetail(this.props.params.id);
-      }, 1000);
-    } else {
-      this.props.getScoutDetail(this.props.params.id);
+      }
     }
   }
 
@@ -49,17 +50,17 @@ class ScoutDetailContainer extends Component {
           />
         </div>
         <div className="row">
-          <Test scout={scouts.allScouts[0]} />
-          {/* <AdvDisplay scout={scouts.allScouts[0]} /> */}
+          <DisplayRankProgress scout={scouts.allScouts[0]} activeDen={scouts.advDen} />
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ scouts, error }) => (
-  { scouts, error }
-);
+const mapStateToProps = ({ scouts, error }) => ({
+  scouts,
+  error,
+});
 
 ScoutDetailContainer.propTypes = {
   getScoutDetail: PropTypes.func,

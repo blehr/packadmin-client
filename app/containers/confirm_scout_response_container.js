@@ -5,6 +5,7 @@ import ScoutDetail from '../components/scout_detail';
 import ConfirmToolbar from '../components/confirm_toolbar';
 import ErrorDisplay from './error_container';
 import LoadingComponent from './loading_container';
+import DisplayRankProgress from '../components/display_rank_progress';
 
 
 const ConfirmScoutContainer = ({ scouts, error, removeScout }) => {
@@ -25,6 +26,9 @@ const ConfirmScoutContainer = ({ scouts, error, removeScout }) => {
       </div>
       <div className="row">
         <ScoutDetail scout={scouts.allScouts[0]} removeScout={removeScout} />
+      </div>
+      <div className="row">
+        <DisplayRankProgress scout={scouts.allScouts[0]} activeDen={scouts.advDen} />
       </div>
     </div>
   );
