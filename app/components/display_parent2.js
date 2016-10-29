@@ -20,11 +20,14 @@ const DisplayParent2 = ({ scout }) => {
         </div>
         <div className="card-column-2">
           <div className="margin-b-10">{scout.parent2RelationToScout}</div>
-          { scout.parent2PhoneNumberMobile && <p>M: <i className="fa fa-mobile" /> {scout.parent2PhoneNumberMobile}</p> }
-            
-          { scout.parent2PhoneNumberHome && <p>H: <i className="fa fa-home" /> {scout.parent2PhoneNumberHome}</p> }
-           
-          { scout.parent2PhoneNumberWork && <p>W: <i className="fa fa-briefcase" /> {scout.parent2PhoneNumberWork}</p> }
+          { scout.parent2PhoneNumberMobile &&
+            <p>M: <i className="fa fa-mobile" /> {scout.parent2PhoneNumberMobile}</p> }
+
+          { scout.parent2PhoneNumberHome &&
+            <p>H: <i className="fa fa-home" /> {scout.parent2PhoneNumberHome}</p> }
+
+          { scout.parent2PhoneNumberWork &&
+            <p>W: <i className="fa fa-briefcase" /> {scout.parent2PhoneNumberWork}</p> }
         </div>
       </div>
       <div className="card-notes">

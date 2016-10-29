@@ -12,7 +12,7 @@ const Parent1Address = ({ scout }) => {
             <a href={`mailto:${scout.parent1Email}`} > {scout.parent1Email}
             </a>
           </div> }
-            
+
         </div>
       );
     }
@@ -20,14 +20,15 @@ const Parent1Address = ({ scout }) => {
       <address>
         <div>{scout.parent1StreetAddress}</div>
         { scout.parent1MailAddress && <div>{scout.parent1MailAddress}</div> }
-          
-        { scout.parent1City && <div>{scout.parent1City}, {scout.parent1State} {scout.parent1ZipCode}</div> }
-         
+
+        { scout.parent1City &&
+          <div>{scout.parent1City}, {scout.parent1State} {scout.parent1ZipCode}</div> }
+
         { scout.parent1Email && <div>
           <i className="fa fa-envelope-o" />
           <a href={`mailto:${scout.parent1Email}`} > {scout.parent1Email}</a>
         </div> }
-          
+
       </address>
     );
   }

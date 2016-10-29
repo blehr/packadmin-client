@@ -29,13 +29,13 @@ footer {
   padding: 20px;
   text-align: center
 }
-
+/*#2196F3*/
 .card {
   max-width: 600px;
   min-height: 250px;
-  background-color: #42A5F5;
+  background-color: #F5F5F5;
   border-radius: 2px;
-  color: #FFF;
+  color: #1E88E5;
   margin: auto;
   margin-bottom: 10px;
   padding-bottom: 10px;
@@ -46,26 +46,32 @@ footer {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  justify-content: space-between;
 }
 
-.card-column-1,
+.card-column-1 {
+  min-width: 50%;
+  padding-right: 30px;
+  padding-left: 30px;
+
+}
+
 .card-column-2 {
-  width: 50%;
   min-width: 175px;
+  max-width: 200px;
   padding-right: 30px;
   padding-left: 30px;
 }
 
 .adv-column {
   width: 100%;
-  /*min-width: 175px;*/
   padding: 5px;
   padding-left: 30px;
 }
 
 .card a,
 .card a:visited {
-  color: #FFF;
+  color: #1E88E5;
 }
 
 .card a:hover {
@@ -74,6 +80,7 @@ footer {
 
 .card-notes {
   padding-left: 30px;
+  margin-top: 5px;
 }
 
 .card h5 {
@@ -243,6 +250,25 @@ ul.list-unstyled li {
   max-width: 150px;
   margin: auto;
   margin-bottom: 25px;
+}
+
+.rank-adv-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center
+}
+.parent-email-div {
+  margin-bottom: 5px;
+}
+
+.adv-item {
+  color: #E91E63;
 }
 
 .cell-2 {

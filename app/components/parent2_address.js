@@ -17,11 +17,12 @@ const Parent2Address = ({ scout }) => {
     }
     return (
       <address>
-         <div>{scout.parent2StreetAddress}</div>
+        <div>{scout.parent2StreetAddress}</div>
         { scout.parent2MailAddress && <div>{scout.parent2MailAddress}</div> }
-          
-        { scout.parent2City && <div>{scout.parent2City}, {scout.parent2State} {scout.parent2ZipCode}</div> }
-         
+
+        { scout.parent2City &&
+          <div>{scout.parent2City}, {scout.parent2State} {scout.parent2ZipCode}</div> }
+
         { scout.parent2Email && <div>
           <i className="fa fa-envelope-o" />
           <a href={`mailto:${scout.parent2Email}`} > {scout.parent2Email}</a>
