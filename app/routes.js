@@ -3,9 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './components/app';
 
 import AddScoutContainer from './containers/add_scout_container';
-// import AddScoutResponse from './containers/add_scout_response';
 import ScoutDetailContainer from './containers/scout_detail_container';
-// import ConfirmScoutResponse from './containers/confirm_scout_response_container';
 import RosterContainer from './containers/roster_container';
 import Signup from './containers/signup';
 import Signin from './containers/signin';

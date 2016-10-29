@@ -128,8 +128,7 @@ class Advancement extends Component {
                   {elemReq}
                 </div>
               </fieldset>
-              
-              { elemArrow && 
+              { elemArrow &&
                 <fieldset>
                   <legend>{den.denObj.Den} Arrow of Light</legend>
                   <div className="form-group adv-form-group">
@@ -137,23 +136,21 @@ class Advancement extends Component {
                   </div>
                 </fieldset>
               }
-              
-             
-              { elemElective && 
-                  <fieldset>
-                    <legend>{den.denObj.Den} Electives</legend>
-                    <div className="form-group adv-form-group">
-                      {elemElective}
-                    </div>
-                  </fieldset>
+              { elemElective &&
+                <fieldset>
+                  <legend>{den.denObj.Den} Electives</legend>
+                  <div className="form-group adv-form-group">
+                    {elemElective}
+                  </div>
+                </fieldset>
               }
               { elemOthers &&
-                  <fieldset>
-                    <legend>{den.denObj.Den} Others</legend>
-                    <div className="form-group adv-form-group">
-                      {elemOthers}
-                    </div>
-                  </fieldset>
+                <fieldset>
+                  <legend>{den.denObj.Den} Others</legend>
+                  <div className="form-group adv-form-group">
+                    {elemOthers}
+                  </div>
+                </fieldset>
               }
               <div className="form-buttons-container">
                 <RaisedButton
@@ -174,7 +171,6 @@ class Advancement extends Component {
 }
 
 Advancement.propTypes = {
-  adv: PropTypes.Object,
   scouts: PropTypes.Object,
   params: PropTypes.Object,
   pristine: PropTypes.bool,
@@ -182,8 +178,6 @@ Advancement.propTypes = {
   getScoutDetail: PropTypes.func,
   handleSubmit: PropTypes.func,
   updateScout: PropTypes.func,
-  denAdvData: PropTypes.func,
-  setAdvancement: PropTypes.func,
 };
 
 

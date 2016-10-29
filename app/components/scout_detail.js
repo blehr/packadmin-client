@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { trueOrFalse, getAge, displayBirthday } from '../utils/util';
 import RaisedButton from 'material-ui/RaisedButton';
+import { trueOrFalse, getAge, displayBirthday } from '../utils/util';
 import DisplayParent1 from './display_parent1';
 import DisplayParent2 from './display_parent2';
 import ScoutLink from './scout_link';
@@ -25,7 +25,8 @@ const ScoutDetail = (props) => {
 
               { scout.scoutMailAddress && <div>{scout.scoutMailAddress}</div> }
 
-              { scout.scoutCity && <div>{scout.scoutCity}, {scout.scoutState} {scout.scoutZipCode}</div> }
+              { scout.scoutCity &&
+                <div>{scout.scoutCity}, {scout.scoutState} {scout.scoutZipCode}</div> }
             </address>
             <p>
               <i className="fa fa-birthday-cake" /> {displayBirthday(scout.birthday)}

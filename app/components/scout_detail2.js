@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { trueOrFalse, getAge, displayBirthday } from '../utils/util';
 import RaisedButton from 'material-ui/RaisedButton';
+import { trueOrFalse, getAge, displayBirthday } from '../utils/util';
 import DisplayParent1 from './display_parent1';
 import DisplayParent2 from './display_parent2';
 import ScoutLink from './scout_link';
@@ -21,18 +21,20 @@ const ScoutDetail = (props) => {
         <div className="card-row">
           <div className="card-column-1">
             <address>
-             { scout.scoutStreetAddress && <div>{scout.scoutStreetAddress}</div> }
+              { scout.scoutStreetAddress && <div>{scout.scoutStreetAddress}</div> }
 
               { scout.scoutMailAddress && <div>{scout.scoutMailAddress}</div> }
 
-              { scout.scoutCity && <div>{scout.scoutCity}, {scout.scoutState} {scout.scoutZipCode}</div> }
+              { scout.scoutCity &&
+                <div>{scout.scoutCity}, {scout.scoutState} {scout.scoutZipCode}</div> }
             </address>
             <p>
               <i className="fa fa-birthday-cake" /> {displayBirthday(scout.birthday)}
             </p>
             <p>Age: {getAge(scout.birthday)}</p>
             <p>Grade: {scout.grade}</p>
-            { scout.schoolDistrict && <p><i className="fa fa-graduation-cap" /> {scout.schoolDistrict}</p> }
+            { scout.schoolDistrict &&
+              <p><i className="fa fa-graduation-cap" /> {scout.schoolDistrict}</p> }
 
           </div>
           <div className="card-column-2">
