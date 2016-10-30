@@ -17,6 +17,9 @@ class Signup extends Component {
 
     this.doHandleSubmit = this.doHandleSubmit.bind(this);
   }
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
   doHandleSubmit(values) {
     this.props.signupUser(values);

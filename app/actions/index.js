@@ -24,8 +24,8 @@ export const GET_ADVANCEMENT_JSON = 'GET_ADVANCEMENT_JSON';
 export const DEN_ADV_DATA = 'DEN_ADV_DATA';
 
 // const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-// const ROOT_URL = 'http://localhost:8080';
-const ROOT_URL = 'http://f7be1057.ngrok.io';
+const ROOT_URL = 'http://localhost:8080';
+// const ROOT_URL = 'http://f7be1057.ngrok.io';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
 const SCOUT_DETAIL_URL = `${ROOT_URL}/scouts/detail`;

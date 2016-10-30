@@ -276,11 +276,20 @@ ul.list-unstyled li {
 }
 
 @media (max-width: 680px) {
-  .my-menu {
+  .home-link {
     display: none;
+  }
+  .nav-menu {
+    margin-right: 50px;
   }
   .welcome-flex-col {
     width: 100%;
+  }
+}
+
+@media (max-width: 510px) {
+  .nav-menu {
+    margin-right: 0;
   }
 }
 

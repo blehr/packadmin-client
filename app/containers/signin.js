@@ -16,6 +16,9 @@ class Signin extends Component {
     super(props);
     this.doSubmit = this.doSubmit.bind(this);
   }
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
   doSubmit(values) {
     this.props.signinUser(values);
