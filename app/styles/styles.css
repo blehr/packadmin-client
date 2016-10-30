@@ -174,7 +174,8 @@ legend {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
 
-.dropdown {
+.dropdown,
+.dropdown-small {
   width: 175px;
 }
 
@@ -291,10 +292,19 @@ ul.list-unstyled li {
   .nav-menu {
     margin-right: 0;
   }
+  .roster-link {
+    display: none;
+  }
+  .dropdown-small {
+    width: 5%;
+  }
 }
 
 @media (max-width: 450px) {
   .adv-div {
     display: block;
+  }
+  .add-scout-link {
+    display: none;
   }
 }

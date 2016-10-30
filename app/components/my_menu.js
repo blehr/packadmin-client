@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 import FlatButton from 'material-ui/FlatButton';
-import { Link, withRouter } from 'react-router';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-let MyMenu = ({ auth }) => {
+const MyMenu = ({ auth, loc }) => {
   if (auth.authenticated) {
     return (
       <div className="my-menu">
         <Link to="/" className="home-link" ><FlatButton label="Home" labelStyle={{ color: '#FFF' }} /></Link>
-        {(() => { if (location.pathname !== '/scouts') { return <Link to="/scouts" ><FlatButton label="Roster" labelStyle={{ color: '#FFF' }} /></Link>; } return null; })()}
-        <Link to="/scouts/add" ><FlatButton label="Add Scouts" labelStyle={{ color: '#FFF' }} /></Link>
+        <Link to="/scouts" className={loc === '/scouts' ? 'roster-link' : ''} ><FlatButton label="Roster" labelStyle={{ color: '#FFF' }} /></Link>
+        <Link to="/scouts/add" className="add-scout-link" ><FlatButton label="Add Scouts" labelStyle={{ color: '#FFF' }} /></Link>
       </div>
     );
   }
@@ -24,15 +24,11 @@ let MyMenu = ({ auth }) => {
 
 MyMenu.propTypes = {
   auth: PropTypes.object,
-};
-
-MyMenu.contextTypes = {
-  location: React.PropTypes.object,
+  loc: PropTypes.string,
 };
 
 const mapStateToProps = ({ auth }) => ({
   auth,
 });
 
-MyMenu = withRouter(MyMenu);
 export default connect(mapStateToProps)(MyMenu);

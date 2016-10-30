@@ -7,8 +7,8 @@ import MyMenu from './my_menu';
 const MyAppBar = () => (
   <div className="my-app-bar">
     <NavMenu />
-    <MyMenu />
-    <div className="dropdown">
+    <MyMenu loc={location.pathname} />
+    <div className={location.pathname !== '/scouts' ? 'dropdown-small' : 'dropdown'}>
       {(() => { if (location.pathname === '/scouts') { return <ScoutSort />; } return null; })()}
     </div>
   </div>

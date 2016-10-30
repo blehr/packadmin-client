@@ -174,7 +174,7 @@ class AddScoutContainer extends Component {
           </div>
           <div className="col-sm-4">
             <fieldset>
-              <legend>Parent #1 Info</legend>
+              <legend>Guardian #1 Info</legend>
               <div className="form-group">
                 <Field
                   name="parent1FirstName"
@@ -197,7 +197,7 @@ class AddScoutContainer extends Component {
               </div>
             </fieldset>
             <fieldset>
-              <legend>Parent #1 Contact</legend>
+              <legend>Guardian #1 Contact</legend>
               <div className="form-group">
                 <Field
                   name="parent1Email"
@@ -233,7 +233,7 @@ class AddScoutContainer extends Component {
               </div>
             </fieldset>
             <fieldset>
-              <legend>Parent #1 Address</legend>
+              <legend>Guardian #1 Address</legend>
               <div className="form-group">
                 <Field
                   name="parent1AddressSameAsScout"
@@ -275,7 +275,7 @@ class AddScoutContainer extends Component {
           </div>
           <div className="col-sm-4">
             <fieldset>
-              <legend>Parent #2 Info</legend>
+              <legend>Guardian #2 Info</legend>
               <div className="form-group">
                 <Field
                   name="parent2FirstName"
@@ -298,7 +298,7 @@ class AddScoutContainer extends Component {
               </div>
             </fieldset>
             <fieldset>
-              <legend>Parent #2 Contact</legend>
+              <legend>Guardian #2 Contact</legend>
               <div className="form-group">
                 <Field
                   name="parent2Email"
@@ -333,7 +333,7 @@ class AddScoutContainer extends Component {
               </div>
             </fieldset>
             <fieldset>
-              <legend>Parent #2 Address</legend>
+              <legend>Guardian #2 Address</legend>
               <div className="form-group">
                 <Field
                   name="parent2AddressSameAsScout"
