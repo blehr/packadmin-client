@@ -308,7 +308,7 @@ export const removeScout = id => (
 // remove leader
 export const removeLeader = id => (
   (dispatch) => {
-    const URL = `${ROOT_URL}/leaders/${id}`;
+    const URL = `${ROOT_URL}/leaders/detail/${id}`;
     dispatch(isFetching());
     axios.delete(URL, { headers: { authorization: getToken() } })
       .then((response) => {
@@ -374,6 +374,7 @@ export const signinUser = ({ email, password }) => (
       dispatch({ type: AUTH_USER });
       localStorage.setItem('token', response.data.token);
       dispatch(getAllScouts());
+      dispatch(getLeaders());
       browserHistory.push('/scouts');
     })
     .catch(() => {
@@ -387,6 +388,7 @@ export const signoutUser = () => (
   (dispatch) => {
     localStorage.removeItem('token');
     dispatch(clearAllScouts());
+    dispatch(clearLeaders());
     dispatch({ type: UNAUTH_USER });
     browserHistory.push('/');
   }
