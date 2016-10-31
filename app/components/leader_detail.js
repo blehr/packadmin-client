@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
-import { trueOrFalse, getAge, displayBirthday } from '../utils/util';
-import ScoutLink from './scout_link';
+import { getAge, displayBirthday } from '../utils/util';
 
 
 const LeaderDetail = (props) => {
