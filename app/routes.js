@@ -5,6 +5,7 @@ import App from './components/app';
 import AddScoutContainer from './containers/add_scout_container';
 import AddLeader from './containers/add_leader_container';
 import ScoutDetailContainer from './containers/scout_detail_container';
+import LeaderDetailContainer from './containers/leader_detail_container';
 import RosterContainer from './containers/roster_container';
 import LeaderRosterContainer from './containers/leader_roster_container';
 import Signup from './containers/signup';
@@ -23,14 +24,14 @@ export default (
     <Route path="/profile" component={requireAuth(Profile)} />
     <Route path="/leaders" component={requireAuth(LeaderRosterContainer)} />
     <Route path="/leaders/add" component={requireAuth(AddLeader)} />
-    {/* <Route path="/leaders/update/:id" component={requireAuth(LeaderRoster)} />
-    <Route path="/leaders/detail/:id" component={requireAuth(LeaderRoster)} />
-    <Route path="/leaders/add-confirm" component={requireAuth(LeaderRoster)} />
-    <Route path="/leaders/update-confirm" component={requireAuth(LeaderRoster)} /> */}
+    <Route path="/leaders/update/:id" component={requireAuth(AddLeader)} />
+    <Route path="/leaders/add-confirm" component={requireAuth(LeaderDetailContainer)} />
+    <Route path="/leaders/update-confirm" component={requireAuth(LeaderDetailContainer)} />
     <Route path="/scouts" component={requireAuth(RosterContainer)} />
     <Route path="/scouts/add" component={requireAuth(AddScoutContainer)} />
     <Route path="/scouts/update/:id" component={requireAuth(AddScoutContainer)} />
     <Route path="/scouts/detail/:id" component={requireAuth(ScoutDetailContainer)} />
+    <Route path="/leaders/detail/:id" component={requireAuth(LeaderDetailContainer)} />
     <Route path="/scouts/detail/:id/advancement" component={requireAuth(Advancement)} />
     <Route path="/scouts/add-confirm" component={requireAuth(ScoutDetailContainer)} />
     <Route path="/scouts/update-confirm" component={requireAuth(ScoutDetailContainer)} />

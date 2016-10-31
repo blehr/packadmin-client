@@ -2,7 +2,7 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import reduxPromise from 'redux-promise';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers/index';
-import { AUTH_USER, getUser, getAllScouts } from './actions';
+import { AUTH_USER, getUser, getAllScouts, getLeaders } from './actions';
 
 
 const addLoggingToDispatch = (store) => {
@@ -45,6 +45,7 @@ const storeConfig = () => {
     store.dispatch({ type: AUTH_USER });
     store.dispatch(getUser());
     store.dispatch(getAllScouts());
+    store.dispatch(getLeaders());
   }
 
   return store;

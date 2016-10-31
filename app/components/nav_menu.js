@@ -18,6 +18,7 @@ const NavMenu = ({ auth, signoutUser }) => (
       <Link to="/" onlyActiveOnIndex index ><MenuItem primaryText="Home" /></Link>
       { auth.authenticated && <Link to="/scouts"><MenuItem primaryText="Roster" /></Link> }
       { auth.authenticated && <Link to="/scouts/add" ><MenuItem primaryText="Add Scouts" /></Link> }
+      { auth.authenticated && <Link to="/leaders" ><MenuItem primaryText="Leaders" /></Link> }
       { !auth.authenticated && <Link to="/signin" ><MenuItem primaryText="Sign in" /></Link> }
       { !auth.authenticated && <Link to="/signup" ><MenuItem primaryText="Sign up" /></Link> }
       { auth.authenticated && <Link to="/profile" ><MenuItem primaryText="Profile" /></Link> }

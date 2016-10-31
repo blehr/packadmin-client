@@ -251,7 +251,7 @@ export const updateScout = (data, id) => (
           payload: response.data,
         });
         dispatch(clearError());
-        browserHistory.push('/scouts/update-confirm');
+        browserHistory.push('/l/update-confirm');
         dispatch(endFetching());
       })
       .catch((error) => {
@@ -264,12 +264,12 @@ export const updateScout = (data, id) => (
 // update leader
 export const updateLeader = (data, id) => (
   (dispatch) => {
-    const URL = `${ROOT_URL}/leaders/${id}`;
+    const URL = `${ROOT_URL}/leaders/detail/${id}`;
     dispatch(isFetching());
     axios.put(URL, { data }, { headers: { authorization: getToken() } })
       .then((response) => {
         dispatch({
-          type: GET_LEADER,
+          type: UPDATE_LEADER,
           payload: response.data,
         });
         dispatch(clearError());

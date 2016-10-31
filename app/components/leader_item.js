@@ -7,23 +7,23 @@ const LeaderItem = ({ leader }) => (
     <div className="roster-item">
 
       <h4><i className="fa fa-user" /> { leader.firstName } { leader.lastName } </h4>
-        <div>
-          <p>{ leader.position }</p>
-          { leader.email && <p><i className="fa fa-envelope-o" /> {leader.email}</p> }
-          { leader.mobilePhone && <p>M: <i className="fa fa-mobile" /> {leader.mobilePhone}</p> }
-          { leader.homePhone && <p>M: <i className="fa fa-home" /> {leader.homePhone}</p> }
-          { leader.workPhone && <p>M: <i className="fa fa-briefcase" /> {leader.workPhone}</p> }
-        </div>
-        <div>
-          { leader.driversLicense &&
-            <p><i className="fa fa-car" /> {leader.driversLicense}</p> }
-        </div>
+      <div className="inner-leader-item">
+        <p>{ leader.position }</p>
+        { leader.mobilePhone && <p><i className="fa fa-mobile" /> {leader.mobilePhone}</p> }
+        {/* { leader.homePhone && <p><i className="fa fa-home" /> {leader.homePhone}</p> }
+        { leader.workPhone && <p><i className="fa fa-briefcase" /> {leader.workPhone}</p> } */}
+        { leader.email && <p><i className="fa fa-envelope-o" /> {leader.email}</p> }
+      <div>
+      </div>
         { leader.youthProtection &&
           <p>
-            Youth <i className="fa fa-child" /> Protection: {displayBirthday(leader.youthProtection)}
+            Youth <i
+              className="fa fa-child"
+                  /> Protection: {displayBirthday(leader.youthProtection)}
           </p>
-      }
+        }
       </div>
+    </div>
   </Link>
 );
 

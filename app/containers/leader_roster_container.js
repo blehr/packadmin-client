@@ -1,9 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
 import ErrorDisplay from '../containers/error_container';
 import * as actions from '../actions';
 import LeaderRoster from '../components/leader_roster';
 import LoadingComponent from './loading_container';
+
+const style = {
+  margin: 'auto',
+  marginTop: '12px',
+  marginBottom: '12px',
+};
 
 class LeaderRosterContainer extends Component {
   componentWillMount() {
@@ -23,6 +31,19 @@ class LeaderRosterContainer extends Component {
     }
     return (
       <div>
+        <div className="row">
+          <div className="col-sm-12 text-center">
+            <Link to="/leaders/add" >
+              <RaisedButton
+                type="button"
+                label="Add Leader"
+                style={style}
+                labelColor={'#FFF'}
+                primary
+              />
+            </Link>
+          </div>
+        </div>
         <div className="row">
           <LeaderRoster
             leaders={this.props.leaders.leaders}
