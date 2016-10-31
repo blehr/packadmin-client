@@ -6,12 +6,11 @@ import ScoutLink from './scout_link';
 
 
 const ScoutDetail = (props) => {
-  // (() => { window.scrollTo(0, 0); })();
-  const { scout, removeScout } = props;
+  const { scout } = props;
   return (
     <div className="col-sm-6 col-sm-offset-3">
       <div className="card">
-        <ScoutLink scout={scout} removeScout={removeScout} />
+        <ScoutLink scout={scout} />
 
         <div className="card-row">
           <div className="card-column-1">
@@ -55,7 +54,6 @@ const ScoutDetail = (props) => {
 
 ScoutDetail.propTypes = {
   scout: PropTypes.object,
-  removeScout: PropTypes.func,
 };
 
 export default ScoutDetail;

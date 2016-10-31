@@ -25,6 +25,19 @@ class LeaderRosterContainer extends Component {
       return (
         <div style={{ position: 'relative' }}>
           <LoadingComponent />
+          <div className="row">
+            <div className="col-sm-12 text-center">
+              <Link to="/leaders/add" >
+                <RaisedButton
+                  type="button"
+                  label="Add Leader"
+                  style={style}
+                  labelColor={'#FFF'}
+                  primary
+                />
+              </Link>
+            </div>
+          </div>
           <div>No Leaders</div>
         </div>
       );

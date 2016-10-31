@@ -4,7 +4,7 @@ import ScoutLink from './scout_link';
 
 
 const LeaderDetail = (props) => {
-  // (() => { window.scrollTo(0, 0); })();
+  (() => { window.scrollTo(0, 0); })();
   const { leader } = props;
   return (
     <div className="col-sm-6 col-sm-offset-3">

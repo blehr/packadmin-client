@@ -1,13 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import * as actions from '../actions';
 import LeaderDetail from '../components/leader_detail';
-import LeaderConfirmToolbar from '../components/leader_confirm_toolbar';
+import ConfirmToolbar from '../components/confirm_toolbar';
 import ErrorDisplay from './error_container';
 import LoadingComponent from './loading_container';
 
 
 class LeaderDetailContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleOnClickEdit = this.handleOnClickEdit.bind(this);
+    this.handleOnClickDelete = this.handleOnClickDelete.bind(this);
+  }
   componentDidMount() {
     if (this.props.params.id) {
       if (this.props.leaders.leaders.length !== 1) {
@@ -18,6 +25,12 @@ class LeaderDetailContainer extends Component {
         this.props.getLeader(this.props.params.id);
       }
     }
+  }
+  handleOnClickEdit() {
+    browserHistory.push(`/leaders/update/${this.props.leaders.leaders[0]._id}`);
+  }
+  handleOnClickDelete() {
+    this.props.removeLeader(this.props.leaders.leaders[0]._id);
   }
 
   render() {
@@ -36,9 +49,10 @@ class LeaderDetailContainer extends Component {
     return (
       <div>
         <div className="row">
-          <LeaderConfirmToolbar
-            leader={leaders.leaders[0]}
-            removeLeader={this.props.removeLeader}
+          <ConfirmToolbar
+            id={leaders.leaders[0]._id}
+            edit={this.handleOnClickEdit}
+            remove={this.handleOnClickDelete}
           />
         </div>
         <div className="row">

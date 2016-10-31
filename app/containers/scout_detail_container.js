@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import * as actions from '../actions';
 import ScoutDetail from '../components/scout_detail';
 import ConfirmToolbar from '../components/confirm_toolbar';
@@ -9,6 +10,12 @@ import DisplayRankProgress from '../components/display_rank_progress';
 
 
 class ScoutDetailContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleOnClickEdit = this.handleOnClickEdit.bind(this);
+    this.handleOnClickDelete = this.handleOnClickDelete.bind(this);
+  }
   componentDidMount() {
     if (this.props.params.id) {
       if (this.props.scouts.allScouts.length !== 1) {
@@ -19,6 +26,12 @@ class ScoutDetailContainer extends Component {
         this.props.getScoutDetail(this.props.params.id);
       }
     }
+  }
+  handleOnClickEdit() {
+    browserHistory.push(`/scouts/update/${this.props.scouts.allScouts[0]._id}`);
+  }
+  handleOnClickDelete() {
+    this.props.removeScout(this.props.scouts.allScouts[0]._id);
   }
 
   render() {
@@ -38,15 +51,15 @@ class ScoutDetailContainer extends Component {
       <div>
         <div className="row">
           <ConfirmToolbar
-            scout={scouts.allScouts[0]}
-            removeScout={this.props.removeScout}
+            id={scouts.allScouts[0]._id}
+            edit={this.handleOnClickEdit}
+            remove={this.handleOnClickDelete}
           />
         </div>
         <div className="row">
           <LoadingComponent />
           <ScoutDetail
             scout={scouts.allScouts[0]}
-            removeScout={this.props.removeScout}
           />
         </div>
         <div className="row">

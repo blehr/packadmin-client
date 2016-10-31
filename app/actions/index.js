@@ -251,7 +251,7 @@ export const updateScout = (data, id) => (
           payload: response.data,
         });
         dispatch(clearError());
-        browserHistory.push('/l/update-confirm');
+        browserHistory.push('/scouts/update-confirm');
         dispatch(endFetching());
       })
       .catch((error) => {
