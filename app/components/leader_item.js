@@ -5,22 +5,25 @@ import { displayBirthday } from '../utils/util';
 const LeaderItem = ({ leader }) => (
   <Link to={`/leaders/detail/${leader._id}`} >
     <div className="roster-item">
-      <div className="flex-container">
-        <h4>{ leader.firstName } { leader.lastName } </h4>
-        <span>{ leader.position }</span>
-      </div>
-      <div className="flex-container check-labels">
+
+      <h4><i className="fa fa-user" /> { leader.firstName } { leader.lastName } </h4>
         <div>
-          { leader.email && <p>{leader.email}</p> }
-          { leader.mobilePhone && <p>{leader.mobilePhone}</p> }
-          <p></p>
+          <p>{ leader.position }</p>
+          { leader.email && <p><i className="fa fa-envelope-o" /> {leader.email}</p> }
+          { leader.mobilePhone && <p>M: <i className="fa fa-mobile" /> {leader.mobilePhone}</p> }
+          { leader.homePhone && <p>M: <i className="fa fa-home" /> {leader.homePhone}</p> }
+          { leader.workPhone && <p>M: <i className="fa fa-briefcase" /> {leader.workPhone}</p> }
         </div>
         <div>
-          { leader.driversLicense && <p>{leader.driversLicense}</p> }
-          { leader.youthProtection && <p>YP {displayBirthday(leader.youthProtection)}</p> }
+          { leader.driversLicense &&
+            <p><i className="fa fa-car" /> {leader.driversLicense}</p> }
         </div>
+        { leader.youthProtection &&
+          <p>
+            Youth <i className="fa fa-child" /> Protection: {displayBirthday(leader.youthProtection)}
+          </p>
+      }
       </div>
-    </div>
   </Link>
 );
 

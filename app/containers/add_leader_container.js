@@ -189,6 +189,7 @@ AddLeader.propTypes = {
 
 const mapStateToProps = ({ leaders }) => ({
   leaders,
+  initialValues: leaders.leaders[0],
 });
 
 const form = reduxForm({ form: 'addLeader', enableReinitialize: true, leaderValidate });
