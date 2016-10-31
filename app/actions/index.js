@@ -22,6 +22,12 @@ export const SET_ADVANCEMENT = 'SET_ADVANCEMENT';
 export const SAVE_ADVANCEMENT = 'SAVE_ADVANCEMENT';
 export const GET_ADVANCEMENT_JSON = 'GET_ADVANCEMENT_JSON';
 export const DEN_ADV_DATA = 'DEN_ADV_DATA';
+export const GET_LEADERS = 'GET_LEADERS';
+export const GET_LEADER = 'GET_LEADER';
+export const ADD_LEADER = 'ADD_LEADER';
+export const UPDATE_LEADER = 'UPDATE_LEADER';
+export const REMOVE_LEADER = 'REMOVE_LEADER';
+export const CLEAR_LEADERS = 'CLEAR_LEADERS';
 
 // const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
 const ROOT_URL = 'http://localhost:8080';
@@ -56,6 +62,10 @@ export const clearAllScouts = () => ({
 // clear single scout
 export const clearScoutDetail = () => ({
   type: CLEAR_SCOUT_DETAIL,
+});
+
+export const clearLeaders = () => ({
+  type: CLEAR_LEADERS,
 });
 
 // show loader
@@ -151,6 +161,27 @@ export const getAllScouts = () => (
   }
 );
 
+// get all leaders
+export const getLeaders = () => (
+  (dispatch) => {
+    const URL = `${ROOT_URL}/leaders`;
+    dispatch(isFetching());
+    axios.get(URL, { headers: { authorization: getToken() } })
+      .then((response) => {
+        dispatch({
+          type: GET_LEADERS,
+          payload: response.data.leaders,
+        });
+        dispatch(endFetching());
+        dispatch(clearError());
+      })
+      .catch((error) => {
+        dispatch(endFetching());
+        formatErrors(error, dispatch);
+      });
+  }
+);
+
 // add scout
 export const addScout = data => (
   (dispatch) => {
@@ -173,9 +204,37 @@ export const addScout = data => (
   }
 );
 
+// add leader
+export const addLeader = data => (
+  (dispatch) => {
+    const URL = `${ROOT_URL}/leaders/add`;
+    dispatch(isFetching());
+    axios.post(URL, { data }, { headers: { authorization: getToken() } })
+      .then((response) => {
+        dispatch({
+          type: ADD_LEADER,
+          payload: response.data.leader,
+        });
+        dispatch(clearError());
+        dispatch(endFetching());
+        browserHistory.push('/leaders/add-confirm');
+      })
+      .catch((error) => {
+        dispatch(endFetching());
+        formatErrors(error, dispatch);
+      });
+  }
+);
+
 // get individual scout
 export const getScoutDetail = id => ({
   type: GET_SCOUT_FROM_ALL,
+  payload: id,
+});
+
+// get individual leader
+export const getLeader = id => ({
+  type: GET_LEADER,
   payload: id,
 });
 
@@ -196,7 +255,28 @@ export const updateScout = (data, id) => (
         dispatch(endFetching());
       })
       .catch((error) => {
-        console.log('updateScout', error);
+        dispatch(endFetching());
+        formatErrors(error, dispatch);
+      });
+  }
+);
+
+// update leader
+export const updateLeader = (data, id) => (
+  (dispatch) => {
+    const URL = `${ROOT_URL}/leaders/${id}`;
+    dispatch(isFetching());
+    axios.put(URL, { data }, { headers: { authorization: getToken() } })
+      .then((response) => {
+        dispatch({
+          type: GET_LEADER,
+          payload: response.data,
+        });
+        dispatch(clearError());
+        browserHistory.push('/leaders/update-confirm');
+        dispatch(endFetching());
+      })
+      .catch((error) => {
         dispatch(endFetching());
         formatErrors(error, dispatch);
       });
@@ -217,6 +297,28 @@ export const removeScout = id => (
         dispatch(clearError());
         dispatch(endFetching());
         browserHistory.push('/scouts');
+      })
+      .catch((error) => {
+        dispatch(endFetching());
+        formatErrors(error, dispatch);
+      });
+  }
+);
+
+// remove leader
+export const removeLeader = id => (
+  (dispatch) => {
+    const URL = `${ROOT_URL}/leaders/${id}`;
+    dispatch(isFetching());
+    axios.delete(URL, { headers: { authorization: getToken() } })
+      .then((response) => {
+        dispatch({
+          type: REMOVE_LEADER,
+          payload: response.data,
+        });
+        dispatch(clearError());
+        dispatch(endFetching());
+        browserHistory.push('/leaders');
       })
       .catch((error) => {
         dispatch(endFetching());

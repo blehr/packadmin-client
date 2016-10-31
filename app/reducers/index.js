@@ -6,6 +6,7 @@ import AuthReducer from './auth_reducer';
 import UserReducer from './user_reducer';
 import LoadingReducer from './loading_reducer';
 import ScoutReducer from './scout_reducer';
+import LeaderReducer from './leader_reducer';
 // import AdvancementReducer from './advancement_reducer';
 
 
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   user: UserReducer,
   sortedBy: SortReducer,
   scouts: ScoutReducer,
+  leaders: LeaderReducer,
   error: ErrorReducer,
   auth: AuthReducer,
   form: formReducer,
