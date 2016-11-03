@@ -291,6 +291,11 @@ ul.list-unstyled li {
   width: 135px;
 }
 
+/* Print */
+.pdf-container {
+  
+}
+
 @media (max-width: 680px) {
   .home-link {
     display: none;

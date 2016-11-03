@@ -13,12 +13,16 @@ import Signin from './containers/signin';
 import Home from './components/home';
 import Profile from './containers/profile';
 import requireAuth from './containers/require_auth';
-
 import Advancement from './containers/adv_container';
+
+import PdfContainer from './containers/pdf_container';
 
 export default (
   <Route path="/" component={App} >
     <IndexRoute component={Home} />
+    
+    <Route path="/pdf" component={requireAuth(PdfContainer)} />
+    
     <Route path="/signup" component={Signup} />
     <Route path="/signin" component={Signin} />
     <Route path="/profile" component={requireAuth(Profile)} />
