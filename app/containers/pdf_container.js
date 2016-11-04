@@ -4,10 +4,14 @@ import ErrorDisplay from '../containers/error_container';
 import * as actions from '../actions';
 import PdfScoutSort from '../components/pdf_scout_sort';
 import LoadingComponent from './loading_container';
+import { createPdf } from '../../../controllers/pdf.server.controller';
 
 class PdfContainer extends Component {
   componentWillMount() {
     this.props.getAllScouts();
+  }
+  handlePdfCreation() {
+    createPdf(this, '../json/pdf.pdf');
   }
   render() {
     if (!this.props.scouts.allScouts || this.props.scouts.allScouts.length === 0) {
@@ -23,6 +27,9 @@ class PdfContainer extends Component {
     }
     return (
       <div>
+        <div className="row" >
+          <button type="button"  >Create PDF</button>
+        </div>
         <div className="row">
           <PdfScoutSort
             scouts={this.props.scouts.allScouts}
