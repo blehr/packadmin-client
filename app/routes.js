@@ -20,9 +20,6 @@ import PdfContainer from './containers/pdf_container';
 export default (
   <Route path="/" component={App} >
     <IndexRoute component={Home} />
-    
-    <Route path="/pdf" component={requireAuth(PdfContainer)} />
-    
     <Route path="/signup" component={Signup} />
     <Route path="/signin" component={Signin} />
     <Route path="/profile" component={requireAuth(Profile)} />
@@ -32,6 +29,7 @@ export default (
     <Route path="/leaders/add-confirm" component={requireAuth(LeaderDetailContainer)} />
     <Route path="/leaders/update-confirm" component={requireAuth(LeaderDetailContainer)} />
     <Route path="/scouts" component={requireAuth(RosterContainer)} />
+    <Route path="/scouts/pdf" component={requireAuth(PdfContainer)} />
     <Route path="/scouts/add" component={requireAuth(AddScoutContainer)} />
     <Route path="/scouts/update/:id" component={requireAuth(AddScoutContainer)} />
     <Route path="/scouts/detail/:id" component={requireAuth(ScoutDetailContainer)} />

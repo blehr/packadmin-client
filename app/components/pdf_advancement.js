@@ -1,18 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import { Link } from 'react-router';
-import ShowRank from './show_rank_adv';
 import { displayBirthday, getDen } from '../utils/util';
 
-const style = {
-  // margin: 12,
-};
-
 class PdfAdvancement extends Component {
-  createDenAchievementLists(theDen, scout) {
+  createDenAchievementLists(scout) {
     const elem = [];
     let keyValues = 0;
-    const den = getDen(theDen);
+    const den = getDen(scout.den);
     let tableBody = [];
     const denHeadings = Object.keys(den.denObj);
     denHeadings.shift();
@@ -33,7 +26,7 @@ class PdfAdvancement extends Component {
         );
       });
       const table = (
-        <div className={den.Den}  key={keyValues++}>
+        <div className={den.Den} key={keyValues++}>
           <h3>{den.Den}</h3>
           <table className="table table-striped table-condensed table-hover">
             <tbody>
@@ -53,9 +46,9 @@ class PdfAdvancement extends Component {
 
   render() {
     return (
-        <div className="card">
-          {this.createDenAchievementLists(this.props.scout.den, this.props.scout)}
-        </div>
+      <div className="card">
+        {this.createDenAchievementLists(this.props.scout)}
+      </div>
     );
   }
 }

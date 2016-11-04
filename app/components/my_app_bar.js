@@ -9,7 +9,7 @@ const MyAppBar = () => (
     <NavMenu />
     <MyMenu loc={location.pathname} />
     <div className={location.pathname !== '/scouts' ? 'dropdown-small' : 'dropdown'}>
-      {(() => { if (location.pathname === '/scouts') { return <ScoutSort />; } return null; })()}
+      {(() => { if (location.pathname === '/scouts' || location.pathname === '/scouts/pdf') { return <ScoutSort />; } return null; })()}
     </div>
   </div>
 );
