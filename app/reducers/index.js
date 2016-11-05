@@ -7,9 +7,11 @@ import UserReducer from './user_reducer';
 import LoadingReducer from './loading_reducer';
 import ScoutReducer from './scout_reducer';
 import LeaderReducer from './leader_reducer';
+import PdfReducer from './pdf_reducer';
 
 
 const rootReducer = combineReducers({
+  pdf: PdfReducer,
   loading: LoadingReducer,
   user: UserReducer,
   sortedBy: SortReducer,

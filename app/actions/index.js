@@ -28,6 +28,7 @@ export const ADD_LEADER = 'ADD_LEADER';
 export const UPDATE_LEADER = 'UPDATE_LEADER';
 export const REMOVE_LEADER = 'REMOVE_LEADER';
 export const CLEAR_LEADERS = 'CLEAR_LEADERS';
+export const CREATE_PDF = 'CREATE_PDF';
 
 // const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
 // const ROOT_URL = 'https://scout-admin.dev:8080';
@@ -81,6 +82,7 @@ export const endFetching = () => ({
 const getToken = () => (
   localStorage.getItem('token')
 );
+
 
 // map over errors object and pull off each meassage
 const formatErrors = (error, dispatch) => {
@@ -321,6 +323,29 @@ export const removeLeader = id => (
         browserHistory.push('/leaders');
       })
       .catch((error) => {
+        dispatch(endFetching());
+        formatErrors(error, dispatch);
+      });
+  }
+);
+
+export const createAPdf = data => (
+  (dispatch) => {
+    console.log('data', data.toString());
+    const URL = `${ROOT_URL}/pdf`;
+    dispatch(isFetching());
+    axios.post(URL, { data }, { headers: { authorization: getToken() } })
+      .then((response) => {
+        console.log('response', response.data);
+        // dispatch({
+        //   type: CREATE_PDF,
+        //   payload: response.data,
+        // });
+        dispatch(endFetching());
+        dispatch(clearError());
+      })
+      .catch((error) => {
+        console.log('getAllScouts', error);
         dispatch(endFetching());
         formatErrors(error, dispatch);
       });
