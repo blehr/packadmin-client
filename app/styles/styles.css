@@ -296,6 +296,28 @@ ul.list-unstyled li {
   width: 600px;
 }
 
+.pdf-col-div-1 {
+  width: 400px;
+  padding-left: 8px;
+  display: inline-block;
+}
+.pdf-col-div-2 {
+  width: 200px;
+  padding-left: 8px;
+  display: inline-block;
+}
+
+.pdf-notes {
+  width: 600px;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.end-of-file {
+  display: none;
+}
+
 .pdf-card {
   max-width: 600px;
   min-height: 250px;
@@ -307,6 +329,17 @@ ul.list-unstyled li {
   padding-bottom: 10px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 680px) {
   .home-link {

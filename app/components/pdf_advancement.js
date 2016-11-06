@@ -46,8 +46,11 @@ class PdfAdvancement extends Component {
 
   render() {
     return (
-      <div className="card">
+      <div>
         {this.createDenAchievementLists(this.props.scout)}
+        <span className="end-of-file">
+          * end of file {this.props.scout.scoutFirstName} {this.props.scout.scoutLastName}
+        </span>
       </div>
     );
   }

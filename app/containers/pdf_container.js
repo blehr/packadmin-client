@@ -1,10 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-// import ReactDOMServer from 'react-dom/server'
 import { connect } from 'react-redux';
+import RaisedButton from 'material-ui/RaisedButton';
 import ErrorDisplay from '../containers/error_container';
 import * as actions from '../actions';
 import PdfScoutSort from '../components/pdf_scout_sort';
 import LoadingComponent from './loading_container';
+import { ROOT_URL } from '../actions';
+
+const style = {
+  margin: 12,
+};
 
 class PdfContainer extends Component {
   constructor(props) {
@@ -15,10 +20,70 @@ class PdfContainer extends Component {
     this.props.getAllScouts();
   }
   handlePdfCreation() {
-    const elem = document.getElementById('pdf-content');
-    // const elemStr = ReactDOMServer.renderToString(elem);
-    console.log(elem.innerHTML);
-    this.props.createAPdf(elem.innerHTML);
+    const data = {};
+    const elem = document.getElementById('pdf-content').innerHTML;
+    const partial = `<html>
+      <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous">
+      <style>
+      body {
+        font-size: 10px;
+      }
+      table {
+        font-size: 9px;
+      }
+      td {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      h3 {
+        font-size: 16px;
+      }
+      .cell-2 {
+        width: 135px;
+      }
+      p {
+        margin-bottom: 0;
+      }
+      address {
+        margin-bottom: 5px;
+      }
+      .pdf-container {
+        width: 500px;
+        page-break-after: always;
+      }
+
+      .pdf-col-div-1 {
+        width: 300px;
+        padding-left: 8px;
+        display: inline-block;
+      }
+      .pdf-col-div-2 {
+        width: 200px;
+        padding-left: 8px;
+        display: inline-block;
+      }
+
+      .pdf-notes {
+        width: 500px;
+        padding: 8px;
+        margin-bottom: 8px;
+        border-bottom: 1px solid #eee;
+      }
+
+      </style>
+
+      </head>
+      <body>
+      ${elem}
+      </body>
+      </html>`;
+    // data.elem = elem.innerHTML;
+    data.elem = partial;
+    data.title = this.props.sortedBy;
+    this.props.createAPdf(data);
   }
   render() {
     if (!this.props.scouts.allScouts || this.props.scouts.allScouts.length === 0) {
@@ -35,7 +100,26 @@ class PdfContainer extends Component {
     return (
       <div>
         <div className="row" >
-          <button type="button" onClick={this.handlePdfCreation} >Create PDF</button>
+          <RaisedButton
+            type="button"
+            label="Create PDF"
+            onClick={this.handlePdfCreation}
+            style={style}
+            labelColor={'#FFF'}
+            primary
+          />
+          { this.props.pdf &&
+            <RaisedButton
+              type="button"
+              label="Download PDF"
+              href={`${ROOT_URL}/download/${this.props.pdf}`}
+              onClick={() => { this.props.clearPdf(); }}
+              style={style}
+              labelColor={'#FFF'}
+              secondary
+            />
+          }
+          {this.props.loading && <LoadingComponent />}
         </div>
         <div className="row">
           <div id="pdf-content" >
@@ -52,6 +136,9 @@ class PdfContainer extends Component {
 }
 
 PdfContainer.propTypes = {
+  clearPdf: PropTypes.func,
+  loading: PropTypes.bool,
+  pdf: PropTypes.string,
   createAPdf: PropTypes.func,
   scouts: PropTypes.object,
   sortedBy: PropTypes.string,
@@ -60,8 +147,8 @@ PdfContainer.propTypes = {
 };
 
 
-const mapStateToProps = ({ scouts, sortedBy, error }) => (
-  { scouts, sortedBy, error }
+const mapStateToProps = ({ scouts, sortedBy, error, pdf, loading }) => (
+  { scouts, sortedBy, error, pdf, loading }
 );
 
 
