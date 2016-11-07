@@ -30,7 +30,6 @@ export const CREATE_PDF = 'CREATE_PDF';
 export const CLEAR_PDF = 'CLEAR_PDF';
 
 // const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-// const ROOT_URL = 'https://scout-admin.dev:8080';
 export const ROOT_URL = 'http://localhost:8080';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
