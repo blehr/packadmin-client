@@ -1,7 +1,5 @@
 import axios from 'axios';
-// import moment from 'moment';
 import { browserHistory } from 'react-router';
-// import { formatDenAdvDates } from '../utils/util';
 
 // types
 export const GET_ALL_SCOUTS = 'GET_ALL_SCOUTS';
@@ -161,7 +159,6 @@ export const getAllScouts = () => (
         dispatch(clearError());
       })
       .catch((error) => {
-        console.log('getAllScouts', error);
         dispatch(endFetching());
         formatErrors(error, dispatch);
       });
@@ -348,7 +345,6 @@ export const createAPdf = data => (
         dispatch(clearError());
       })
       .catch((error) => {
-        console.log('createAPdf', error);
         dispatch(endFetching());
         formatErrors(error, dispatch);
       });

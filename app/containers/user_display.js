@@ -13,7 +13,7 @@ const UserDisplay = ({ user }) => {
 };
 
 UserDisplay.propTypes = {
-  user: PropTypes.Object,
+  user: PropTypes.object,
 };
 
 const mapStateToProps = ({ user }) => ({
