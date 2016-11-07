@@ -2,11 +2,7 @@ import React, { PropTypes } from 'react';
 import PdfAdvancement from '../components/pdf_advancement';
 import { displayBirthday, trueOrFalse, getAge } from '../utils/util';
 
-const displayTrueOrFalse = cond => (
-  cond ? 'true' : 'false'
-);
-
-const PdfScout = ({ scout }) => (
+const PdfScout = ({ scout, showAdv }) => (
   <div className="pdf-container" >
     <div className="pdf-col-div-1">
       <p><strong><i
@@ -128,9 +124,9 @@ const PdfScout = ({ scout }) => (
       </div>
     }
 
-    <PdfAdvancement scout={scout} />
+    { showAdv && <PdfAdvancement scout={scout} />}
 
-    <hr />
+
   </div>
 );
 

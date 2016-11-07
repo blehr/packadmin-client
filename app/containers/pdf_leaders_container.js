@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Checkbox } from 'redux-form-material-ui';
 import ErrorDisplay from '../containers/error_container';
+import PdfLeaderDetail from '../components/pdf_leader_detail';
 import * as actions from '../actions';
-import PdfScoutSort from '../components/pdf_scout_sort';
 import LoadingComponent from './loading_container';
 import { ROOT_URL } from '../actions';
 
@@ -12,22 +11,16 @@ const style = {
   margin: 12,
 };
 
-class PdfContainer extends Component {
+class PdfLeadersContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showAdvancements: false,
     };
     this.handlePdfCreation = this.handlePdfCreation.bind(this);
-    this.handleCheck = this.handleCheck.bind(this);
   }
   componentWillMount() {
-    this.props.getAllScouts();
-  }
-  handleCheck() {
-    this.setState({
-      showAdvancements: !this.state.showAdvancements,
-    });
+    this.props.getLeaders();
   }
   handlePdfCreation() {
     const data = {};
@@ -77,7 +70,6 @@ class PdfContainer extends Component {
         display: inline-block;
         vertical-align: top;
       }
-
       .pdf-notes {
         width: 500px;
         padding: 8px;
@@ -91,11 +83,11 @@ class PdfContainer extends Component {
       </body>
       </html>`;
     data.elem = partial;
-    data.title = this.props.sortedBy;
+    data.title = 'leaders';
     this.props.createAPdf(data);
   }
   render() {
-    if (!this.props.scouts.allScouts || this.props.scouts.allScouts.length === 0) {
+    if (!this.props.leaders.leaders || this.props.leaders.leaders.length === 0) {
       if (this.props.error) {
         return <ErrorDisplay />;
       }
@@ -108,17 +100,6 @@ class PdfContainer extends Component {
     }
     return (
       <div>
-        <div className="row text-center">
-          <label>
-            <input
-              type="checkbox"
-              name="displayAdvancements"
-              value={this.state.showAdvancements}
-              onChange={this.handleCheck}
-              style={style}
-            /> Include Advancements
-          </label>
-        </div>
         <div className="row" >
           <RaisedButton
             type="button"
@@ -143,11 +124,9 @@ class PdfContainer extends Component {
         </div>
         <div className="row">
           <div id="pdf-content" >
-            <PdfScoutSort
-              scouts={this.props.scouts.allScouts}
-              filter={this.props.sortedBy}
-              showAdv={this.state.showAdvancements}
-            />
+            {this.props.leaders.leaders.map(leader => (
+              <PdfLeaderDetail leader={leader} />
+            ))}
           </div>
         </div>
       </div>
@@ -155,21 +134,20 @@ class PdfContainer extends Component {
   }
 }
 
-PdfContainer.propTypes = {
+PdfLeadersContainer.propTypes = {
   clearPdf: PropTypes.func,
   loading: PropTypes.bool,
   pdf: PropTypes.string,
   createAPdf: PropTypes.func,
-  scouts: PropTypes.object,
-  sortedBy: PropTypes.string,
+  leaders: PropTypes.object,
   error: PropTypes.string,
-  getAllScouts: PropTypes.func,
+  getLeaders: PropTypes.func,
 };
 
 
-const mapStateToProps = ({ scouts, sortedBy, error, pdf, loading }) => (
-  { scouts, sortedBy, error, pdf, loading }
+const mapStateToProps = ({ leaders, error, pdf, loading }) => (
+  { leaders, error, pdf, loading }
 );
 
 
-export default connect(mapStateToProps, actions)(PdfContainer);
+export default connect(mapStateToProps, actions)(PdfLeadersContainer);

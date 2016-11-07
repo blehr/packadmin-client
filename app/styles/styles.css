@@ -294,17 +294,21 @@ ul.list-unstyled li {
 /* Print */
 .pdf-container {
   width: 600px;
+  padding-top: 10px;
+  border-bottom: 2px solid #2196F3;
 }
 
 .pdf-col-div-1 {
   width: 400px;
   padding-left: 8px;
   display: inline-block;
+  vertical-align: top;
 }
 .pdf-col-div-2 {
   width: 200px;
   padding-left: 8px;
   display: inline-block;
+  vertical-align: top;
 }
 
 .pdf-notes {

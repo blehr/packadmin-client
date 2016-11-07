@@ -16,6 +16,7 @@ import requireAuth from './containers/require_auth';
 import Advancement from './containers/adv_container';
 
 import PdfContainer from './containers/pdf_container';
+import PdfLeadersContainer from './containers/pdf_leaders_container';
 
 export default (
   <Route path="/" component={App} >
@@ -24,6 +25,7 @@ export default (
     <Route path="/signin" component={Signin} />
     <Route path="/profile" component={requireAuth(Profile)} />
     <Route path="/leaders" component={requireAuth(LeaderRosterContainer)} />
+    <Route path="/leaders/pdf" component={requireAuth(PdfLeadersContainer)} />
     <Route path="/leaders/add" component={requireAuth(AddLeader)} />
     <Route path="/leaders/update/:id" component={requireAuth(AddLeader)} />
     <Route path="/leaders/add-confirm" component={requireAuth(LeaderDetailContainer)} />

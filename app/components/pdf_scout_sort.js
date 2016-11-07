@@ -4,7 +4,7 @@ import { filterBy } from '../utils/util';
 import ErrorDisplay from '../containers/error_container';
 
 const PdfScoutSort = (props) => {
-  const { scouts, filter } = props;
+  const { scouts, filter, showAdv } = props;
   const filteredScouts = filterBy(scouts, filter);
   if (filter === 'byDen') {
     return (
@@ -16,7 +16,7 @@ const PdfScoutSort = (props) => {
         </h3>
         <div>
           {filteredScouts.scouts.lion.map(scout => (
-            <PdfScout scout={scout} key={scout._id} />
+            <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
           ))}
         </div>
         <hr />
@@ -27,7 +27,7 @@ const PdfScoutSort = (props) => {
         </h3>
         <div>
           {filteredScouts.scouts.tiger.map(scout => (
-            <PdfScout scout={scout} key={scout._id} />
+            <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
           ))}
         </div>
         <hr />
@@ -38,7 +38,7 @@ const PdfScoutSort = (props) => {
         </h3>
         <div>
           {filteredScouts.scouts.wolf.map(scout => (
-            <PdfScout scout={scout} key={scout._id} />
+            <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
           ))}
         </div>
         <hr />
@@ -49,7 +49,7 @@ const PdfScoutSort = (props) => {
         </h3>
         <div>
           {filteredScouts.scouts.bear.map(scout => (
-            <PdfScout scout={scout} key={scout._id} />
+            <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
           ))}
         </div>
         <hr />
@@ -60,7 +60,7 @@ const PdfScoutSort = (props) => {
         </h3>
         <div>
           {filteredScouts.scouts.web1.map(scout => (
-            <PdfScout scout={scout} key={scout._id} />
+            <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
           ))}
         </div>
         <hr />
@@ -71,7 +71,7 @@ const PdfScoutSort = (props) => {
         </h3>
         <div>
           {filteredScouts.scouts.web2.map(scout => (
-            <PdfScout scout={scout} key={scout._id} />
+            <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
           ))}
         </div>
       </div>
@@ -87,7 +87,7 @@ const PdfScoutSort = (props) => {
       <ErrorDisplay />
       <div>
         {filteredScouts.scouts.map(scout => (
-          <PdfScout scout={scout} key={scout._id} />
+          <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
       ))}
       </div>
     </div>

@@ -19,6 +19,10 @@ const NavMenu = ({ auth, signoutUser }) => (
       { auth.authenticated && <Link to="/scouts"><MenuItem primaryText="Roster" /></Link> }
       { auth.authenticated && <Link to="/scouts/add" ><MenuItem primaryText="Add Scouts" /></Link> }
       { auth.authenticated && <Link to="/leaders" ><MenuItem primaryText="Leaders" /></Link> }
+      { auth.authenticated &&
+        <Link to="/scouts/pdf"><MenuItem primaryText="Download Scouts" /></Link> }
+      { auth.authenticated &&
+        <Link to="/leaders/pdf"><MenuItem primaryText="Download Leaders" /></Link> }
       { !auth.authenticated && <Link to="/signin" ><MenuItem primaryText="Sign in" /></Link> }
       { !auth.authenticated && <Link to="/signup" ><MenuItem primaryText="Sign up" /></Link> }
       { auth.authenticated && <Link to="/profile" ><MenuItem primaryText="Profile" /></Link> }
