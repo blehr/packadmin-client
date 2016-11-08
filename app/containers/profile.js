@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { TextField } from 'redux-form-material-ui';
+import LoadingComponent from './loading_container';
 import ErrorDisplay from './error_container';
 import * as actions from '../actions';
 import ProfileValidate from '../utils/profile_validation';
@@ -23,12 +24,18 @@ class Profile extends Component {
   }
 
   doSubmit(values) {
-    console.log(values);
     this.props.updateUser(values);
   }
   render() {
+    if (!this.props.user) {
+      return (
+        <div className="row">
+          <LoadingComponent />
+        </div>
+      );
+    }
     return (
-       <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
+      <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
         <div className="row">
           <div className="col-sm-12">
             <div className="welcome-card">
@@ -72,12 +79,21 @@ class Profile extends Component {
 
 const mapStateToProps = ({ error, user }) => ({
   error,
+  user,
   initialValues: user.profile,
 });
+
+Profile.propTypes = {
+  user: PropTypes.object,
+  pristine: PropTypes.bool,
+  submitting: PropTypes.bool,
+  updateUser: PropTypes.func,
+  getUser: PropTypes.func,
+  handleSubmit: PropTypes.func,
+};
 
 const form = reduxForm({ form: 'profile', enableReinitialize: true, validate: ProfileValidate });
 
 Profile = connect(mapStateToProps, actions)(form(Profile));
 
 export default Profile;
-
