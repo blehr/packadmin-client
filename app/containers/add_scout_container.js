@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import { Checkbox, DatePicker, TextField, SelectField } from 'redux-form-material-ui';
 import ErrorDisplay from './error_container';
+import { makeFormSafe } from '../utils/makeFormSafe';
 import LoadingComponent from './loading_container';
 import * as actions from '../actions';
 import validate from '../utils/add_scout_validation';
@@ -422,8 +423,8 @@ const mapStateToProps = ({ scouts, error }) => ({
 });
 
 
-const form = reduxForm({ form: 'addScout', enableReinitialize: true, validate });
+AddScoutContainer = reduxForm({ form: 'addScout', enableReinitialize: true, validate })(makeFormSafe(AddScoutContainer));
 
-AddScoutContainer = connect(mapStateToProps, actions)(form(AddScoutContainer));
+AddScoutContainer = connect(mapStateToProps, actions)(AddScoutContainer);
 
 export default AddScoutContainer;

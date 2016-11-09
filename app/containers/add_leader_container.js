@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { DatePicker, TextField } from 'redux-form-material-ui';
 import ErrorDisplay from './error_container';
+import { makeFormSafe } from '../utils/makeFormSafe';
 import LoadingComponent from './loading_container';
 import * as actions from '../actions';
 import leaderValidate from '../utils/add_leader_validation';
@@ -192,8 +193,8 @@ const mapStateToProps = ({ leaders }) => ({
   initialValues: leaders.leaders[0],
 });
 
-const form = reduxForm({ form: 'addLeader', enableReinitialize: true, leaderValidate });
+AddLeader = reduxForm({ form: 'addLeader', enableReinitialize: true, leaderValidate })(makeFormSafe(AddLeader));
 
-AddLeader = connect(mapStateToProps, actions)(form(AddLeader));
+AddLeader = connect(mapStateToProps, actions)(AddLeader);
 
 export default AddLeader;

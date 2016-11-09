@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { TextField } from 'redux-form-material-ui';
 import LoadingComponent from './loading_container';
+import { makeFormSafe } from '../utils/makeFormSafe';
 import ErrorDisplay from './error_container';
 import * as actions from '../actions';
 import ProfileValidate from '../utils/profile_validation';
@@ -92,8 +93,12 @@ Profile.propTypes = {
   handleSubmit: PropTypes.func,
 };
 
-const form = reduxForm({ form: 'profile', enableReinitialize: true, validate: ProfileValidate });
+// const form = reduxForm({ form: 'profile', enableReinitialize: true, validate: ProfileValidate });
 
-Profile = connect(mapStateToProps, actions)(form(Profile));
+// Profile = connect(mapStateToProps, actions)(form(Profile));
+
+Profile = reduxForm({ form: 'profile', enableReinitialize: true, validate: ProfileValidate })(makeFormSafe(Profile));
+
+Profile = connect(mapStateToProps, actions)(Profile);
 
 export default Profile;
