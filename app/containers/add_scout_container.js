@@ -24,7 +24,7 @@ class AddScoutContainer extends Component {
     if (this.props.params.id) {
       this.props.getScoutDetail(this.props.params.id);
     } else {
-      this.props.clearAllScouts();
+      this.props.clearScoutDetail();
     }
   }
 
@@ -402,7 +402,7 @@ class AddScoutContainer extends Component {
 }
 
 AddScoutContainer.propTypes = {
-  clearAllScouts: PropTypes.func,
+  clearScoutDetail: PropTypes.func,
   error: PropTypes.string,
   scouts: PropTypes.Objcet,
   getScoutDetail: PropTypes.func,
