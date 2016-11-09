@@ -20,7 +20,7 @@ class AddScoutContainer extends Component {
 
     this.doSubmit = this.doSubmit.bind(this);
   }
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.params.id) {
       this.props.getScoutDetail(this.props.params.id);
     } else {
