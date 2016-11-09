@@ -7,7 +7,7 @@ import {
   CLEAR_LEADERS,
 } from '../actions';
 
-export default function (state = { leaders: [] }, action) {
+export default function (state = { leaders: [], leaderDetail: {} }, action) {
   switch (action.type) {
     case GET_LEADERS:
       return { ...state, leaders: action.payload };
@@ -20,7 +20,7 @@ export default function (state = { leaders: [] }, action) {
       if (action.payload.youthProtection) {
         action.payload.youthProtection = new Date(action.payload.youthProtection);
       }
-      return { ...state, leaders: [action.payload] };
+      return { ...state, leaderDetail: action.payload };
     case GET_LEADER:
       const newLeader = state.leaders.filter(leader => (
         action.payload === leader._id
@@ -31,9 +31,9 @@ export default function (state = { leaders: [] }, action) {
       if (newLeader[0].youthProtection) {
         newLeader[0].youthProtection = new Date(newLeader[0].youthProtection);
       }
-      return { ...state, leaders: newLeader };
+      return { ...state, leaderDetail: newLeader[0] };
     case CLEAR_LEADERS:
-      return { ...state, leaders: [] };
+      return { ...state, leaders: [], leaderDetail: {} };
     default:
       return state;
   }

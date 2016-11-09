@@ -17,7 +17,7 @@ class LeaderDetailContainer extends Component {
   }
   componentDidMount() {
     if (this.props.params.id) {
-      if (this.props.leaders.leaders.length !== 1) {
+      if (this.props.leaders.leaders.length < 1) {
         setTimeout(() => {
           this.props.getLeader(this.props.params.id);
         }, 1000);
@@ -27,15 +27,15 @@ class LeaderDetailContainer extends Component {
     }
   }
   handleOnClickEdit() {
-    browserHistory.push(`/leaders/update/${this.props.leaders.leaders[0]._id}`);
+    browserHistory.push(`/leaders/update/${this.props.leaders.leaderDetail._id}`);
   }
   handleOnClickDelete() {
-    this.props.removeLeader(this.props.leaders.leaders[0]._id);
+    this.props.removeLeader(this.props.leaders.leaderDetail._id);
   }
 
   render() {
     const { leaders, error } = this.props;
-    if (!leaders.leaders || leaders.leaders.length !== 1) {
+    if (!leaders.leaders || !leaders.leaderDetail.firstName) {
       if (error) {
         return <ErrorDisplay />;
       }
@@ -50,7 +50,7 @@ class LeaderDetailContainer extends Component {
       <div>
         <div className="row">
           <ConfirmToolbar
-            id={leaders.leaders[0]._id}
+            id={leaders.leaderDetail._id}
             edit={this.handleOnClickEdit}
             remove={this.handleOnClickDelete}
           />
@@ -58,7 +58,7 @@ class LeaderDetailContainer extends Component {
         <div className="row">
           <LoadingComponent />
           <LeaderDetail
-            leader={leaders.leaders[0]}
+            leader={leaders.leaderDetail}
             removeLeader={this.props.removeLeader}
           />
         </div>

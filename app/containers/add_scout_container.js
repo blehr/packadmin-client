@@ -39,7 +39,7 @@ class AddScoutContainer extends Component {
   render() {
     const { scouts, error } = this.props;
     if (this.props.params.id) {
-      if (!scouts.allScouts || scouts.allScouts.length !== 1) {
+      if (!scouts.scoutDetail || !scouts.scoutDetail.scoutFirstName) {
         if (error) {
           return <ErrorDisplay />;
         }
@@ -419,7 +419,7 @@ AddScoutContainer.propTypes = {
 const mapStateToProps = ({ scouts, error }) => ({
   error,
   scouts,
-  initialValues: scouts.allScouts[0],
+  initialValues: scouts.scoutDetail,
 });
 
 

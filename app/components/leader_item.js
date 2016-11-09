@@ -10,11 +10,9 @@ const LeaderItem = ({ leader }) => (
       <div className="inner-leader-item">
         <p>{ leader.position }</p>
         { leader.mobilePhone && <p><i className="fa fa-mobile" /> {leader.mobilePhone}</p> }
-        {/* { leader.homePhone && <p><i className="fa fa-home" /> {leader.homePhone}</p> }
-        { leader.workPhone && <p><i className="fa fa-briefcase" /> {leader.workPhone}</p> } */}
+
         { leader.email && <p><i className="fa fa-envelope-o" /> {leader.email}</p> }
-      <div>
-      </div>
+
         { leader.youthProtection &&
           <p>
             Youth <i

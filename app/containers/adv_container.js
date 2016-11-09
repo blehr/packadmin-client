@@ -17,7 +17,7 @@ class Advancement extends Component {
     this.doSubmit = this.doSubmit.bind(this);
   }
   componentDidMount() {
-    if (this.props.scouts.allScouts.length !== 1) {
+    if (!this.props.scouts.scoutDetail) {
       setTimeout(() => {
         this.props.getScoutDetail(this.props.params.id);
       }, 1000);
@@ -106,8 +106,8 @@ class Advancement extends Component {
             <div className="">
               <h4 className="text-center adv-scout-name">
                 <i className="fa fa-user" />
-                {scouts.allScouts[0].scoutFirstName} {scouts.allScouts[0].scoutLastName}
-                <span style={{ marginLeft: '20px' }}>{scouts.allScouts[0].den} Den</span>
+                {scouts.scoutDetail.scoutFirstName} {scouts.scoutDetail.scoutLastName}
+                <span style={{ marginLeft: '20px' }}>{scouts.scoutDetail.den} Den</span>
               </h4>
             </div>
           </div>

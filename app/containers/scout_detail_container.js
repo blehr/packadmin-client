@@ -18,7 +18,7 @@ class ScoutDetailContainer extends Component {
   }
   componentDidMount() {
     if (this.props.params.id) {
-      if (this.props.scouts.allScouts.length !== 1) {
+      if (this.props.scouts.allScouts.length < 1) {
         setTimeout(() => {
           this.props.getScoutDetail(this.props.params.id);
         }, 1000);
@@ -28,15 +28,15 @@ class ScoutDetailContainer extends Component {
     }
   }
   handleOnClickEdit() {
-    browserHistory.push(`/scouts/update/${this.props.scouts.allScouts[0]._id}`);
+    browserHistory.push(`/scouts/update/${this.props.scouts.scoutDetail._id}`);
   }
   handleOnClickDelete() {
-    this.props.removeScout(this.props.scouts.allScouts[0]._id);
+    this.props.removeScout(this.props.scouts.scoutDetail._id);
   }
 
   render() {
     const { scouts, error } = this.props;
-    if (!scouts.allScouts || scouts.allScouts.length !== 1) {
+    if (!scouts.scoutDetail || !scouts.scoutDetail.scoutFirstName) {
       if (error) {
         return <ErrorDisplay />;
       }
@@ -51,7 +51,7 @@ class ScoutDetailContainer extends Component {
       <div>
         <div className="row">
           <ConfirmToolbar
-            id={scouts.allScouts[0]._id}
+            id={scouts.scoutDetail._id}
             edit={this.handleOnClickEdit}
             remove={this.handleOnClickDelete}
           />
@@ -59,11 +59,11 @@ class ScoutDetailContainer extends Component {
         <div className="row">
           <LoadingComponent />
           <ScoutDetail
-            scout={scouts.allScouts[0]}
+            scout={scouts.scoutDetail}
           />
         </div>
         <div className="row">
-          <DisplayRankProgress scout={scouts.allScouts[0]} activeDen={scouts.advDen} />
+          <DisplayRankProgress scout={scouts.scoutDetail} activeDen={scouts.advDen} />
         </div>
       </div>
     );

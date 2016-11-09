@@ -37,7 +37,7 @@ class AddLeader extends Component {
   render() {
     const { leaders, error } = this.props;
     if (this.props.params.id) {
-      if (!leaders.leaders || leaders.leaders.length !== 1) {
+      if (!leaders.leaderDetail || !leaders.leaderDetail.firstName) {
         if (error) {
           return <ErrorDisplay />;
         }
@@ -190,7 +190,7 @@ AddLeader.propTypes = {
 
 const mapStateToProps = ({ leaders }) => ({
   leaders,
-  initialValues: leaders.leaders[0],
+  initialValues: leaders.leaderDetail,
 });
 
 AddLeader = reduxForm({ form: 'addLeader', enableReinitialize: true, leaderValidate })(makeFormSafe(AddLeader));
