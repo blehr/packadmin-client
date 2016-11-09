@@ -93,9 +93,6 @@ Profile.propTypes = {
   handleSubmit: PropTypes.func,
 };
 
-// const form = reduxForm({ form: 'profile', enableReinitialize: true, validate: ProfileValidate });
-
-// Profile = connect(mapStateToProps, actions)(form(Profile));
 
 Profile = reduxForm({ form: 'profile', enableReinitialize: true, validate: ProfileValidate })(makeFormSafe(Profile));
 
