@@ -5,7 +5,7 @@ const LoadingComponent = ({ loading }) => {
   if (loading) {
     return (
       <div className="loader">
-        <div>
+        <div className="loading-div">
           <i className="fa fa-spinner fa-pulse fa-5x fa-fw" aria-hidden="true" />
         </div>
       </div>
