@@ -35,19 +35,19 @@ class AddLeader extends Component {
     }
   }
   render() {
-    const { leaders, error } = this.props;
-    if (this.props.params.id) {
-      if (!leaders.leaderDetail || !leaders.leaderDetail.firstName) {
-        if (error) {
-          return <ErrorDisplay />;
-        }
-        return (
-          <div style={{ position: 'relative' }}>
-            <LoadingComponent />
-          </div>
-        );
-      }
-    }
+    // const { leaders, error } = this.props;
+    // if (this.props.params.id) {
+    //   if (!leaders.leaderDetail) {
+    //     if (error) {
+    //       return <ErrorDisplay />;
+    //     }
+    //     return (
+    //       <div style={{ position: 'relative' }}>
+    //         <LoadingComponent />
+    //       </div>
+    //     );
+    //   }
+    // }
     return (
       <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
         <div className="row">

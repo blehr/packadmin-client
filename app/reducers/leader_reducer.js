@@ -5,6 +5,7 @@ import {
   ADD_LEADER,
   REMOVE_LEADER,
   CLEAR_LEADERS,
+  CLEAR_LEADER_DETAIL,
 } from '../actions';
 
 export default function (state = { leaders: [], leaderDetail: {} }, action) {
@@ -33,7 +34,9 @@ export default function (state = { leaders: [], leaderDetail: {} }, action) {
       }
       return { ...state, leaderDetail: newLeader[0] };
     case CLEAR_LEADERS:
-      return { ...state, leaders: [], leaderDetail: {} };
+      return { ...state, leaders: [] };
+    case CLEAR_LEADER_DETAIL:
+      return { ...state, leaderDetail: {} };
     default:
       return state;
   }
