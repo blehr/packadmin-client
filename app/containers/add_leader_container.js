@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { DatePicker, TextField } from 'redux-form-material-ui';
 import ErrorDisplay from './error_container';
-import { makeFormSafe } from '../utils/makeFormSafe';
 import LoadingComponent from './loading_container';
 import * as actions from '../actions';
 import leaderValidate from '../utils/add_leader_validation';
@@ -35,19 +34,19 @@ class AddLeader extends Component {
     }
   }
   render() {
-    // const { leaders, error } = this.props;
-    // if (this.props.params.id) {
-    //   if (!leaders.leaderDetail) {
-    //     if (error) {
-    //       return <ErrorDisplay />;
-    //     }
-    //     return (
-    //       <div style={{ position: 'relative' }}>
-    //         <LoadingComponent />
-    //       </div>
-    //     );
-    //   }
-    // }
+    const { leaders, error } = this.props;
+    if (this.props.params.id) {
+      if (!leaders.leaderDetail) {
+        if (error) {
+          return <ErrorDisplay />;
+        }
+        return (
+          <div style={{ position: 'relative' }}>
+            <LoadingComponent />
+          </div>
+        );
+      }
+    }
     return (
       <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
         <div className="row">
@@ -193,7 +192,7 @@ const mapStateToProps = ({ leaders }) => ({
   initialValues: leaders.leaderDetail,
 });
 
-AddLeader = reduxForm({ form: 'addLeader', enableReinitialize: true, leaderValidate })(makeFormSafe(AddLeader));
+AddLeader = reduxForm({ form: 'addLeader', enableReinitialize: true, leaderValidate })(AddLeader);
 
 AddLeader = connect(mapStateToProps, actions)(AddLeader);
 

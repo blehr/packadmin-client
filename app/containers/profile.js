@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { TextField } from 'redux-form-material-ui';
 import LoadingComponent from './loading_container';
-import { makeFormSafe } from '../utils/makeFormSafe';
 import ErrorDisplay from './error_container';
 import * as actions from '../actions';
 import ProfileValidate from '../utils/profile_validation';
@@ -28,13 +27,13 @@ class Profile extends Component {
     this.props.updateUser(values);
   }
   render() {
-    // if (!this.props.user || !this.props.user.profile) {
-    //   return (
-    //     <div className="row">
-    //       <LoadingComponent />
-    //     </div>
-    //   );
-    // }
+    if (!this.props.user || !this.props.user.profile) {
+      return (
+        <div className="row">
+          <LoadingComponent />
+        </div>
+      );
+    }
     return (
       <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
         <div className="row">
@@ -94,7 +93,7 @@ Profile.propTypes = {
 };
 
 
-Profile = reduxForm({ form: 'profile', enableReinitialize: true, validate: ProfileValidate })(makeFormSafe(Profile));
+Profile = reduxForm({ form: 'profile', enableReinitialize: true, validate: ProfileValidate })(Profile);
 
 Profile = connect(mapStateToProps, actions)(Profile);
 

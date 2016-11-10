@@ -5,7 +5,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import { Checkbox, DatePicker, TextField, SelectField } from 'redux-form-material-ui';
 import ErrorDisplay from './error_container';
-import { makeFormSafe } from '../utils/makeFormSafe';
 import LoadingComponent from './loading_container';
 import * as actions from '../actions';
 import validate from '../utils/add_scout_validation';
@@ -37,19 +36,19 @@ class AddScoutContainer extends Component {
   }
 
   render() {
-    // const { scouts, error } = this.props;
-    // if (this.props.params.id) {
-    //   if (!scouts.scoutDetail) {
-    //     if (error) {
-    //       return <ErrorDisplay />;
-    //     }
-    //     return (
-    //       <div style={{ position: 'relative' }}>
-    //         <LoadingComponent />
-    //       </div>
-    //     );
-    //   }
-    // }
+    const { scouts, error } = this.props;
+    if (this.props.params.id) {
+      if (!scouts.scoutDetail) {
+        if (error) {
+          return <ErrorDisplay />;
+        }
+        return (
+          <div style={{ position: 'relative' }}>
+            <LoadingComponent />
+          </div>
+        );
+      }
+    }
 
     return (
       <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
