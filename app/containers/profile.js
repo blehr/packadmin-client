@@ -28,13 +28,13 @@ class Profile extends Component {
     this.props.updateUser(values);
   }
   render() {
-    if (!this.props.user || !this.props.user.profile) {
-      return (
-        <div className="row">
-          <LoadingComponent />
-        </div>
-      );
-    }
+    // if (!this.props.user || !this.props.user.profile) {
+    //   return (
+    //     <div className="row">
+    //       <LoadingComponent />
+    //     </div>
+    //   );
+    // }
     return (
       <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
         <div className="row">

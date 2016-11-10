@@ -26,11 +26,13 @@ export const ADD_LEADER = 'ADD_LEADER';
 export const UPDATE_LEADER = 'UPDATE_LEADER';
 export const REMOVE_LEADER = 'REMOVE_LEADER';
 export const CLEAR_LEADERS = 'CLEAR_LEADERS';
+export const CLEAR_LEADER_DETAIL = 'CLEAR_LEADER_DETAIL';
 export const CREATE_PDF = 'CREATE_PDF';
 export const CLEAR_PDF = 'CLEAR_PDF';
 
 // export const ROOT_URL = 'http://localhost';
 export const ROOT_URL = 'https://packadmin.com';
+// export const ROOT_URL = 'https://express-project-brandonl.c9users.io';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
 const SCOUT_DETAIL_URL = `${ROOT_URL}/scouts/detail`;
@@ -65,6 +67,10 @@ export const clearScoutDetail = () => ({
 
 export const clearLeaders = () => ({
   type: CLEAR_LEADERS,
+});
+
+export const clearLeaderDetail = () => ({
+  type: CLEAR_LEADER_DETAIL,
 });
 
 // show loader
@@ -412,7 +418,9 @@ export const signoutUser = () => (
   (dispatch) => {
     localStorage.removeItem('token');
     dispatch(clearAllScouts());
+    dispatch(clearScoutDetail());
     dispatch(clearLeaders());
+    dispatch(clearLeaderDetail());
     dispatch({ type: UNAUTH_USER });
     browserHistory.push('/');
   }

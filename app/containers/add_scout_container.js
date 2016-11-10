@@ -37,19 +37,19 @@ class AddScoutContainer extends Component {
   }
 
   render() {
-    const { scouts, error } = this.props;
-    if (this.props.params.id) {
-      if (!scouts.scoutDetail || !scouts.scoutDetail.scoutFirstName) {
-        if (error) {
-          return <ErrorDisplay />;
-        }
-        return (
-          <div style={{ position: 'relative' }}>
-            <LoadingComponent />
-          </div>
-        );
-      }
-    }
+    // const { scouts, error } = this.props;
+    // if (this.props.params.id) {
+    //   if (!scouts.scoutDetail) {
+    //     if (error) {
+    //       return <ErrorDisplay />;
+    //     }
+    //     return (
+    //       <div style={{ position: 'relative' }}>
+    //         <LoadingComponent />
+    //       </div>
+    //     );
+    //   }
+    // }
 
     return (
       <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
