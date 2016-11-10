@@ -422,7 +422,7 @@ const mapStateToProps = ({ scouts, error }) => ({
 });
 
 
-AddScoutContainer = reduxForm({ form: 'addScout', enableReinitialize: true, validate })(makeFormSafe(AddScoutContainer));
+AddScoutContainer = reduxForm({ form: 'addScout', enableReinitialize: true, validate })(AddScoutContainer);
 
 AddScoutContainer = connect(mapStateToProps, actions)(AddScoutContainer);
 
