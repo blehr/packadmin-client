@@ -47,7 +47,7 @@ class Advancement extends Component {
     let elemArrow = '';
     let elemElective = '';
     let elemOthers = '';
-    if (scouts.allScouts.length !== 1) {
+    if (!scouts.scoutDetail) {
       return <h2>Loading...</h2>;
     }
     if (den.denObj.Requirements) {
