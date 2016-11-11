@@ -29,9 +29,11 @@ export const CLEAR_LEADERS = 'CLEAR_LEADERS';
 export const CLEAR_LEADER_DETAIL = 'CLEAR_LEADER_DETAIL';
 export const CREATE_PDF = 'CREATE_PDF';
 export const CLEAR_PDF = 'CLEAR_PDF';
+export const CHECK_TOKEN_RESPONSE = 'CHECK_TOKEN_RESPONSE';
+export const NEW_PASSWORD_RESPONSE = 'NEW_PASSWORD_RESPONSE';
 
-export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-// export const ROOT_URL = 'http://localhost';
+// export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
+export const ROOT_URL = 'http://localhost:8080';
 // export const ROOT_URL = 'https://packadmin.com';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
@@ -451,7 +453,7 @@ export const requestPasswordReset = data => (
     const URL = `${ROOT_URL}/password`;
     axios.post(URL, { data })
       .then((response) => {
-        console.log(response);
+        console.log('requestPasswordReset', response.data);
       })
       .error((error) => {
         console.log(error.response);
@@ -459,15 +461,42 @@ export const requestPasswordReset = data => (
   }
 );
 
-export const checkToken = data => (
+export const checkToken = token => (
   (dispatch) => {
-    const URL = `${ROOT_URL}/password/reset/${data}`;
-    axios.post(URL, { data })
+    const URL = `${ROOT_URL}/password/reset/${token}`;
+    axios.post(URL, { token })
       .then((response) => {
-        console.log(response);
+        dispatch({
+          type: CHECK_TOKEN_RESPONSE,
+          payload: response.data,
+        });
+        if (!response.data.success) {
+          browserHistory.push('/request');
+        }
+        console.log('checkToken', response.data);
       })
-      .error((error) => {
+      .catch((error) => {
         console.log(error.response);
+      });
+  }
+);
+
+export const submitResetPassword = ({ values, token }) => (
+  (dispatch) => {
+    const URL = `${ROOT_URL}/password/submit/${token}`;
+    axios.post(URL, { values })
+      .then((response) => {
+        dispatch({
+          type: NEW_PASSWORD_RESPONSE,
+          payload: response.data.success,
+        });
+        if (response.data.success) {
+          browserHistory.push('/signin');
+        }
+        console.log('submitResetPassword', response.data);
+      })
+      .catch((error) => {
+        console.log('error', error);
       });
   }
 );

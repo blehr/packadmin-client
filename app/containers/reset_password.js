@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import { TextField } from 'redux-form-material-ui';
+import NewPasswordValidate from '../utils/new_password_validation';
 import ErrorDisplay from './error_container';
 import * as actions from '../actions';
 
@@ -11,7 +12,7 @@ const style = {
 };
 
 class ResetPassword extends Component {
-   constructor(props) {
+  constructor(props) {
     super(props);
     this.doSubmit = this.doSubmit.bind(this);
   }
@@ -21,7 +22,10 @@ class ResetPassword extends Component {
   }
 
   doSubmit(values) {
-    this.props.requestPasswordReset(values);
+    const data = {};
+    data.values = values;
+    data.token = this.props.auth.resetToken;
+    this.props.submitResetPassword(data);
   }
   render() {
     return (
@@ -32,12 +36,17 @@ class ResetPassword extends Component {
               <div className="form-flex-container">
                 <div className="form form-flex-item">
                   <fieldset className="form-group">
-                    <legend>Enter Email</legend>
-                    <div><small>An email will be sent with instructions on resetting your password.</small></div>
+                    <legend>Password Reset</legend>
                     <Field
                       name="password"
                       component={TextField}
                       floatingLabelText="Password"
+                      type="password"
+                    />
+                    <Field
+                      name="confirmPassword"
+                      component={TextField}
+                      floatingLabelText="Confirm Password"
                       type="password"
                     />
                   </fieldset>
@@ -63,16 +72,21 @@ class ResetPassword extends Component {
 }
 
 ResetPassword.propTypes = {
+  auth: PropTypes.object,
+  params: PropTypes.object,
   handleSubmit: PropTypes.func,
   pristine: PropTypes.bool,
   submitting: PropTypes.bool,
-  signinUser: PropTypes.func,
-  clearApiError: PropTypes.func,
+  checkToken: PropTypes.func,
+  submitResetPassword: PropTypes.func,
 };
 
-ResetPassword = reduxForm({ form: 'resetPassword' })(ResetPassword);
+const mapStateToProps = ({ auth }) => ({
+  auth,
+});
 
-ResetPassword = connect(null, actions)(ResetPassword);
+ResetPassword = reduxForm({ form: 'resetPassword', validate: NewPasswordValidate })(ResetPassword);
+
+ResetPassword = connect(mapStateToProps, actions)(ResetPassword);
 
 export default ResetPassword;
-

@@ -11,12 +11,12 @@ const style = {
 };
 
 class RequestPassword extends Component {
-   constructor(props) {
+  constructor(props) {
     super(props);
     this.doSubmit = this.doSubmit.bind(this);
   }
   componentDidMount() {
-    this.props.checkToken(this.props.params.token);
+
   }
 
   doSubmit(values) {
@@ -32,7 +32,11 @@ class RequestPassword extends Component {
                 <div className="form form-flex-item">
                   <fieldset className="form-group">
                     <legend>Enter Email</legend>
-                    <div><small>An email will be sent with instructions on resetting your password.</small></div>
+                    <div>
+                      <small>
+                        An email will be sent with instructions on resetting your password.
+                      </small>
+                    </div>
                     <Field
                       name="email"
                       component={TextField}
@@ -62,11 +66,12 @@ class RequestPassword extends Component {
 }
 
 RequestPassword.propTypes = {
+  params: PropTypes.object,
   handleSubmit: PropTypes.func,
   pristine: PropTypes.bool,
   submitting: PropTypes.bool,
-  signinUser: PropTypes.func,
-  clearApiError: PropTypes.func,
+  checkToken: PropTypes.func,
+  requestPasswordReset: PropTypes.func,
 };
 
 RequestPassword = reduxForm({ form: 'requestPassword' })(RequestPassword);
@@ -74,4 +79,3 @@ RequestPassword = reduxForm({ form: 'requestPassword' })(RequestPassword);
 RequestPassword = connect(null, actions)(RequestPassword);
 
 export default RequestPassword;
-
