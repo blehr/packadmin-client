@@ -30,7 +30,8 @@ export const CLEAR_LEADER_DETAIL = 'CLEAR_LEADER_DETAIL';
 export const CREATE_PDF = 'CREATE_PDF';
 export const CLEAR_PDF = 'CLEAR_PDF';
 
-export const ROOT_URL = 'http://localhost';
+export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
+// export const ROOT_URL = 'http://localhost';
 // export const ROOT_URL = 'https://packadmin.com';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
@@ -442,5 +443,31 @@ export const signupUser = data => (
       dispatch(endFetching());
       dispatch(setError(error.response.data.error));
     });
+  }
+);
+
+export const requestPasswordReset = data => (
+  (dispatch) => {
+    const URL = `${ROOT_URL}/password`;
+    axios.post(URL, { data })
+      .then((response) => {
+        console.log(response);
+      })
+      .error((error) => {
+        console.log(error.response);
+      });
+  }
+);
+
+export const checkToken = data => (
+  (dispatch) => {
+    const URL = `${ROOT_URL}/password/reset/${data}`;
+    axios.post(URL, { data })
+      .then((response) => {
+        console.log(response);
+      })
+      .error((error) => {
+        console.log(error.response);
+      });
   }
 );
