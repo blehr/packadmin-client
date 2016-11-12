@@ -37,7 +37,8 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
-    new CopyWebpackPlugin([{ from: 'app/favicon', to: 'favicon' }])
+    new CopyWebpackPlugin([{ from: 'app/favicon', to: 'favicon' }]),
+    new CopyWebpackPlugin([{ from: 'app/images', to: 'images' }])
   ],
   module: {
     loaders: [{
@@ -53,6 +54,9 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style', 'css!postcss')
+    },
+    {
+      test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'
     }]
   },
   postcss: [
