@@ -4,7 +4,8 @@ import * as actions from '../actions';
 
 class ErrorDisplay extends Component {
   componentWillUnmount() {
-    this.props.clearError();
+    // this.props.clearError();
+    // console.log('error unmount');
   }
   render() {
     if (this.props.error) {

@@ -17,7 +17,7 @@ class ResetPassword extends Component {
     this.doSubmit = this.doSubmit.bind(this);
   }
   componentDidMount() {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     this.props.checkToken(this.props.params.token);
   }
 
@@ -29,12 +29,12 @@ class ResetPassword extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
-        <div className="row">
-          <div className="col-sm-12">
-            <div className="welcome-card">
-              <div className="form-flex-container">
-                <div className="form form-flex-item">
+      <div className="row">
+        <div className="col-sm-12">
+          <div className="welcome-card">
+            <div className="form-flex-container">
+              <div className="form form-flex-item">
+                <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
                   <fieldset className="form-group">
                     <legend>Password Reset</legend>
                     <Field
@@ -60,19 +60,18 @@ class ResetPassword extends Component {
                       primary
                     />
                   </div>
-                </div>
+                </form>
               </div>
-              <ErrorDisplay />
             </div>
+            <ErrorDisplay />
           </div>
         </div>
-      </form>
+      </div>
     );
   }
 }
 
 ResetPassword.propTypes = {
-  auth: PropTypes.object,
   params: PropTypes.object,
   handleSubmit: PropTypes.func,
   pristine: PropTypes.bool,

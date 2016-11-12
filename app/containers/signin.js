@@ -19,6 +19,7 @@ class Signin extends Component {
   }
   componentDidMount() {
     window.scrollTo(0, 0);
+    this.props.clearError();
   }
 
   doSubmit(values) {
@@ -26,12 +27,12 @@ class Signin extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
-        <div className="row">
-          <div className="col-sm-12">
-            <div className="welcome-card">
-              <div className="form-flex-container">
-                <div className="form form-flex-item">
+      <div className="row">
+        <div className="col-sm-12">
+          <div className="welcome-card">
+            <div className="form-flex-container">
+              <div className="form form-flex-item">
+                <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
                   <fieldset className="form-group">
                     <legend>Sign In!</legend>
                     <Field
@@ -58,13 +59,13 @@ class Signin extends Component {
                       primary
                     />
                   </div>
-                </div>
+                </form>
               </div>
-              <ErrorDisplay />
             </div>
+            <ErrorDisplay />
           </div>
         </div>
-      </form>
+      </div>
     );
   }
 }
@@ -74,7 +75,7 @@ Signin.propTypes = {
   pristine: PropTypes.bool,
   submitting: PropTypes.bool,
   signinUser: PropTypes.func,
-  clearApiError: PropTypes.func,
+  clearError: PropTypes.func,
 };
 
 

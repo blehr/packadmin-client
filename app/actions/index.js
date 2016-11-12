@@ -31,9 +31,10 @@ export const CREATE_PDF = 'CREATE_PDF';
 export const CLEAR_PDF = 'CLEAR_PDF';
 export const CHECK_TOKEN_RESPONSE = 'CHECK_TOKEN_RESPONSE';
 export const NEW_PASSWORD_RESPONSE = 'NEW_PASSWORD_RESPONSE';
+export const NO_EMAIL = 'NO_EMAIL';
 
-// export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-export const ROOT_URL = 'http://localhost:8080';
+export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
+// export const ROOT_URL = 'http://localhost:8080';
 // export const ROOT_URL = 'https://packadmin.com';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
@@ -163,7 +164,7 @@ export const getAllScouts = () => (
           payload: response.data.scouts,
         });
         dispatch(endFetching());
-        dispatch(clearError());
+        // dispatch(clearError());
       })
       .catch((error) => {
         dispatch(endFetching());
@@ -184,7 +185,7 @@ export const getLeaders = () => (
           payload: response.data.leaders,
         });
         dispatch(endFetching());
-        dispatch(clearError());
+        // dispatch(clearError());
       })
       .catch((error) => {
         dispatch(endFetching());
@@ -453,10 +454,19 @@ export const requestPasswordReset = data => (
     const URL = `${ROOT_URL}/password`;
     axios.post(URL, { data })
       .then((response) => {
-        console.log('requestPasswordReset', response.data);
+        if (response.data.success) {
+          dispatch(clearError());
+          browserHistory.push('/confirm-request');
+        }
+        if (!response.data.success) {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'No account with that email address exists.',
+          });
+        }
       })
       .error((error) => {
-        console.log(error.response);
+        console.log('error', error);
       });
   }
 );
@@ -466,14 +476,16 @@ export const checkToken = token => (
     const URL = `${ROOT_URL}/password/reset/${token}`;
     axios.post(URL, { token })
       .then((response) => {
-        dispatch({
-          type: CHECK_TOKEN_RESPONSE,
-          payload: response.data,
-        });
+        if (response.data.success) {
+          dispatch({
+            type: CHECK_TOKEN_RESPONSE,
+            payload: response.data,
+          });
+        }
         if (!response.data.success) {
+          dispatch(setError('The pasword reset link has expired. Please try agin.'));
           browserHistory.push('/request');
         }
-        console.log('checkToken', response.data);
       })
       .catch((error) => {
         console.log(error.response);
@@ -493,7 +505,9 @@ export const submitResetPassword = ({ values, token }) => (
         if (response.data.success) {
           browserHistory.push('/signin');
         }
-        console.log('submitResetPassword', response.data);
+        if (!response.data.success) {
+          dispatch(setError('Password reset was unsuccessful.'));
+        }
       })
       .catch((error) => {
         console.log('error', error);

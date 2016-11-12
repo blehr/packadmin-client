@@ -16,6 +16,7 @@ import requireAuth from './containers/require_auth';
 import Advancement from './containers/adv_container';
 import RequestPassword from './containers/request_password_reset';
 import ResetPassword from './containers/reset_password';
+import EmailSent from './containers/email_sent_container';
 
 import PdfContainer from './containers/pdf_container';
 import PdfLeadersContainer from './containers/pdf_leaders_container';
@@ -27,6 +28,7 @@ export default (
     <Route path="/signin" component={Signin} />
     <Route path="/request" component={RequestPassword} />
     <Route path="/reset/:token" component={ResetPassword} />
+    <Route path="/confirm-request" component={EmailSent} />
     <Route path="/profile" component={requireAuth(Profile)} />
     <Route path="/leaders" component={requireAuth(LeaderRosterContainer)} />
     <Route path="/leaders/pdf" component={requireAuth(PdfLeadersContainer)} />

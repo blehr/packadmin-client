@@ -19,6 +19,7 @@ class Signup extends Component {
   }
   componentDidMount() {
     window.scrollTo(0, 0);
+    this.props.clearError();
   }
 
   doHandleSubmit(values) {
@@ -27,12 +28,12 @@ class Signup extends Component {
 
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(this.doHandleSubmit)}>
-        <div className="row">
-          <div className="col-sm-12">
-            <div className="welcome-card">
-              <div className="form-flex-container">
-                <div className="form form-flex-item">
+      <div className="row">
+        <div className="col-sm-12">
+          <div className="welcome-card">
+            <div className="form-flex-container">
+              <div className="form form-flex-item">
+                <form onSubmit={this.props.handleSubmit(this.doHandleSubmit)}>
                   <fieldset className="form-group">
                     <legend>Sign Up!</legend>
                     <Field
@@ -66,23 +67,23 @@ class Signup extends Component {
                       type="password"
                     />
                   </fieldset>
-                </div>
+                  <div className="form-buttons-container">
+                    <RaisedButton
+                      type="submit"
+                      disabled={this.props.pristine || this.props.submitting}
+                      label="Submit"
+                      style={style}
+                      labelColor={'#FFF'}
+                      primary
+                    />
+                  </div>
+                </form>
+                <ErrorDisplay />
               </div>
-              <div className="form-buttons-container">
-                <RaisedButton
-                  type="submit"
-                  disabled={this.props.pristine || this.props.submitting}
-                  label="Submit"
-                  style={style}
-                  labelColor={'#FFF'}
-                  primary
-                />
-              </div>
-              <ErrorDisplay />
             </div>
           </div>
         </div>
-      </form>
+      </div>
     );
   }
 }
@@ -92,6 +93,7 @@ Signup.propTypes = {
   pristine: PropTypes.bool,
   submitting: PropTypes.bool,
   signupUser: PropTypes.func,
+  clearError: PropTypes.func,
 };
 
 

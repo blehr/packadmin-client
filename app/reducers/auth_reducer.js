@@ -1,4 +1,10 @@
-import { AUTH_USER, UNAUTH_USER, CHECK_TOKEN_RESPONSE, NEW_PASSWORD_RESPONSE } from '../actions';
+import {
+  AUTH_USER,
+  UNAUTH_USER,
+  CHECK_TOKEN_RESPONSE,
+  NEW_PASSWORD_RESPONSE,
+  NO_EMAIL,
+} from '../actions';
 
 export default function (state = {}, action) {
   switch (action.type) {

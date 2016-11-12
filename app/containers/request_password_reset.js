@@ -16,7 +16,7 @@ class RequestPassword extends Component {
     this.doSubmit = this.doSubmit.bind(this);
   }
   componentDidMount() {
-
+    window.scrollTo(0, 0);
   }
 
   doSubmit(values) {
@@ -24,17 +24,17 @@ class RequestPassword extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
-        <div className="row">
-          <div className="col-sm-12">
-            <div className="welcome-card">
-              <div className="form-flex-container">
-                <div className="form form-flex-item">
+      <div className="row">
+        <div className="col-sm-12">
+          <div className="welcome-card">
+            <div className="form-flex-container">
+              <div className="form form-flex-item">
+                <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
                   <fieldset className="form-group">
                     <legend>Enter Email</legend>
                     <div>
                       <small>
-                        An email will be sent with instructions on resetting your password.
+                        Receive an email with password reset instructions.
                       </small>
                     </div>
                     <Field
@@ -54,13 +54,13 @@ class RequestPassword extends Component {
                       primary
                     />
                   </div>
-                </div>
+                </form>
               </div>
-              <ErrorDisplay />
             </div>
+            <ErrorDisplay />
           </div>
         </div>
-      </form>
+      </div>
     );
   }
 }
@@ -73,6 +73,7 @@ RequestPassword.propTypes = {
   checkToken: PropTypes.func,
   requestPasswordReset: PropTypes.func,
 };
+
 
 RequestPassword = reduxForm({ form: 'requestPassword' })(RequestPassword);
 
