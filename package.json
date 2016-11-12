@@ -39,6 +39,7 @@
     "redux": "3.6.0",
     "redux-form": "6.0.5",
     "redux-form-material-ui": "4.0.1",
+    "react-ga": "^1.4.1",
     "redux-promise": "0.5.3",
     "redux-thunk": "2.1.0"
   },
