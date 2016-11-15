@@ -33,8 +33,8 @@ export const CHECK_TOKEN_RESPONSE = 'CHECK_TOKEN_RESPONSE';
 export const NEW_PASSWORD_RESPONSE = 'NEW_PASSWORD_RESPONSE';
 export const NO_EMAIL = 'NO_EMAIL';
 
-// export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-export const ROOT_URL = 'http://localhost:8080';
+export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
+// export const ROOT_URL = 'http://localhost:8080';
 // export const ROOT_URL = 'https://packadmin.com';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
@@ -185,7 +185,6 @@ export const getLeaders = () => (
           payload: response.data.leaders,
         });
         dispatch(endFetching());
-        // dispatch(clearError());
       })
       .catch((error) => {
         dispatch(endFetching());
@@ -208,6 +207,7 @@ export const addScout = data => (
         dispatch(clearError());
         dispatch(endFetching());
         browserHistory.push('/scouts/add-confirm');
+        dispatch(getAllScouts());
       })
       .catch((error) => {
         dispatch(endFetching());
@@ -230,6 +230,7 @@ export const addLeader = data => (
         dispatch(clearError());
         dispatch(endFetching());
         browserHistory.push('/leaders/add-confirm');
+        dispatch(getLeaders());
       })
       .catch((error) => {
         dispatch(endFetching());
@@ -265,6 +266,7 @@ export const updateScout = (data, id) => (
         dispatch(clearError());
         browserHistory.push('/scouts/update-confirm');
         dispatch(endFetching());
+        dispatch(getAllScouts());
       })
       .catch((error) => {
         dispatch(endFetching());
@@ -287,6 +289,7 @@ export const updateLeader = (data, id) => (
         dispatch(clearError());
         browserHistory.push('/leaders/update-confirm');
         dispatch(endFetching());
+        dispatch(getLeaders());
       })
       .catch((error) => {
         dispatch(endFetching());
