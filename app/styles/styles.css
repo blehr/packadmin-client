@@ -173,12 +173,6 @@ legend {
   margin-right: 8px;
 }
 
-.app-bar-container {
-  /*margin-top: -25px;
-  position: relative;
-  z-index: 5;*/
-}
-
 .my-app-bar {
   width: 100%;
   height: 75px;
@@ -213,6 +207,10 @@ legend {
 .welcome-flex-col {
   width: 50%;
   padding: 8px;
+}
+
+.pinewood-text {
+  align-self: center;
 }
 
 .form-flex-container {
@@ -384,5 +382,8 @@ ul.list-unstyled li {
   }
   .add-scout-link {
     display: none;
+  }
+  .pinewood-heading {
+    font-size: 24px;
   }
 }
