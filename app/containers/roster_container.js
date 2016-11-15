@@ -8,6 +8,8 @@ import LoadingComponent from './loading_container';
 class RosterContainer extends Component {
   componentWillMount() {
     this.props.getAllScouts();
+  }
+  componentWillUnmount() {
     this.props.clearError();
   }
   render() {

@@ -19,9 +19,10 @@ class Signup extends Component {
   }
   componentDidMount() {
     window.scrollTo(0, 0);
+  }
+  componentWillUnmount() {
     this.props.clearError();
   }
-
   doHandleSubmit(values) {
     this.props.signupUser(values);
   }

@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class ErrorDisplay extends Component {
-  componentWillUnmount() {
-    // this.props.clearError();
-    // console.log('error unmount');
-  }
   render() {
     if (this.props.error) {
       return (

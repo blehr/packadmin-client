@@ -18,7 +18,9 @@ class RequestPassword extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
-
+  componentWillUnmount() {
+    this.props.clearError();
+  }
   doSubmit(values) {
     this.props.requestPasswordReset(values);
   }
@@ -67,6 +69,7 @@ class RequestPassword extends Component {
 
 RequestPassword.propTypes = {
   params: PropTypes.object,
+  clearError: PropTypes.func,
   handleSubmit: PropTypes.func,
   pristine: PropTypes.bool,
   submitting: PropTypes.bool,

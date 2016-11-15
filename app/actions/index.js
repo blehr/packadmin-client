@@ -34,8 +34,8 @@ export const NEW_PASSWORD_RESPONSE = 'NEW_PASSWORD_RESPONSE';
 export const NO_EMAIL = 'NO_EMAIL';
 
 // export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-// export const ROOT_URL = 'http://localhost';
-export const ROOT_URL = 'https://packadmin.com';
+export const ROOT_URL = 'http://localhost:8080';
+// export const ROOT_URL = 'https://packadmin.com';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
 const SCOUT_DETAIL_URL = `${ROOT_URL}/scouts/detail`;
@@ -378,11 +378,11 @@ export const getUser = () => (
   }
 );
 
-export const updateUser = ({ email, packNumber }) => (
+export const updateUser = data => (
   (dispatch) => {
     const URL = `${ROOT_URL}/users/profile`;
     dispatch(isFetching());
-    axios.post(URL, { email, packNumber }, { headers: { authorization: getToken() } })
+    axios.post(URL, data, { headers: { authorization: getToken() } })
       .then((response) => {
         dispatch({
           type: UPDATE_USER,

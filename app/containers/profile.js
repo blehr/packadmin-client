@@ -26,6 +26,9 @@ class Profile extends Component {
   doSubmit(values) {
     this.props.updateUser(values);
   }
+  componentWillUnmount() {
+    this.props.clearError();
+  }
   render() {
     if (!this.props.user || !this.props.user.profile) {
       return (
@@ -89,6 +92,7 @@ Profile.propTypes = {
   submitting: PropTypes.bool,
   updateUser: PropTypes.func,
   getUser: PropTypes.func,
+  clearError: PropTypes.func,
   handleSubmit: PropTypes.func,
 };
 
