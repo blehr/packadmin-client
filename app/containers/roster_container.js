@@ -8,6 +8,7 @@ import LoadingComponent from './loading_container';
 class RosterContainer extends Component {
   componentWillMount() {
     this.props.getAllScouts();
+    this.props.clearError();
   }
   render() {
     if (!this.props.scouts.allScouts || this.props.scouts.allScouts.length === 0) {
@@ -36,6 +37,7 @@ class RosterContainer extends Component {
 }
 
 RosterContainer.propTypes = {
+  clearError: PropTypes.func,
   scouts: PropTypes.object,
   sortedBy: PropTypes.string,
   error: PropTypes.string,
