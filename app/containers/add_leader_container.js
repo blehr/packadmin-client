@@ -22,7 +22,7 @@ class AddLeader extends Component {
     if (this.props.params.id) {
       this.props.getLeader(this.props.params.id);
     } else {
-      this.props.clearLeaders();
+      this.props.clearLeaderDetail();
     }
   }
 
@@ -176,7 +176,7 @@ class AddLeader extends Component {
 AddLeader.propTypes = {
   handleSubmit: PropTypes.func,
   getLeader: PropTypes.func,
-  clearLeaders: PropTypes.func,
+  clearLeaderDetail: PropTypes.func,
   addLeader: PropTypes.func,
   updateLeader: PropTypes.func,
   leaders: PropTypes.array,
