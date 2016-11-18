@@ -32,6 +32,7 @@ export const CLEAR_PDF = 'CLEAR_PDF';
 export const CHECK_TOKEN_RESPONSE = 'CHECK_TOKEN_RESPONSE';
 export const NEW_PASSWORD_RESPONSE = 'NEW_PASSWORD_RESPONSE';
 export const NO_EMAIL = 'NO_EMAIL';
+export const NEW_CUSTOM_DEN = 'NEW_CUSTOM_DEN';
 
 // export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
 // export const ROOT_URL = 'http://localhost:8080';
@@ -515,4 +516,42 @@ export const submitResetPassword = ({ values, token }) => (
         console.log('error', error);
       });
   }
+);
+
+export const newCustomDen = den => (
+  (dispatch) => {
+    const URL = `${ROOT_URL}/users/dens`;
+    dispatch(isFetching());
+    axios.post(URL, den, { headers: { authorization: getToken() } })
+      .then((response) => {
+        dispatch({
+          type: GET_USER,
+          payload: response.data,
+        });
+        dispatch(endFetching());
+      })
+      .catch((error) => {
+        dispatch(endFetching());
+        formatErrors(error, dispatch);
+      });
+  }
+);
+
+export const deleteCustomDen = den => (
+  (dispatch) => {
+    const URL = `${ROOT_URL}/users/dens`;
+    dispatch(isFetching());
+    axios.delete(URL, den, { headers: { authorization: getToken() } })
+      .then((response) => {
+        dispatch({
+          type: GET_USER,
+          payload: response.data,
+        });
+        dispatch(endFetching());
+      })
+      .catch((error) => {
+        dispatch(endFetching());
+        formatErrors(error, dispatch);
+      });
+  }  
 );

@@ -298,6 +298,12 @@ ul.list-unstyled li {
   width: 135px;
 }
 
+.custom-den-item {
+  width: 256px;
+  display: flex;
+  justify-content: space-between;
+}
+
 /* Print */
 .pdf-container {
   width: 600px;
