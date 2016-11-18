@@ -35,8 +35,8 @@ export const NO_EMAIL = 'NO_EMAIL';
 export const NEW_CUSTOM_DEN = 'NEW_CUSTOM_DEN';
 
 // export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-// export const ROOT_URL = 'http://localhost:8080';
-export const ROOT_URL = 'https://packadmin.com';
+export const ROOT_URL = 'http://localhost:8080';
+// export const ROOT_URL = 'https://packadmin.com';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
 const SCOUT_DETAIL_URL = `${ROOT_URL}/scouts/detail`;
@@ -539,9 +539,9 @@ export const newCustomDen = den => (
 
 export const deleteCustomDen = den => (
   (dispatch) => {
-    const URL = `${ROOT_URL}/users/dens`;
+    const URL = `${ROOT_URL}/users/dens/remove`;
     dispatch(isFetching());
-    axios.delete(URL, den, { headers: { authorization: getToken() } })
+    axios.post(URL, den, { headers: { authorization: getToken() } })
       .then((response) => {
         dispatch({
           type: GET_USER,
@@ -553,5 +553,5 @@ export const deleteCustomDen = den => (
         dispatch(endFetching());
         formatErrors(error, dispatch);
       });
-  }  
+  }
 );

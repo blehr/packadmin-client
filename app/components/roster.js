@@ -4,8 +4,8 @@ import { filterBy } from '../utils/util';
 import ErrorDisplay from '../containers/error_container';
 
 const Roster = (props) => {
-  const { scouts, filter } = props;
-  const filteredScouts = filterBy(scouts, filter);
+  const { scouts, filter, customDens } = props;
+  const filteredScouts = filterBy(scouts, filter, customDens);
   if (filter === 'byDen') {
     return (
       <div className="col-sm-12">
@@ -97,6 +97,7 @@ const Roster = (props) => {
 Roster.propTypes = {
   scouts: PropTypes.array,
   filter: PropTypes.string,
+  customDens: PropTypes.array,
 };
 
 export default Roster;

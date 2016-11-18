@@ -16,6 +16,21 @@ class ScoutSort extends Component {
   }
 
   render() {
+    let elem = [];
+    if (this.props.user.profile.customDens.length > 0) {
+      elem = this.props.user.profile.customDens.map(den => (
+        <MenuItem value={den.name} primaryText={den.name} key={den.name} />
+      ));
+    } else {
+      elem = [
+        <MenuItem value={'Lion'} primaryText="Lion" key="Lion" />,
+        <MenuItem value={'Tiger'} primaryText="Tiger" key="Tiger" />,
+        <MenuItem value={'Wolf'} primaryText="Wolf" key="Wolf" />,
+        <MenuItem value={'Bear'} primaryText="Bear" key="Bear" />,
+        <MenuItem value={'Webelos 1'} primaryText="Webelos 1" key="Webelos 1" />,
+        <MenuItem value={'Webelos 2'} primaryText="Webelos 2" key="Webelos 2" />,
+      ];
+    }
     return (
       <DropDownMenu
         value={this.props.sortedBy}
@@ -26,12 +41,7 @@ class ScoutSort extends Component {
       >
         <MenuItem value={'all'} primaryText="All Scouts" />
         <MenuItem value={'byDen'} primaryText="By Den" />
-        <MenuItem value={'Lion'} primaryText="Lion" />
-        <MenuItem value={'Tiger'} primaryText="Tiger" />
-        <MenuItem value={'Wolf'} primaryText="Wolf" />
-        <MenuItem value={'Bear'} primaryText="Bear" />
-        <MenuItem value={'Webelos 1'} primaryText="Webelos 1" />
-        <MenuItem value={'Webelos 2'} primaryText="Webelos 2" />
+        {elem}
         <MenuItem value={'paid'} primaryText="Dues Paid" />
         <MenuItem value={'unpaid'} primaryText="Dues Unpaid" />
       </DropDownMenu>
@@ -43,11 +53,13 @@ class ScoutSort extends Component {
 ScoutSort.propTypes = {
   sortedBy: PropTypes.string,
   sortBy: PropTypes.func,
+  user: PropTypes.object,
 };
 
-const mapStateToProps = ({ sortedBy }) => (
-  { sortedBy }
-);
+const mapStateToProps = ({ sortedBy, user }) => ({
+  sortedBy,
+  user,
+});
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({ sortBy }, dispatch)

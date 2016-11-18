@@ -17,6 +17,15 @@ export const denArray = [
   webelos,
 ];
 
+export const standardDens = [
+  { name: 'Lion', rank: lion },
+  { name: 'Tiger', rank: tiger },
+  { name: 'Wolf', rank: wolf },
+  { name: 'Bear', rank: bear },
+  { name: 'Webelos 1', rank: webelos },
+  { name: 'Webelos 2', rank: webelos },
+];
+
 
 export const trueOrFalse = (item) => {
   if (item) {
@@ -57,52 +66,37 @@ export const alphabetize = list => (
   })
 );
 
-const byDen = (list) => {
+const byDen = (list, customDens) => {
   const sortedList = alphabetize(list);
 
-  const scoutDens = {
-    lion: [],
-    tiger: [],
-    wolf: [],
-    bear: [],
-    web1: [],
-    web2: [],
-    paid: [],
-    unpaid: [],
+  const scoutDens = customDens.length === 0 ? standardDens : customDens;
+
+  const denArraysObject = {};
+
+  denArraysObject.paid = [];
+  denArraysObject.unpaid = [];
+
+  const createDenArrays = () => {
+    scoutDens.forEach((den) => {
+      denArraysObject[den.name] = [];
+    });
+    return denArraysObject;
   };
 
-  sortedList.map((scout) => {
-    if (scout.den === 'Lion') {
-      scoutDens.lion.push(scout);
-    }
-    if (scout.den === 'Tiger') {
-      scoutDens.tiger.push(scout);
-    }
-    if (scout.den === 'Wolf') {
-      scoutDens.wolf.push(scout);
-    }
-    if (scout.den === 'Bear') {
-      scoutDens.bear.push(scout);
-    }
-    if (scout.den === 'Webelos 1') {
-      scoutDens.web1.push(scout);
-    }
-    if (scout.den === 'Webelos 2') {
-      scoutDens.web2.push(scout);
-    }
-    if (scout.dues === true) {
-      scoutDens.paid.push(scout);
-    }
-    if (scout.dues === false) {
-      scoutDens.unpaid.push(scout);
-    }
-    return null;
+  createDenArrays();
+
+  sortedList.forEach((scout) => {
+    const den = scout.den;
+    console.log(denArraysObject);
+    denArraysObject[den].push(scout);
   });
 
-  return scoutDens;
+  console.log(denArraysObject);
+
+  return denArraysObject;
 };
 
-export const filterBy = (list, filter) => {
+export const filterBy1 = (list, filter, customDens) => {
   let sortedScouts = '';
 
   if (filter === 'all') {
@@ -145,6 +139,25 @@ export const filterBy = (list, filter) => {
   }
   return null;
 };
+
+export const filterBy = (list, filter, customDens) => {
+  if (filter === 'all') {
+    return { scouts: alphabetize(list), title: 'All Scouts' };
+  }
+
+  // test
+
+  const densObject = byDen(list, customDens);
+
+  if (filter === 'byDen') {
+    return { scouts: densObject, title: 'Scouts by Den' };
+  }
+
+  // test
+
+  return { scouts: densObject[filter], title: `${filter} Den` };
+};
+
 
 export const getDen = (x) => {
   switch (x) {

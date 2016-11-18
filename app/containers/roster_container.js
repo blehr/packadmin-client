@@ -31,6 +31,7 @@ class RosterContainer extends Component {
             scouts={this.props.scouts.allScouts}
             handleClick={this.onHandleClick}
             filter={this.props.sortedBy}
+            customDens={this.props.user.profile.customDens}
           />
         </div>
       </div>
@@ -39,6 +40,7 @@ class RosterContainer extends Component {
 }
 
 RosterContainer.propTypes = {
+  user: PropTypes.object,
   clearError: PropTypes.func,
   scouts: PropTypes.object,
   sortedBy: PropTypes.string,
@@ -47,9 +49,12 @@ RosterContainer.propTypes = {
 };
 
 
-const mapStateToProps = ({ scouts, sortedBy, error }) => (
-  { scouts, sortedBy, error }
-);
+const mapStateToProps = ({ scouts, sortedBy, error, user }) => ({
+  scouts,
+  sortedBy,
+  error,
+  user,
+});
 
 
 export default connect(mapStateToProps, actions)(RosterContainer);

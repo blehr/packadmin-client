@@ -36,7 +36,7 @@ class AddScoutContainer extends Component {
   }
 
   render() {
-    const { scouts, error } = this.props;
+    const { scouts, error, user } = this.props;
     if (this.props.params.id) {
       if (!scouts.scoutDetail) {
         if (error) {
@@ -48,6 +48,21 @@ class AddScoutContainer extends Component {
           </div>
         );
       }
+    }
+    let elem = [];
+    if (user.profile.customDens.length > 0) {
+      elem = user.profile.customDens.map(den => (
+        <MenuItem value={den.name} primaryText={den.name} key={den.name} />
+      ));
+    } else {
+      elem = [
+        <MenuItem value={'Lion'} primaryText="Lion" key="Lion" />,
+        <MenuItem value={'Tiger'} primaryText="Tiger" key="Tiger" />,
+        <MenuItem value={'Wolf'} primaryText="Wolf" key="Wolf" />,
+        <MenuItem value={'Bear'} primaryText="Bear" key="Bear" />,
+        <MenuItem value={'Webelos 1'} primaryText="Webelos 1" key="Webelos 1" />,
+        <MenuItem value={'Webelos 2'} primaryText="Webelos 2" key="Webelos 2" />,
+      ];
     }
 
     return (
@@ -89,12 +104,13 @@ class AddScoutContainer extends Component {
                   component={SelectField}
                   floatingLabelText="Den"
                 >
-                  <MenuItem value="Lion" primaryText="Lion" />
+                  {elem}
+                  {/* <MenuItem value="Lion" primaryText="Lion" />
                   <MenuItem value="Tiger" primaryText="Tiger" />
                   <MenuItem value="Wolf" primaryText="Wolf" />
                   <MenuItem value="Bear" primaryText="Bear" />
                   <MenuItem value="Webelos 1" primaryText="Webelos 1" />
-                  <MenuItem value="Webelos 2" primaryText="Webelos 2" />
+                  <MenuItem value="Webelos 2" primaryText="Webelos 2" /> */}
                 </Field>
               </div>
             </fieldset>
@@ -403,6 +419,7 @@ class AddScoutContainer extends Component {
 AddScoutContainer.propTypes = {
   clearScoutDetail: PropTypes.func,
   error: PropTypes.string,
+  user: PropTypes.object,
   scouts: PropTypes.Objcet,
   getScoutDetail: PropTypes.func,
   addScout: PropTypes.func,
@@ -415,9 +432,10 @@ AddScoutContainer.propTypes = {
   submitting: PropTypes.bool,
 };
 
-const mapStateToProps = ({ scouts, error }) => ({
+const mapStateToProps = ({ scouts, error, user }) => ({
   error,
   scouts,
+  user,
   initialValues: scouts.scoutDetail,
 });
 

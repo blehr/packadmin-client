@@ -219,6 +219,38 @@ legend {
   justify-content: space-around;
 }
 
+.add-dens-flex-container {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.add-dens-flex-col {
+  width: 310px;
+}
+
+.custom-den-item {
+  width: 300px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+.standard-den-item {
+  width: 300px;
+  padding: 5px;
+  position: relative;
+  border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+.standard-den-item span:nth-child(even) {
+  position: absolute;
+  left: 50%;
+}
+
 .form-flex-item {
   max-width: 256px;
 }
@@ -296,12 +328,6 @@ ul.list-unstyled li {
 
 .cell-2 {
   width: 135px;
-}
-
-.custom-den-item {
-  width: 256px;
-  display: flex;
-  justify-content: space-between;
 }
 
 /* Print */

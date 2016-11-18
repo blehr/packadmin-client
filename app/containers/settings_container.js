@@ -3,65 +3,44 @@ import { connect } from 'react-redux';
 import { TextField } from 'redux-form-material-ui';
 import * as actions from '../actions';
 import CreateDens from './create_dens_container';
+import StandardDens from '../components/standard_dens';
+import DisplayCustomDens from '../components/display_custom_dens';
 
 
 class Settings extends Component {
-  
+  constructor(props) {
+    super(props);
+
+    this.deleteDen = this.deleteDen.bind(this);
+  }
+  deleteDen(den) {
+    this.props.deleteCustomDen(den);
+  }
+
   render() {
     return (
-       <div className="row">
+      <div className="row">
         <div className="col-sm-12">
           <div className="welcome-card">
-            <div className="form-flex-container">
-              <div className="form form-flex-item">
+            <div className="add-dens-flex-container">
+              <div className="add-dens-flex-col">
                 <CreateDens />
-                
               </div>
-              <div className="form-flex-item">
+              <div className="add-dens-flex-col">
                 <legend>Your Dens</legend>
-                <div className="list-group">
-                  
-                  {
-                    this.props.user.profile.customDens.length  === 0 &&
-                      [<tr>
-                        <td>Lion</td>
-                        <td>Lion</td>
-                      </tr>,
-                      <tr>
-                        <td>Tiger</td>
-                        <td>Tiger</td>
-                      </tr>,
-                      <tr>
-                        <td>Wolf</td>
-                        <td>Wolf</td>
-                      </tr>,
-                      <tr>
-                        <td>Bear</td>
-                        <td>Bear</td>
-                      </tr>,
-                      <tr>
-                        <td>Webelos 1</td>
-                        <td>Webelos 1</td>
-                      </tr>,
-                      <tr>
-                        <td>Webelos 2</td>
-                        <td>Webelos 2</td>
-                      </tr>]
-                  }
-                  { 
-                    this.props.user.profile.customDens && this.props.user.profile.customDens.length > 0 &&
-                    this.props.user.profile.customDens.map(den => {
-                      return (
-                        <div className="list-item custom-den-item" key={den.name} >
-                          <span>{den.name}</span>
-                          <span>{den.rank}</span>
-                          <span className="text-right"><span><i className="fa fa-trash-o" /></span></span>
-                        </div>
-                      );
-                    }) 
-                  }
-                  
-                </div>
+
+                {
+                    (this.props.user.profile.customDens.length === 0) &&
+                      <StandardDens />
+                }
+                {
+                    this.props.user.profile.customDens &&
+                    this.props.user.profile.customDens.length > 0 &&
+                      <DisplayCustomDens
+                        customDens={this.props.user.profile.customDens}
+                        deleteDen={this.deleteDen}
+                      />
+                }
               </div>
             </div>
           </div>
@@ -70,6 +49,11 @@ class Settings extends Component {
     );
   }
 }
+
+Settings.propTypes = {
+  user: PropTypes.object,
+  deleteCustomDen: PropTypes.func,
+};
 
 const mapStateToProps = ({ user }) => ({
   user,
