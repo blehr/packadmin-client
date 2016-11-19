@@ -18,12 +18,22 @@ export const denArray = [
 ];
 
 export const standardDens = [
-  { name: 'Lion', rank: lion },
-  { name: 'Tiger', rank: tiger },
-  { name: 'Wolf', rank: wolf },
-  { name: 'Bear', rank: bear },
-  { name: 'Webelos 1', rank: webelos },
-  { name: 'Webelos 2', rank: webelos },
+  { name: 'Lion', rank: 'Lion' },
+  { name: 'Tiger', rank: 'Tiger' },
+  { name: 'Wolf', rank: 'Wolf' },
+  { name: 'Bear', rank: 'Bear' },
+  { name: 'Webelos 1', rank: 'Webelos' },
+  { name: 'Webelos 2', rank: 'Webelos' },
+];
+
+export const ranks = [
+  { name: 'Lion', rank: 'Lion' },
+  { name: 'Bobcat', rank: 'Bobcat' },
+  { name: 'Tiger', rank: 'Tiger' },
+  { name: 'Wolf', rank: 'Wolf' },
+  { name: 'Bear', rank: 'Bear' },
+  { name: 'Webelos 1', rank: 'Webelos' },
+  { name: 'Webelos 2', rank: 'Webelos' },
 ];
 
 
@@ -157,6 +167,53 @@ export const filterBy = (list, filter, customDens) => {
 
   return { scouts: densObject[filter], title: `${filter} Den` };
 };
+
+
+export const getRankObj = (rank) => {
+   switch (rank) {
+    case 'Bobcat':
+      return bobcat;
+      // return {
+      //   rankObj: bobcat,
+      //   // denString: 'bobcat',
+      // };
+    case 'Lion':
+      return lion;
+      // return {
+      //   rankObj: lion,
+      //   // denString: 'lion',
+      // };
+    case 'Tiger':
+      return tiger;
+      // return {
+      //   rankObj: tiger,
+      //   // denString: 'tiger',
+      // };
+    case 'Wolf':
+      return wolf;
+      // return {
+      //   rankObj: wolf,
+      //   // denString: 'wolf',
+      // };
+    case 'Bear':
+      return bear
+      // return {
+      //   rankObj: bear,
+      //   // denString: 'bear',
+      // };
+    case 'Webelos':
+    case 'Webelos 1':
+    case 'Webelos 2':
+      return webelos;
+      // return {
+      //   rankObj: webelos,
+      //   // denString: 'webelos',
+      // };
+    default:
+      return null;
+  }
+};
+
 
 
 export const getDen = (x) => {

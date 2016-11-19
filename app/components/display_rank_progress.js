@@ -2,23 +2,40 @@ import React, { Component, PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 import ShowRank from './show_rank_adv';
-import { displayBirthday, getDen } from '../utils/util';
+import { displayBirthday, getRankObj, standardDens } from '../utils/util';
 
 const style = {
   // margin: 12,
 };
 
 class DisplayRankProgress extends Component {
-  createDenAchievementLists(theDen, scout) {
+  createDenAchievementLists(theDen, scout, customDens) {
     const elem = [];
     let keyValues = 0;
-    const den = getDen(theDen);
+    let rank = '';
+    
+    if (customDens.length > 0) {
+      customDens.forEach((den) => {
+        console.log(den);
+        if (theDen === den.name) { rank = den.rank; }
+      });
+    }
+    
+    if (customDens.length === 0) {
+      standardDens.forEach((den) => {
+        if (theDen === den.rank) { rank = den.rank; }
+      });
+    }
+    
+    console.log(rank);
+    const den = getRankObj(rank);
+    console.log(den);
     let tableBody = [];
-    const denHeadings = Object.keys(den.denObj);
+    const denHeadings = Object.keys(den);
     denHeadings.shift();
     denHeadings.map((heading) => {
-      tableBody = den.denObj[heading].map((item) => {
-        const scoutDen = den.denString;
+      tableBody = den[heading].map((item) => {
+        const scoutDen = theDen;
         return (
           <tr key={keyValues++}>
             <td>{item.name}</td>
@@ -67,7 +84,7 @@ class DisplayRankProgress extends Component {
           </Link>
         </div>
         <div className="card">
-          {this.createDenAchievementLists(this.props.activeDen, this.props.scout)}
+          {this.createDenAchievementLists(this.props.activeDen, this.props.scout, this.props.customDens)}
         </div>
       </div>
     );
@@ -76,6 +93,7 @@ class DisplayRankProgress extends Component {
 
 DisplayRankProgress.propTypes = {
   scout: PropTypes.object,
+  customDens: PropTypes.array,
   activeDen: PropTypes.string,
 };
 

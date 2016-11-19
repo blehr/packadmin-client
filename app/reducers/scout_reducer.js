@@ -1,4 +1,4 @@
-import { getDen } from '../utils/util';
+import { getDen, standardDens } from '../utils/util';
 import {
   CLEAR_SCOUT_DETAIL,
   SCOUT_DETAIL,
@@ -35,41 +35,51 @@ export default function (state = { allScouts: [], scoutDetail: {}, advData: {}, 
       return { ...state, scoutDetail: action.payload, advDen: action.payload.den, advData: action.payload[actionTitle] };
     case GET_SCOUT_FROM_ALL:
       const newScout = state.allScouts.filter(scout => (
-        scout._id === action.payload
+        scout._id === action.payload.id
       ));
       newScout[0].birthday = new Date(newScout[0].birthday);
-
-      const denAdv = getDen(newScout[0].den);
-      const title = denAdv.denString;
-      if (newScout[0][title]) {
-        const newScoutKeys = Object.keys(newScout[0][title]);
+      
+      let rank = '';
+      
+      if (action.payload.customDens.length > 0) {
+        rank = action.payload.customDens.forEach((den) => {
+          if (den.name === newScout[0].den) return den.rank;
+        });
+      } else {
+          rank = standardDens.forEach((den) => {
+          if (den.name === newScout[0].den) return den.rank;
+        });
+      }
+      
+      if (newScout[0][rank]) {
+        const newScoutKeys = Object.keys(newScout[0][rank]);
         newScoutKeys.map(key => {
           if (key !== '_id') {
-            newScout[0][title][key] = new Date(newScout[0][title][key]);
+            newScout[0][rank][key] = new Date(newScout[0][rank][key]);
           }
         });
       } else {
-        newScout[0][title] = {};
+        newScout[0][rank] = {};
       }
-      return { ...state, scoutDetail: newScout[0], advDen: newScout[0].den, advData: newScout[0][title] };
-    case DEN_ADV_DATA:
+      return { ...state, scoutDetail: newScout[0], advDen: newScout[0].den, advData: newScout[0][rank] };
+    // case DEN_ADV_DATA:
 
-      const den = getDen(action.payload);
+    //   const den = getDen(action.payload);
 
-      const denTitle = den.denString;
+    //   const denTitle = den.denString;
 
-      if (state.allScouts[0][denTitle]) {
-        const newKeys = Object.keys(state.allScouts[0][denTitle]);
-        newKeys.map(key => {
-          if (key !== '_id') {
-            state.allScouts[0][denTitle][key] = new Date(state.allScouts[0][denTitle][key]);
-          }
-        });
-      } else {
-        state.allScouts[0][denTitle] = {};
-      }
+    //   if (state.allScouts[0][denTitle]) {
+    //     const newKeys = Object.keys(state.allScouts[0][denTitle]);
+    //     newKeys.map(key => {
+    //       if (key !== '_id') {
+    //         state.allScouts[0][denTitle][key] = new Date(state.allScouts[0][denTitle][key]);
+    //       }
+    //     });
+    //   } else {
+    //     state.allScouts[0][denTitle] = {};
+    //   }
 
-      return { ...state, advData: state.allScouts[0][denTitle]};
+    //   return { ...state, advData: state.allScouts[0][denTitle]};
     case SET_ADVANCEMENT:
       return { ...state, advDen: action.payload };
     default:

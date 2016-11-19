@@ -20,10 +20,10 @@ class ScoutDetailContainer extends Component {
     if (this.props.params.id) {
       if (this.props.scouts.allScouts.length < 1) {
         setTimeout(() => {
-          this.props.getScoutDetail(this.props.params.id);
+          this.props.getScoutDetail(this.props.params.id, this.props.user.profile.customDens);
         }, 1000);
       } else {
-        this.props.getScoutDetail(this.props.params.id);
+        this.props.getScoutDetail(this.props.params.id, this.props.user.profile.customDens);
       }
     }
   }
@@ -35,7 +35,7 @@ class ScoutDetailContainer extends Component {
   }
 
   render() {
-    const { scouts, error } = this.props;
+    const { scouts, error, user } = this.props;
     if (!scouts.scoutDetail || !scouts.scoutDetail.scoutFirstName) {
       if (error) {
         return <ErrorDisplay />;
@@ -63,14 +63,15 @@ class ScoutDetailContainer extends Component {
           />
         </div>
         <div className="row">
-          <DisplayRankProgress scout={scouts.scoutDetail} activeDen={scouts.advDen} />
+          <DisplayRankProgress scout={scouts.scoutDetail} activeDen={scouts.advDen} customDens={user.profile.customDens} />
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ scouts, error }) => ({
+const mapStateToProps = ({ scouts, error, user }) => ({
+  user,
   scouts,
   error,
 });
@@ -80,6 +81,7 @@ ScoutDetailContainer.propTypes = {
   scouts: PropTypes.object,
   removeScout: PropTypes.func,
   params: PropTypes.object,
+  user: PropTypes.object,
   id: PropTypes.number,
   error: PropTypes.string,
 };

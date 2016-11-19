@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as actions from '../actions';
 import SelectDevAdv from '../components/select_den_advancement';
-import { getDen } from '../utils/util';
+import { getRankObj, ranks } from '../utils/util';
 
 const style = {
   margin: 12,
@@ -17,21 +17,21 @@ class Advancement extends Component {
     this.doSubmit = this.doSubmit.bind(this);
   }
   componentDidMount() {
-    if (!this.props.scouts.scoutDetail) {
+    // if (!this.props.scouts.scoutDetail) {
       setTimeout(() => {
-        this.props.getScoutDetail(this.props.params.id);
+        this.props.getScoutDetail(this.props.params.id, this.props.user.profile.customDens);
       }, 1000);
     }
-  }
+  // }
   doSubmit(values) {
     const obj = {};
-    const den = getDen(this.props.scouts.advDen);
+    const den = getRankObj(this.props.scouts.advDen);
     const title = den.denString;
     obj[title] = {};
-    const denKeys = Object.keys(den.denObj);
+    const denKeys = Object.keys(den.rankObj);
     denKeys.shift();
     denKeys.map((key) => {
-      den.denObj[key].map((item) => {
+      den.rankObj[key].map((item) => {
         const itemName = item.formName;
         if (values[itemName]) {
           obj[title][itemName] = values[itemName];
@@ -42,7 +42,25 @@ class Advancement extends Component {
   }
   render() {
     const { scouts } = this.props;
-    const den = getDen(scouts.advDen);
+    const customDens = this.props.user.profile.customDens;
+    
+    let rank = '';
+    
+      customDens.forEach((den) => {
+        console.log(den);
+        if (scouts.advDen === den.name) { rank = den.rank; }
+      });
+    
+      ranks.forEach((den) => {
+        if (scouts.advDen === den.rank) { rank = den.rank; }
+      });
+    
+    
+    
+    
+    
+    const den = getRankObj(rank);
+    console.log('den', den);
     let elemReq = '';
     let elemArrow = '';
     let elemElective = '';
@@ -50,8 +68,8 @@ class Advancement extends Component {
     if (!scouts.scoutDetail) {
       return <h2>Loading...</h2>;
     }
-    if (den.denObj.Requirements) {
-      elemReq = den.denObj.Requirements.map(item => (
+    if (den.Requirements) {
+      elemReq = den.Requirements.map(item => (
         <div key={item.formName} className="adv-div">
           <div className="label-adv">{item.name}</div>
           <Field
@@ -62,8 +80,8 @@ class Advancement extends Component {
         </div>
       ));
     }
-    if (den.denObj['Arrow of Light']) {
-      elemArrow = den.denObj['Arrow of Light'].map(item => (
+    if (den['Arrow of Light']) {
+      elemArrow = den['Arrow of Light'].map(item => (
         <div key={item.formName} className="adv-div" >
           <div className="label-adv">{item.name}</div>
           <Field
@@ -74,8 +92,8 @@ class Advancement extends Component {
         </div>
       ));
     }
-    if (den.denObj.Electives) {
-      elemElective = den.denObj.Electives.map(item => (
+    if (den.Electives) {
+      elemElective = den.Electives.map(item => (
         <div key={item.formName} className="adv-div" >
           <span className="label-adv">{item.name}</span>
           <Field
@@ -86,8 +104,8 @@ class Advancement extends Component {
         </div>
       ));
     }
-    if (den.denObj.Others) {
-      elemOthers = den.denObj.Others.map(item => (
+    if (den.Others) {
+      elemOthers = den.Others.map(item => (
         <div key={item.formName} className="adv-div" >
           <span className="label-adv">{item.name}</span>
           <Field
@@ -123,14 +141,14 @@ class Advancement extends Component {
           <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
             <div className="col-sm-6 col-sm-offset-3 advancement-col">
               <fieldset>
-                <legend>{den.denObj.Den} Requirements</legend>
+                <legend>{den.Den} Requirements</legend>
                 <div className="form-group adv-form-group">
                   {elemReq}
                 </div>
               </fieldset>
               { elemArrow &&
                 <fieldset>
-                  <legend>{den.denObj.Den} Arrow of Light</legend>
+                  <legend>{den.Den} Arrow of Light</legend>
                   <div className="form-group adv-form-group">
                     {elemArrow}
                   </div>
@@ -138,7 +156,7 @@ class Advancement extends Component {
               }
               { elemElective &&
                 <fieldset>
-                  <legend>{den.denObj.Den} Electives</legend>
+                  <legend>{den.Den} Electives</legend>
                   <div className="form-group adv-form-group">
                     {elemElective}
                   </div>
@@ -146,7 +164,7 @@ class Advancement extends Component {
               }
               { elemOthers &&
                 <fieldset>
-                  <legend>{den.denObj.Den} Others</legend>
+                  <legend>{den.Den} Others</legend>
                   <div className="form-group adv-form-group">
                     {elemOthers}
                   </div>
@@ -181,9 +199,10 @@ Advancement.propTypes = {
 };
 
 
-const mapStateToProps = ({ scouts }) => ({
+const mapStateToProps = ({ scouts, user }) => ({
+  user,
   scouts,
-  initialValues: scouts.advData,
+  // initialValues: scouts.advData,
 });
 
 const form = reduxForm({

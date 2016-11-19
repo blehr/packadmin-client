@@ -34,8 +34,8 @@ export const NEW_PASSWORD_RESPONSE = 'NEW_PASSWORD_RESPONSE';
 export const NO_EMAIL = 'NO_EMAIL';
 export const NEW_CUSTOM_DEN = 'NEW_CUSTOM_DEN';
 
-// export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-export const ROOT_URL = 'http://localhost:8080';
+export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
+// export const ROOT_URL = 'http://localhost:8080';
 // export const ROOT_URL = 'https://packadmin.com';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
@@ -211,6 +211,7 @@ export const addScout = data => (
       })
       .catch((error) => {
         dispatch(endFetching());
+        console.log(error);
         formatErrors(error, dispatch);
       });
   }
@@ -240,9 +241,9 @@ export const addLeader = data => (
 );
 
 // get individual scout
-export const getScoutDetail = id => ({
+export const getScoutDetail = (id, customDens) => ({
   type: GET_SCOUT_FROM_ALL,
-  payload: id,
+  payload: { id, customDens }
 });
 
 // get individual leader
