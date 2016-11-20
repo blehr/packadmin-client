@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 import ShowRank from './show_rank_adv';
-import { displayBirthday, getRankObj, standardDens } from '../utils/util';
+import { displayBirthday, getRankObj, Ranks } from '../utils/util';
 
 const style = {
   // margin: 12,
@@ -13,29 +13,31 @@ class DisplayRankProgress extends Component {
     const elem = [];
     let keyValues = 0;
     let rank = '';
-    
     if (customDens.length > 0) {
       customDens.forEach((den) => {
-        console.log(den);
-        if (theDen === den.name) { rank = den.rank; }
+        if (theDen === den.name) {
+          rank = den.rank;
+        } else {
+          Ranks.forEach((denItem) => {
+            if (theDen === denItem.name) { rank = denItem.rank; }
+          });
+        }
       });
     }
-    
+
     if (customDens.length === 0) {
-      standardDens.forEach((den) => {
+      Ranks.forEach((den) => {
         if (theDen === den.rank) { rank = den.rank; }
       });
     }
-    
-    console.log(rank);
+
     const den = getRankObj(rank);
-    console.log(den);
     let tableBody = [];
     const denHeadings = Object.keys(den);
     denHeadings.shift();
     denHeadings.map((heading) => {
       tableBody = den[heading].map((item) => {
-        const scoutDen = theDen;
+        const scoutDen = theDen.toLowerCase();
         return (
           <tr key={keyValues++}>
             <td>{item.name}</td>
@@ -72,7 +74,11 @@ class DisplayRankProgress extends Component {
     return (
       <div className="col-sm-6 col-sm-offset-3 adv-display-div">
         <div className="rank-adv-div">
-          <ShowRank />
+          <ShowRank
+            activeDen={this.props.activeDen}
+            customDens={this.props.customDens}
+            changeAdvDen={this.props.changeAdvDen}
+          />
           <Link to={`/scouts/detail/${this.props.scout._id}/advancement`} >
             <RaisedButton
               type="button"
@@ -84,7 +90,11 @@ class DisplayRankProgress extends Component {
           </Link>
         </div>
         <div className="card">
-          {this.createDenAchievementLists(this.props.activeDen, this.props.scout, this.props.customDens)}
+          {this.createDenAchievementLists(
+            this.props.activeDen,
+            this.props.scout,
+            this.props.customDens
+          )}
         </div>
       </div>
     );
@@ -92,6 +102,7 @@ class DisplayRankProgress extends Component {
 }
 
 DisplayRankProgress.propTypes = {
+  changeAdvDen: PropTypes.func,
   scout: PropTypes.object,
   customDens: PropTypes.array,
   activeDen: PropTypes.string,

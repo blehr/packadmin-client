@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import PdfAdvancement from '../components/pdf_advancement';
 import { displayBirthday, trueOrFalse, getAge } from '../utils/util';
 
-const PdfScout = ({ scout, showAdv }) => (
+const PdfScout = ({ scout, showAdv, customDens }) => (
   <div className="pdf-container" >
     <div className="pdf-col-div-1">
       <p><strong><i
@@ -124,13 +124,15 @@ const PdfScout = ({ scout, showAdv }) => (
       </div>
     }
 
-    { showAdv && <PdfAdvancement scout={scout} />}
+    { showAdv && <PdfAdvancement scout={scout} customDens={customDens} />}
 
 
   </div>
 );
 
 PdfScout.propTypes = {
+  customDens: PropTypes.array,
+  showAdv: PropTypes.bool,
   scout: PropTypes.object,
 };
 

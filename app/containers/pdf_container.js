@@ -146,6 +146,7 @@ class PdfContainer extends Component {
               scouts={this.props.scouts.allScouts}
               filter={this.props.sortedBy}
               showAdv={this.state.showAdvancements}
+              customDens={this.props.user.profile.customDens}
             />
           </div>
         </div>
@@ -155,6 +156,7 @@ class PdfContainer extends Component {
 }
 
 PdfContainer.propTypes = {
+  user: PropTypes.object,
   clearPdf: PropTypes.func,
   loading: PropTypes.bool,
   pdf: PropTypes.string,
@@ -166,9 +168,14 @@ PdfContainer.propTypes = {
 };
 
 
-const mapStateToProps = ({ scouts, sortedBy, error, pdf, loading }) => (
-  { scouts, sortedBy, error, pdf, loading }
-);
+const mapStateToProps = ({ scouts, sortedBy, error, pdf, loading, user }) => ({
+  user,
+  scouts,
+  sortedBy,
+  error,
+  pdf,
+  loading,
+});
 
 
 export default connect(mapStateToProps, actions)(PdfContainer);

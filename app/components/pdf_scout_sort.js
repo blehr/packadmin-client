@@ -4,90 +4,46 @@ import { filterBy } from '../utils/util';
 import ErrorDisplay from '../containers/error_container';
 
 const PdfScoutSort = (props) => {
-  const { scouts, filter, showAdv } = props;
-  const filteredScouts = filterBy(scouts, filter);
+  const { scouts, filter, showAdv, customDens } = props;
+  const filteredScouts = filterBy(scouts, filter, customDens);
+  const filteredScoutsKeys = Object.keys(filteredScouts.scouts);
   if (filter === 'byDen') {
+    let keyValue = 0;
+    const byDenKeys = filteredScoutsKeys.filter(key => (
+      key !== 'paid' && key !== 'unpaid'
+    ));
+    const elem = byDenKeys.map(key => (
+      <span key={keyValue += 1}>
+        <h3>{key}
+          <span className="scout-count">
+            ({filteredScouts.scouts[key].length})
+          </span>
+        </h3>
+        <div>
+          {filteredScouts.scouts[key].map(scout => (
+            <PdfScout scout={scout} key={scout._id} showAdv={showAdv} customDens={customDens} />
+          ))}
+        </div>
+        <hr />
+      </span>
+    ));
     return (
-      <div className="col-sm-12">
-        <h4>Lion Den
-          <span className="scout-count">
-            ({filteredScouts.scouts.lion.length})
-          </span>
-        </h4>
-        <div>
-          {filteredScouts.scouts.lion.map(scout => (
-            <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
-          ))}
-        </div>
-        <hr />
-        <h4>Tiger Den
-          <span className="scout-count">
-            ({filteredScouts.scouts.tiger.length})
-          </span>
-        </h4>
-        <div>
-          {filteredScouts.scouts.tiger.map(scout => (
-            <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
-          ))}
-        </div>
-        <hr />
-        <h4>Wolf Den
-          <span className="scout-count">
-            ({filteredScouts.scouts.wolf.length})
-          </span>
-        </h4>
-        <div>
-          {filteredScouts.scouts.wolf.map(scout => (
-            <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
-          ))}
-        </div>
-        <hr />
-        <h4>Bear Den
-          <span className="scout-count">
-            ({filteredScouts.scouts.bear.length})
-          </span>
-        </h4>
-        <div>
-          {filteredScouts.scouts.bear.map(scout => (
-            <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
-          ))}
-        </div>
-        <hr />
-        <h4>Webelos 1
-          <span className="scout-count">
-            ({filteredScouts.scouts.web1.length})
-          </span>
-        </h4>
-        <div>
-          {filteredScouts.scouts.web1.map(scout => (
-            <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
-          ))}
-        </div>
-        <hr />
-        <h4>Webelos 2
-          <span className="scout-count">
-            ({filteredScouts.scouts.web2.length})
-          </span>
-        </h4>
-        <div>
-          {filteredScouts.scouts.web2.map(scout => (
-            <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
-          ))}
-        </div>
+      <div className="col-sm-12" >
+        {elem}
       </div>
     );
   }
   return (
     <div className="col-sm-12">
-      <h4>{filteredScouts.title}
+      <h3>{filteredScouts.title}
         <span className="scout-count">
           ({filteredScouts.scouts.length})
         </span>
-      </h4>
+      </h3>
       <ErrorDisplay />
       <div>
         {filteredScouts.scouts.map(scout => (
-          <PdfScout scout={scout} key={scout._id} showAdv={showAdv} />
+          <PdfScout scout={scout} key={scout._id} showAdv={showAdv} customDens={customDens} />
       ))}
       </div>
     </div>
@@ -95,6 +51,8 @@ const PdfScoutSort = (props) => {
 };
 
 PdfScoutSort.propTypes = {
+  customDens: PropTypes.array,
+  showAdv: PropTypes.bool,
   scouts: PropTypes.array,
   filter: PropTypes.string,
 };

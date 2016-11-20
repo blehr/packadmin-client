@@ -17,7 +17,8 @@ import Advancement from './containers/adv_container';
 import RequestPassword from './containers/request_password_reset';
 import ResetPassword from './containers/reset_password';
 import EmailSent from './containers/email_sent_container';
-import Settings from './containers/settings_container.js';
+import Settings from './containers/settings_container';
+import Welcome from './components/welcome';
 
 import PdfContainer from './containers/pdf_container';
 import PdfLeadersContainer from './containers/pdf_leaders_container';
@@ -31,7 +32,8 @@ export default (
     <Route path="/reset/:token" component={ResetPassword} />
     <Route path="/confirm-request" component={EmailSent} />
     <Route path="/profile" component={requireAuth(Profile)} />
-    <Route path="/settings" component={requireAuth(Settings)} />
+    <Route path="/create-dens" component={requireAuth(Settings)} />
+    <Route path="/welcome" component={requireAuth(Welcome)} />
     <Route path="/leaders" component={requireAuth(LeaderRosterContainer)} />
     <Route path="/leaders/pdf" component={requireAuth(PdfLeadersContainer)} />
     <Route path="/leaders/add" component={requireAuth(AddLeader)} />
@@ -45,7 +47,7 @@ export default (
     <Route path="/scouts/detail/:id" component={requireAuth(ScoutDetailContainer)} />
     <Route path="/leaders/detail/:id" component={requireAuth(LeaderDetailContainer)} />
     <Route path="/scouts/detail/:id/advancement" component={requireAuth(Advancement)} />
-    <Route path="/scouts/add-confirm" component={requireAuth(ScoutDetailContainer)} />
-    <Route path="/scouts/update-confirm" component={requireAuth(ScoutDetailContainer)} />
+    <Route path="/scouts/add-confirm/:id" component={requireAuth(ScoutDetailContainer)} />
+    <Route path="/scouts/update-confirm/:id" component={requireAuth(ScoutDetailContainer)} />
   </Route>
 );

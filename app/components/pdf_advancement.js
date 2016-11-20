@@ -1,19 +1,38 @@
 import React, { Component, PropTypes } from 'react';
-import { displayBirthday, getDen } from '../utils/util';
+import { displayBirthday, Ranks, getRankObj } from '../utils/util';
 
 class PdfAdvancement extends Component {
-  createDenAchievementLists(scout) {
+  createDenAchievementLists(scout, customDens) {
     const elem = [];
     let keyValues = 0;
-    const den = getDen(scout.den);
+    let rank = '';
+    if (customDens.length > 0) {
+      customDens.forEach((den) => {
+        if (scout.den === den.name) {
+          rank = den.rank;
+        } else {
+          Ranks.forEach((denItem) => {
+            if (scout.den === denItem.name) { rank = denItem.rank; }
+          });
+        }
+      });
+    }
+
+    if (customDens.length === 0) {
+      Ranks.forEach((den) => {
+        if (scout.den === den.rank) { rank = den.rank; }
+      });
+    }
+
+    const den = getRankObj(rank);
     let tableBody = [];
-    const denHeadings = Object.keys(den.denObj);
+    const denHeadings = Object.keys(den);
     denHeadings.shift();
     denHeadings.map((heading) => {
-      tableBody = den.denObj[heading].map((item) => {
-        const scoutDen = den.denString;
+      tableBody = den[heading].map((item) => {
+        const scoutDen = rank.toLowerCase();
         return (
-          <tr key={keyValues++}>
+          <tr key={keyValues += 1}>
             <td>{item.name}</td>
             <td>{
               scout[scoutDen] &&
@@ -26,7 +45,7 @@ class PdfAdvancement extends Component {
         );
       });
       const table = (
-        <div className={den.Den} key={keyValues++}>
+        <div className={den.Den} key={keyValues += 1}>
           <h3>{den.Den}</h3>
           <table className="table table-striped table-condensed table-hover">
             <tbody>
@@ -47,7 +66,7 @@ class PdfAdvancement extends Component {
   render() {
     return (
       <div>
-        {this.createDenAchievementLists(this.props.scout)}
+        {this.createDenAchievementLists(this.props.scout, this.props.customDens)}
         <span className="end-of-file">
           * end of file {this.props.scout.scoutFirstName} {this.props.scout.scoutLastName}
         </span>
@@ -57,6 +76,7 @@ class PdfAdvancement extends Component {
 }
 
 PdfAdvancement.propTypes = {
+  customDens: PropTypes.array,
   scout: PropTypes.object,
 };
 

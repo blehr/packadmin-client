@@ -27,7 +27,7 @@ class Settings extends Component {
                 <CreateDens />
               </div>
               <div className="add-dens-flex-col">
-                <legend>Your Dens</legend>
+                <legend style={{ marginBottom: '36px' }}>Your Dens</legend>
 
                 {
                     (this.props.user.profile.customDens.length === 0) &&

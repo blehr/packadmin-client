@@ -21,7 +21,7 @@ class AddScoutContainer extends Component {
   }
   componentWillMount() {
     if (this.props.params.id) {
-      this.props.getScoutDetail(this.props.params.id);
+      this.props.getScoutDetail(this.props.params.id, this.props.user.profile.customDens);
     } else {
       this.props.clearScoutDetail();
     }
@@ -105,12 +105,6 @@ class AddScoutContainer extends Component {
                   floatingLabelText="Den"
                 >
                   {elem}
-                  {/* <MenuItem value="Lion" primaryText="Lion" />
-                  <MenuItem value="Tiger" primaryText="Tiger" />
-                  <MenuItem value="Wolf" primaryText="Wolf" />
-                  <MenuItem value="Bear" primaryText="Bear" />
-                  <MenuItem value="Webelos 1" primaryText="Webelos 1" />
-                  <MenuItem value="Webelos 2" primaryText="Webelos 2" /> */}
                 </Field>
               </div>
             </fieldset>

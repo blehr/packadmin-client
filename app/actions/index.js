@@ -34,8 +34,8 @@ export const NEW_PASSWORD_RESPONSE = 'NEW_PASSWORD_RESPONSE';
 export const NO_EMAIL = 'NO_EMAIL';
 export const NEW_CUSTOM_DEN = 'NEW_CUSTOM_DEN';
 
-export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
-// export const ROOT_URL = 'http://localhost:8080';
+// export const ROOT_URL = 'http://express-project-brandonl.c9users.io:8080';
+export const ROOT_URL = 'http://localhost:8080';
 // export const ROOT_URL = 'https://packadmin.com';
 const ALL_SCOUTS_URL = `${ROOT_URL}/scouts`;
 const ADD_SCOUT_URL = `${ROOT_URL}/scouts/add`;
@@ -200,14 +200,10 @@ export const addScout = data => (
     dispatch(isFetching());
     axios.post(URL, { data }, { headers: { authorization: getToken() } })
       .then((response) => {
-        dispatch({
-          type: SCOUT_DETAIL,
-          payload: response.data.scout,
-        });
         dispatch(clearError());
-        dispatch(endFetching());
-        browserHistory.push('/scouts/add-confirm');
         dispatch(getAllScouts());
+        browserHistory.push(`/scouts/add-confirm/${response.data._id}`);
+        dispatch(endFetching());
       })
       .catch((error) => {
         dispatch(endFetching());
@@ -241,9 +237,9 @@ export const addLeader = data => (
 );
 
 // get individual scout
-export const getScoutDetail = (id, customDens) => ({
+export const getScoutDetail = id => ({
   type: GET_SCOUT_FROM_ALL,
-  payload: { id, customDens }
+  payload: id,
 });
 
 // get individual leader
@@ -260,14 +256,11 @@ export const updateScout = (data, id) => (
     dispatch(isFetching());
     axios.put(URL, { data }, { headers: { authorization: getToken() } })
       .then((response) => {
-        dispatch({
-          type: SCOUT_DETAIL,
-          payload: response.data,
-        });
-        dispatch(clearError());
-        browserHistory.push('/scouts/update-confirm');
-        dispatch(endFetching());
         dispatch(getAllScouts());
+        dispatch(clearError());
+        // setTimeout(() => browserHistory.push(`/scouts/update-confirm/${response.data._id}`), 1000);
+        browserHistory.push(`/scouts/update-confirm/${response.data._id}`);
+        dispatch(endFetching());
       })
       .catch((error) => {
         dispatch(endFetching());
@@ -412,7 +405,7 @@ export const signinUser = ({ email, password }) => (
       dispatch(getAllScouts());
       dispatch(getLeaders());
       dispatch(getUser());
-      browserHistory.push('/scouts');
+      browserHistory.push('/welcome');
     })
     .catch(() => {
       dispatch(endFetching());

@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
-import * as actions from '../actions/index';
 
 const style = {
   width: '150px',
@@ -16,13 +14,13 @@ class ShowRank extends Component {
   }
   handleChange(event, index, value) {
     event.preventDefault();
-    this.props.setAdvancement(value);
+    this.props.changeAdvDen(value);
   }
 
   render() {
     return (
       <DropDownMenu
-        value={this.props.scouts.advDen}
+        value={this.props.activeDen}
         onChange={this.handleChange}
         style={style}
       >
@@ -39,13 +37,8 @@ class ShowRank extends Component {
 }
 
 ShowRank.propTypes = {
-  scouts: PropTypes.object,
-  advDen: PropTypes.string,
-  setAdvancement: PropTypes.func,
+  activeDen: PropTypes.string,
+  changeAdvDen: PropTypes.func,
 };
 
-const mapStateToProps = ({ scouts }) => ({
-  scouts,
-});
-
-export default connect(mapStateToProps, actions)(ShowRank);
+export default ShowRank;

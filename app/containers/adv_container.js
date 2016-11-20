@@ -4,7 +4,8 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as actions from '../actions';
-import SelectDevAdv from '../components/select_den_advancement';
+import SelectDenAdv from '../components/select_den_advancement';
+import LoadingComponent from './loading_container';
 import { getRankObj, ranks } from '../utils/util';
 
 const style = {
@@ -19,19 +20,19 @@ class Advancement extends Component {
   componentDidMount() {
     // if (!this.props.scouts.scoutDetail) {
       setTimeout(() => {
-        this.props.getScoutDetail(this.props.params.id, this.props.user.profile.customDens);
+        this.props.getScoutDetail(this.props.params.id);
       }, 1000);
     }
   // }
   doSubmit(values) {
     const obj = {};
     const den = getRankObj(this.props.scouts.advDen);
-    const title = den.denString;
+    const title = den.Den.toLowerCase();
     obj[title] = {};
-    const denKeys = Object.keys(den.rankObj);
+    const denKeys = Object.keys(den);
     denKeys.shift();
     denKeys.map((key) => {
-      den.rankObj[key].map((item) => {
+      den[key].map((item) => {
         const itemName = item.formName;
         if (values[itemName]) {
           obj[title][itemName] = values[itemName];
@@ -42,25 +43,7 @@ class Advancement extends Component {
   }
   render() {
     const { scouts } = this.props;
-    const customDens = this.props.user.profile.customDens;
-    
-    let rank = '';
-    
-      customDens.forEach((den) => {
-        console.log(den);
-        if (scouts.advDen === den.name) { rank = den.rank; }
-      });
-    
-      ranks.forEach((den) => {
-        if (scouts.advDen === den.rank) { rank = den.rank; }
-      });
-    
-    
-    
-    
-    
-    const den = getRankObj(rank);
-    console.log('den', den);
+    const den = getRankObj(scouts.advDen);
     let elemReq = '';
     let elemArrow = '';
     let elemElective = '';
@@ -119,6 +102,7 @@ class Advancement extends Component {
 
     return (
       <div>
+        {this.props.loading && <LoadingComponent />}
         <div className="row">
           <div className="col-sm-6 col-sm-offset-3" >
             <div className="">
@@ -133,7 +117,7 @@ class Advancement extends Component {
         <div className="row">
           <div className="col-sm-6 col-sm-offset-3" >
             <div className="select-den-advancement-div">
-              <SelectDevAdv />
+              <SelectDenAdv />
             </div>
           </div>
         </div>
@@ -189,6 +173,7 @@ class Advancement extends Component {
 }
 
 Advancement.propTypes = {
+  loading: PropTypes.bool,
   scouts: PropTypes.Object,
   params: PropTypes.Object,
   pristine: PropTypes.bool,
@@ -199,10 +184,11 @@ Advancement.propTypes = {
 };
 
 
-const mapStateToProps = ({ scouts, user }) => ({
+const mapStateToProps = ({ scouts, user, loading }) => ({
   user,
   scouts,
-  // initialValues: scouts.advData,
+  loading,
+  initialValues: scouts.advData,
 });
 
 const form = reduxForm({

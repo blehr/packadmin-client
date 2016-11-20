@@ -18,13 +18,9 @@ class ScoutDetailContainer extends Component {
   }
   componentDidMount() {
     if (this.props.params.id) {
-      if (this.props.scouts.allScouts.length < 1) {
-        setTimeout(() => {
-          this.props.getScoutDetail(this.props.params.id, this.props.user.profile.customDens);
-        }, 1000);
-      } else {
-        this.props.getScoutDetail(this.props.params.id, this.props.user.profile.customDens);
-      }
+      setTimeout(() => {
+        this.props.getScoutDetail(this.props.params.id);
+      }, 500);
     }
   }
   handleOnClickEdit() {
@@ -41,9 +37,7 @@ class ScoutDetailContainer extends Component {
         return <ErrorDisplay />;
       }
       return (
-        <div style={{ position: 'relative' }}>
-          <LoadingComponent />
-        </div>
+        <LoadingComponent />
       );
     }
 
@@ -57,26 +51,34 @@ class ScoutDetailContainer extends Component {
           />
         </div>
         <div className="row">
-          <LoadingComponent />
+          {this.props.loading && <LoadingComponent />}
           <ScoutDetail
             scout={scouts.scoutDetail}
           />
         </div>
         <div className="row">
-          <DisplayRankProgress scout={scouts.scoutDetail} activeDen={scouts.advDen} customDens={user.profile.customDens} />
+          <DisplayRankProgress
+            scout={scouts.scoutDetail}
+            activeDen={scouts.advDen}
+            customDens={user.profile.customDens}
+            changeAdvDen={this.props.setAdvancement}
+          />
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ scouts, error, user }) => ({
+const mapStateToProps = ({ scouts, error, user, loading }) => ({
+  loading,
   user,
   scouts,
   error,
 });
 
 ScoutDetailContainer.propTypes = {
+  loading: PropTypes.bool,
+  setAdvancement: PropTypes.func,
   getScoutDetail: PropTypes.func,
   scouts: PropTypes.object,
   removeScout: PropTypes.func,

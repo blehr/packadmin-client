@@ -26,7 +26,7 @@ export const standardDens = [
   { name: 'Webelos 2', rank: 'Webelos' },
 ];
 
-export const ranks = [
+export const Ranks = [
   { name: 'Lion', rank: 'Lion' },
   { name: 'Bobcat', rank: 'Bobcat' },
   { name: 'Tiger', rank: 'Tiger' },
@@ -97,57 +97,18 @@ const byDen = (list, customDens) => {
 
   sortedList.forEach((scout) => {
     const den = scout.den;
-    console.log(denArraysObject);
     denArraysObject[den].push(scout);
   });
 
-  console.log(denArraysObject);
+  sortedList.forEach((scout) => {
+    if (scout.dues) {
+      denArraysObject.paid.push(scout);
+    } else {
+      denArraysObject.unpaid.push(scout);
+    }
+  });
 
   return denArraysObject;
-};
-
-export const filterBy1 = (list, filter, customDens) => {
-  let sortedScouts = '';
-
-  if (filter === 'all') {
-    return { scouts: alphabetize(list), title: 'All Scouts' };
-  }
-  if (filter === 'byDen') {
-    return { scouts: byDen(list), title: 'Scouts by Den' };
-  }
-  if (filter === 'Lion') {
-    sortedScouts = byDen(list);
-    return { scouts: sortedScouts.lion, title: 'Lion Den' };
-  }
-  if (filter === 'Tiger') {
-    sortedScouts = byDen(list);
-    return { scouts: sortedScouts.tiger, title: 'Tiger Den' };
-  }
-  if (filter === 'Wolf') {
-    sortedScouts = byDen(list);
-    return { scouts: sortedScouts.wolf, title: 'Wolf Den' };
-  }
-  if (filter === 'Bear') {
-    sortedScouts = byDen(list);
-    return { scouts: sortedScouts.bear, title: 'Bear Den' };
-  }
-  if (filter === 'Webelos 1') {
-    sortedScouts = byDen(list);
-    return { scouts: sortedScouts.web1, title: 'Webelos 1' };
-  }
-  if (filter === 'Webelos 2') {
-    sortedScouts = byDen(list);
-    return { scouts: sortedScouts.web2, title: 'Webelos 2' };
-  }
-  if (filter === 'paid') {
-    sortedScouts = byDen(list);
-    return { scouts: sortedScouts.paid, title: 'Dues Paid' };
-  }
-  if (filter === 'unpaid') {
-    sortedScouts = byDen(list);
-    return { scouts: sortedScouts.unpaid, title: 'Dues Unpaid' };
-  }
-  return null;
 };
 
 export const filterBy = (list, filter, customDens) => {
@@ -155,161 +116,139 @@ export const filterBy = (list, filter, customDens) => {
     return { scouts: alphabetize(list), title: 'All Scouts' };
   }
 
-  // test
-
   const densObject = byDen(list, customDens);
 
   if (filter === 'byDen') {
     return { scouts: densObject, title: 'Scouts by Den' };
   }
 
-  // test
+  if (filter === 'paid') {
+    return { scouts: densObject.paid, title: 'Dues Paid' };
+  }
+
+  if (filter === 'unpaid') {
+    return { scouts: densObject.unpaid, title: 'Dues Unpaid' };
+  }
 
   return { scouts: densObject[filter], title: `${filter} Den` };
 };
 
 
 export const getRankObj = (rank) => {
-   switch (rank) {
+  switch (rank) {
     case 'Bobcat':
       return bobcat;
-      // return {
-      //   rankObj: bobcat,
-      //   // denString: 'bobcat',
-      // };
     case 'Lion':
       return lion;
-      // return {
-      //   rankObj: lion,
-      //   // denString: 'lion',
-      // };
     case 'Tiger':
       return tiger;
-      // return {
-      //   rankObj: tiger,
-      //   // denString: 'tiger',
-      // };
     case 'Wolf':
       return wolf;
-      // return {
-      //   rankObj: wolf,
-      //   // denString: 'wolf',
-      // };
     case 'Bear':
-      return bear
-      // return {
-      //   rankObj: bear,
-      //   // denString: 'bear',
-      // };
+      return bear;
     case 'Webelos':
     case 'Webelos 1':
     case 'Webelos 2':
       return webelos;
-      // return {
-      //   rankObj: webelos,
-      //   // denString: 'webelos',
-      // };
     default:
       return null;
   }
 };
 
+// export const getDen = (x) => {
+//   switch (x) {
+//     case 'Bobcat':
+//       return {
+//         denObj: bobcat,
+//         denString: 'bobcat',
+//       };
+//     case 'Lion':
+//       return {
+//         denObj: lion,
+//         denString: 'lion',
+//       };
+//     case 'Tiger':
+//       return {
+//         denObj: tiger,
+//         denString: 'tiger',
+//       };
+//     case 'Wolf':
+//       return {
+//         denObj: wolf,
+//         denString: 'wolf',
+//       };
+//     case 'Bear':
+//       return {
+//         denObj: bear,
+//         denString: 'bear',
+//       };
+//     case 'Webelos':
+//     case 'Webelos 1':
+//     case 'Webelos 2':
+//       return {
+//         denObj: webelos,
+//         denString: 'webelos',
+//       };
+//     default:
+//       return null;
+//   }
+// };
 
 
-export const getDen = (x) => {
-  switch (x) {
-    case 'Bobcat':
-      return {
-        denObj: bobcat,
-        denString: 'bobcat',
-      };
-    case 'Lion':
-      return {
-        denObj: lion,
-        denString: 'lion',
-      };
-    case 'Tiger':
-      return {
-        denObj: tiger,
-        denString: 'tiger',
-      };
-    case 'Wolf':
-      return {
-        denObj: wolf,
-        denString: 'wolf',
-      };
-    case 'Bear':
-      return {
-        denObj: bear,
-        denString: 'bear',
-      };
-    case 'Webelos':
-    case 'Webelos 1':
-    case 'Webelos 2':
-      return {
-        denObj: webelos,
-        denString: 'webelos',
-      };
-    default:
-      return null;
-  }
-};
-
-
-export const formatDenAdvDates = (scout) => {
-  if (scout.tiger) {
-    const advArray = Object.keys(scout.tiger);
-    advArray.shift();
-    advArray.map(item => {
-      if (scout.tiger[item] && scout.tiger[item] !== '_id') {
-        scout.tiger[item] = new Date(scout.tiger[item]);
-      }
-    });
-  }
-  if (scout.lion) {
-    const advArray = Object.keys(scout.lion);
-    advArray.shift();
-    advArray.map(item => {
-      if (scout.lion[item] && item !== '_id') {
-        scout.lion[item] = new Date(scout.lion[item]);
-      }
-    });
-  }
-  if (scout.bobcat) {
-    const advArray = Object.keys(scout.bobcat);
-    advArray.shift();
-    advArray.map(item => {
-      if (scout.bobcat[item] && item !== '_id') {
-        scout.bobcat[item] = new Date(scout.bobcat[item]);
-      }
-    });
-  }
-  if (scout.wolf) {
-    const advArray = Object.keys(scout.wolf);
-    advArray.shift();
-    advArray.map(item => {
-      if (scout.wolf[item] && item !== '_id') {
-        scout.wolf[item] = new Date(scout.wolf[item]);
-      }
-    });
-  }
-  if (scout.bear) {
-    const advArray = Object.keys(scout.bear);
-    advArray.shift();
-    advArray.map(item => {
-      if (scout.bear[item] && item !== '_id') {
-        scout.bear[item] = new Date(scout.bear[item]);
-      }
-    });
-  }
-  if (scout.webelos) {
-    const advArray = Object.keys(scout.webelos);
-    advArray.shift();
-    advArray.map(item => {
-      if (scout.webelos[item] && item !== '_id') {
-        scout.webelos[item] = new Date(scout.webelos[item]);
-      }
-    });
-  }
-  return scout;
-};
+// export const formatDenAdvDates = (scout) => {
+//   if (scout.tiger) {
+//     const advArray = Object.keys(scout.tiger);
+//     advArray.shift();
+//     advArray.map(item => {
+//       if (scout.tiger[item] && scout.tiger[item] !== '_id') {
+//         scout.tiger[item] = new Date(scout.tiger[item]);
+//       }
+//     });
+//   }
+//   if (scout.lion) {
+//     const advArray = Object.keys(scout.lion);
+//     advArray.shift();
+//     advArray.map(item => {
+//       if (scout.lion[item] && item !== '_id') {
+//         scout.lion[item] = new Date(scout.lion[item]);
+//       }
+//     });
+//   }
+//   if (scout.bobcat) {
+//     const advArray = Object.keys(scout.bobcat);
+//     advArray.shift();
+//     advArray.map(item => {
+//       if (scout.bobcat[item] && item !== '_id') {
+//         scout.bobcat[item] = new Date(scout.bobcat[item]);
+//       }
+//     });
+//   }
+//   if (scout.wolf) {
+//     const advArray = Object.keys(scout.wolf);
+//     advArray.shift();
+//     advArray.map(item => {
+//       if (scout.wolf[item] && item !== '_id') {
+//         scout.wolf[item] = new Date(scout.wolf[item]);
+//       }
+//     });
+//   }
+//   if (scout.bear) {
+//     const advArray = Object.keys(scout.bear);
+//     advArray.shift();
+//     advArray.map(item => {
+//       if (scout.bear[item] && item !== '_id') {
+//         scout.bear[item] = new Date(scout.bear[item]);
+//       }
+//     });
+//   }
+//   if (scout.webelos) {
+//     const advArray = Object.keys(scout.webelos);
+//     advArray.shift();
+//     advArray.map(item => {
+//       if (scout.webelos[item] && item !== '_id') {
+//         scout.webelos[item] = new Date(scout.webelos[item]);
+//       }
+//     });
+//   }
+//   return scout;
+// };
