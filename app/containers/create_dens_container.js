@@ -24,7 +24,7 @@ class CreateDens extends Component {
     return (
       <form onSubmit={this.props.handleSubmit(this.doSubmit)}>
         <fieldset className="form-group" >
-          <legend>Create Additional Dens</legend>
+          <legend>Create Dens</legend>
           <Field
             name="name"
             component={TextField}
@@ -61,6 +61,7 @@ class CreateDens extends Component {
 }
 
 CreateDens.propTypes = {
+  reset: PropTypes.fun,
   pristine: PropTypes.bool,
   submitting: PropTypes.bool,
   handleSubmit: PropTypes.func,

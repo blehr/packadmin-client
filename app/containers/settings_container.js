@@ -22,6 +22,13 @@ class Settings extends Component {
       <div className="row">
         <div className="col-sm-12">
           <div className="welcome-card">
+            <div className="help-text">
+              <h2 className="text-center">Thank You, for using The Pack Admin!</h2>
+              <p><span className="text-danger">Before deleting a den</span> that you have created, first add the new den and edit the scouts in the old den to be a memeber of the new den before deleting the old one.</p>
+
+              <p>If you decide to <span className="text-danger">create dens after using the default dens</span> and adding scouts to them. First recreate all of the default dens and then the new dens. Now you can move scouts into the new dens and then delete the former.</p>
+              <p>Default Dens: Lion, Tiger, Wolf, Bear, Webelos 1, Webelos 2</p>
+            </div>
             <div className="add-dens-flex-container">
               <div className="add-dens-flex-col">
                 <CreateDens />

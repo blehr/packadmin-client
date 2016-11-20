@@ -55,6 +55,11 @@ footer {
   justify-content: space-between;
 }
 
+.help-text {
+  max-width: 650px;
+  margin: auto;
+}
+
 .card-column-1 {
   min-width: 50%;
   padding-right: 30px;
