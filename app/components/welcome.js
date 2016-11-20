@@ -25,7 +25,7 @@ const Welcome = () => (
             </div>
             <div className="welcome-flex-col">
               <h3 className="text-center">Need Help?</h3>
-              <p>If you ecounter any problems, spot any potential bugs, or need assistance of any kind, feel free to cotact me. I would be more than happy to help.</p>
+              <p>If you encounter any problems, spot any potential bugs, or need assistance of any kind, feel free to contact me. I would be more than happy to help.</p>
               <p>Questions, Concerns, or Suggestions?</p>
               <ul className="list-unstyled">
                 <li><a href="mailto:blehr.mail@gmail.com"><i className="fa fa-envelope-o"></i> blehr.mail@gmail.com</a></li>
