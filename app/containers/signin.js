@@ -62,6 +62,8 @@ class Signin extends Component {
                     />
                   </div>
                 </form>
+                <p className="small">By registering at packadmin.com you are agreeing to the privacy policy.</p>
+                <Link to='/privacy'><p className="text-danger text-center">The Pack Admin Privacy Policy</p></Link>
               </div>
             </div>
             <ErrorDisplay />

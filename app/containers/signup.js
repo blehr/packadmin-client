@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import { TextField } from 'redux-form-material-ui';
 import ErrorDisplay from './error_container';
@@ -80,6 +81,8 @@ class Signup extends Component {
                   </div>
                 </form>
                 <ErrorDisplay />
+                <p className="small">By registering at packadmin.com you are agreeing to the privacy policy.</p>
+                <Link to='/privacy'><p className="text-danger text-center">The Pack Admin Privacy Policy</p></Link>
               </div>
             </div>
           </div>

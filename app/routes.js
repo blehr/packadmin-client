@@ -19,6 +19,7 @@ import ResetPassword from './containers/reset_password';
 import EmailSent from './containers/email_sent_container';
 import Settings from './containers/settings_container';
 import Welcome from './components/welcome';
+import PrivacyPolicy from './components/privacy_policy';
 
 import PdfContainer from './containers/pdf_container';
 import PdfLeadersContainer from './containers/pdf_leaders_container';
@@ -27,6 +28,7 @@ export default (
   <Route path="/" component={App} >
     <IndexRoute component={Home} />
     <Route path="/signup" component={Signup} />
+    <Route path="/privacy" component={PrivacyPolicy} />
     <Route path="/signin" component={Signin} />
     <Route path="/request" component={RequestPassword} />
     <Route path="/reset/:token" component={ResetPassword} />
