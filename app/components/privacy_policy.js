@@ -25,8 +25,6 @@ const PrivacyPolicy = () => (
             <p>When personal information is transmitted to other websites, it is protected through the use of encryption, such as the Secure Sockets Layer (SSL) protocol.</p>
             <h4>Children Under Thirteen</h4>
             <p>Packadmin.com complies with The Children's Online Privacy Protection Act (COPPA). We do not allow children under the age of 13 to create an account without the approval of a parent or guardian.</p>
-
-
             <p>If you are under the age of thirteen, you must ask your parent or guardian for permission to use this website. If you are a parent and you have questions regarding our data collection practices, please contact us using the information provided at the end of this Statement of Privacy.</p>
             <h4>Changes to this Statement</h4>
             <p>Packadmin.com will occasionally update this Statement of Privacy to reflect company and customer feedback. Packadmin.com encourages you to periodically review this Statement to be informed of how Packadmin.com is protecting your information.</p>
