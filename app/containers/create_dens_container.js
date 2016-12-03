@@ -41,8 +41,7 @@ class CreateDens extends Component {
             <MenuItem value="Tiger" primaryText="Tiger" />
             <MenuItem value="Wolf" primaryText="Wolf" />
             <MenuItem value="Bear" primaryText="Bear" />
-            <MenuItem value="Webelos 1" primaryText="Webelos 1" />
-            <MenuItem value="Webelos 2" primaryText="Webelos 2" />
+            <MenuItem value="Webelos" primaryText="Webelos" />
           </Field>
         </fieldset>
         <div className="form-buttons-container">

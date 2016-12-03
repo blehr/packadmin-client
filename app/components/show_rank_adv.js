@@ -29,7 +29,7 @@ class ShowRank extends Component {
         <MenuItem value={'Tiger'} primaryText="Tiger" />
         <MenuItem value={'Wolf'} primaryText="Wolf" />
         <MenuItem value={'Bear'} primaryText="Bear" />
-        <MenuItem value={'Webelos 1'} primaryText="Webelos" />
+        <MenuItem value={'Webelos'} primaryText="Webelos" />
       </DropDownMenu>
 
     );

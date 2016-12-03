@@ -15,7 +15,7 @@ class DisplayRankProgress extends Component {
     let rank = '';
     if (customDens.length > 0) {
       customDens.forEach((den) => {
-        if (theDen === den.name) {
+        if (theDen === den.rank) {
           rank = den.rank;
         } else {
           Ranks.forEach((denItem) => {
@@ -52,7 +52,7 @@ class DisplayRankProgress extends Component {
         );
       });
       const table = (
-        <div className={den.Den}  key={keyValues++}>
+        <div className={den.Den} key={keyValues++}>
           <h3>{den.Den}</h3>
           <table className="table table-striped table-condensed table-hover">
             <tbody>
